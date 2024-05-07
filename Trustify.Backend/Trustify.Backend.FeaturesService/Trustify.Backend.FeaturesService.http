@@ -1,0 +1,6 @@
+@Trustify.Backend.FeaturesService_HostAddress = http://localhost:5152
+
+GET {{Trustify.Backend.FeaturesService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
