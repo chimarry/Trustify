@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.FeaturesService", "Trustify.Backend.FeaturesService\Trustify.Backend.FeaturesService.csproj", "{2D6E1142-EEAC-4A3A-94D0-CA8224E37130}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.AdminService", "Trustify.Backend.AdminService\Trustify.Backend.AdminService.csproj", "{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.ApiGateway", "Trustify.Backend.ApiGateway\Trustify.Backend.ApiGateway.csproj", "{3823E656-F807-4CD3-BC32-8B4F40C95187}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{2D6E1142-EEAC-4A3A-94D0-CA8224E37130}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D6E1142-EEAC-4A3A-94D0-CA8224E37130}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D6E1142-EEAC-4A3A-94D0-CA8224E37130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3823E656-F807-4CD3-BC32-8B4F40C95187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3823E656-F807-4CD3-BC32-8B4F40C95187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3823E656-F807-4CD3-BC32-8B4F40C95187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3823E656-F807-4CD3-BC32-8B4F40C95187}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
