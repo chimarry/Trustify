@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Trustify.Backend.FeaturesCore.Database.Entities
+﻿namespace Trustify.Backend.FeaturesCore.Database.Entities
 {
-    internal class Section
+    public class Section
     {
+        public long SectionId { get; set; }
+
+        public string Title { get; set; } = null!;
+
+        public string? Description { get; set; }
+
+        public string Author { get; set; } = null!;
+
+        public bool IsConfidential { get; set; } = true;
+
+        public virtual required ICollection<SectionImageContent> ImageContents { get; set; }
+
+        public virtual required ICollection<SectionTextualContent> TextualContents { get; set; }
     }
 }
