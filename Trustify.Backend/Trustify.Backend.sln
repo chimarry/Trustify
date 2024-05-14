@@ -3,11 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.FeaturesService", "Trustify.Backend.FeaturesService\Trustify.Backend.FeaturesService.csproj", "{2D6E1142-EEAC-4A3A-94D0-CA8224E37130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.FeaturesService", "Trustify.Backend.FeaturesService\Trustify.Backend.FeaturesService.csproj", "{2D6E1142-EEAC-4A3A-94D0-CA8224E37130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.AdminService", "Trustify.Backend.AdminService\Trustify.Backend.AdminService.csproj", "{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.AdminService", "Trustify.Backend.AdminService\Trustify.Backend.AdminService.csproj", "{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.ApiGateway", "Trustify.Backend.ApiGateway\Trustify.Backend.ApiGateway.csproj", "{3823E656-F807-4CD3-BC32-8B4F40C95187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.ApiGateway", "Trustify.Backend.ApiGateway\Trustify.Backend.ApiGateway.csproj", "{3823E656-F807-4CD3-BC32-8B4F40C95187}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trustify.Backend.Admin", "Trustify.Backend.Admin", "{4C72B833-6C84-44F4-868E-CBE4902DF8BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trustify.Backend.Features", "Trustify.Backend.Features", "{09F6B51D-8CA2-4FBB-B968-6F95CA6F2429}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trustify.Backend.ApiGateways", "Trustify.Backend.ApiGateways", "{85FA93CF-35D0-4CF6-93B5-9C5156720385}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.FeaturesCore", "Trustify.Backend.FeaturesCore\Trustify.Backend.FeaturesCore.csproj", "{1BE24627-CF6B-4AFE-AF5E-8E8E0B6B12FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Trustify.Backend.Features.Providers", "Trustify.Backend.Features.Providers", "{06F0215A-8C68-43B7-8D5F-1876A50B4FBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.Features.Providers.PostgreSQL", "Trustify.Backend.Features.Providers.PostgreSQL\Trustify.Backend.Features.Providers.PostgreSQL.csproj", "{AFDDF7BC-A52D-4C96-8497-ECF3B819005F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.Features.Providers.MSSQL", "Trustify.Backend.Features.Providers.MSSQL\Trustify.Backend.Features.Providers.MSSQL.csproj", "{60FB3CEB-A92F-4341-8C28-6167C18A8A2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.FeaturesTests", "Trustify.Backend.FeaturesTests\Trustify.Backend.FeaturesTests.csproj", "{567C7DFE-972D-4653-A256-13D623E03CDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +43,35 @@ Global
 		{3823E656-F807-4CD3-BC32-8B4F40C95187}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3823E656-F807-4CD3-BC32-8B4F40C95187}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3823E656-F807-4CD3-BC32-8B4F40C95187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BE24627-CF6B-4AFE-AF5E-8E8E0B6B12FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BE24627-CF6B-4AFE-AF5E-8E8E0B6B12FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BE24627-CF6B-4AFE-AF5E-8E8E0B6B12FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BE24627-CF6B-4AFE-AF5E-8E8E0B6B12FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDDF7BC-A52D-4C96-8497-ECF3B819005F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDDF7BC-A52D-4C96-8497-ECF3B819005F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDDF7BC-A52D-4C96-8497-ECF3B819005F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDDF7BC-A52D-4C96-8497-ECF3B819005F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FB3CEB-A92F-4341-8C28-6167C18A8A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FB3CEB-A92F-4341-8C28-6167C18A8A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FB3CEB-A92F-4341-8C28-6167C18A8A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FB3CEB-A92F-4341-8C28-6167C18A8A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567C7DFE-972D-4653-A256-13D623E03CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567C7DFE-972D-4653-A256-13D623E03CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567C7DFE-972D-4653-A256-13D623E03CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567C7DFE-972D-4653-A256-13D623E03CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D6E1142-EEAC-4A3A-94D0-CA8224E37130} = {09F6B51D-8CA2-4FBB-B968-6F95CA6F2429}
+		{C1F3794F-E4ED-499F-A2DC-C6F1572CAF21} = {4C72B833-6C84-44F4-868E-CBE4902DF8BE}
+		{3823E656-F807-4CD3-BC32-8B4F40C95187} = {85FA93CF-35D0-4CF6-93B5-9C5156720385}
+		{1BE24627-CF6B-4AFE-AF5E-8E8E0B6B12FA} = {09F6B51D-8CA2-4FBB-B968-6F95CA6F2429}
+		{06F0215A-8C68-43B7-8D5F-1876A50B4FBE} = {09F6B51D-8CA2-4FBB-B968-6F95CA6F2429}
+		{AFDDF7BC-A52D-4C96-8497-ECF3B819005F} = {06F0215A-8C68-43B7-8D5F-1876A50B4FBE}
+		{60FB3CEB-A92F-4341-8C28-6167C18A8A2E} = {06F0215A-8C68-43B7-8D5F-1876A50B4FBE}
+		{567C7DFE-972D-4653-A256-13D623E03CDA} = {09F6B51D-8CA2-4FBB-B968-6F95CA6F2429}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D200267F-7C30-4090-9400-3EBD3D11B221}

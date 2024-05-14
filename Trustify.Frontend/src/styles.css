@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* fonts, colors*/
+:root {
+    --trf-primary-font: #283593;
+    --trf-secondary-font: #1A237E;
+    --trf-primary-background: #E8EAF6;
+    --trf-secondary-background: #303F9F;
+    --trf-card-background: white;
+    --trf-primary: #3F51B5;
+}

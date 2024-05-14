@@ -1,0 +1,40 @@
+.trf-layout {
+    display: flex;
+    min-height: 85vh;
+    background-color: var(--trf-primary-background)
+}
+
+.trf-layout-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    flex-grow: 1;
+    vertical-align: middle;
+}
+
+.trf-role-description {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 20%;
+    padding: 10px;
+    color: var(--trf-primary-font);
+    background-color: var(--trf-card-background);
+    margin: 1.5vh;
+    height: 82vh;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.trf-features {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+    height: 82vh;
+    padding:10px;
+    flex-grow: 1;
+}
+
+.trf-features-card{
+    height: 82vh;
+}
