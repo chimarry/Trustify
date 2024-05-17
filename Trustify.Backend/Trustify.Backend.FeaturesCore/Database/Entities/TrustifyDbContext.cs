@@ -13,24 +13,18 @@ namespace Trustify.Backend.FeaturesCore.Database.Entities
 
         public virtual DbSet<Section> Sections { get; set; }
 
-        public virtual DbSet<SectionImageContent> SectionImageContents { get; set; }
-
-        public virtual DbSet<SectionTextualContent> SectionTextualContents { get; set; }
-
         public TrustifyDbContext(DbContextOptions options) : base(options)
         {
         }
 
-        protected TrustifyDbContext()
+        public TrustifyDbContext()
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
-                throw new Exception();
-            }
+                throw new Exception("Not configured");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,13 +33,6 @@ namespace Trustify.Backend.FeaturesCore.Database.Entities
             modelBuilder.ApplyConfiguration(new ImageContentConfiguration());
             modelBuilder.ApplyConfiguration(new TextualContentConfiguration());
             modelBuilder.ApplyConfiguration(new LargeContentConfiguration());
-            modelBuilder.ApplyConfiguration(new SectionImageContentConfiguration());
-            modelBuilder.ApplyConfiguration(new SectionTextualContentConfiguration());
-
-
-            OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

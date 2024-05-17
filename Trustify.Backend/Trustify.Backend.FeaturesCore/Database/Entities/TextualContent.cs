@@ -12,6 +12,6 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public virtual required ICollection<SectionTextualContent> Sections { get; set; }
+        public virtual required ICollection<Section> Sections { get; set; }
     }
 }

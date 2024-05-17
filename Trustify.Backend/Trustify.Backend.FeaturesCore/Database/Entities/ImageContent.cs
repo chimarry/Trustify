@@ -10,10 +10,8 @@
 
         public DateTime UploadedOn { get; set; }
 
-        public string UploadedBy { get; set; } = null!;
-
         public double Size { get; set; }
 
-        public virtual required ICollection<SectionImageContent> Sections { get; set; }
+        public virtual required ICollection<Section> Sections { get; set; }
     }
 }

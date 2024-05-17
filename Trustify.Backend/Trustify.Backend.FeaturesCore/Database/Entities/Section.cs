@@ -8,12 +8,10 @@
 
         public string? Description { get; set; }
 
-        public string Author { get; set; } = null!;
-
         public bool IsConfidential { get; set; } = true;
 
-        public virtual required ICollection<SectionImageContent> ImageContents { get; set; }
+        public virtual required ICollection<ImageContent> ImageContents { get; set; }
 
-        public virtual required ICollection<SectionTextualContent> TextualContents { get; set; }
+        public virtual required ICollection<TextualContent> TextualContents { get; set; }
     }
 }

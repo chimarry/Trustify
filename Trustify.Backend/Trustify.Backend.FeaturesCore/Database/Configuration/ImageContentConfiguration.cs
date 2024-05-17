@@ -17,6 +17,11 @@ namespace Trustify.Backend.FeaturesCore.Database.Configuration
     {
         public void Configure(EntityTypeBuilder<ImageContent> builder)
         {
+            builder.Property(x => x.Name).HasMaxLength(255);
+            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Path).IsRequired();
+            builder.Property(x => x.Size).IsRequired();
+            builder.Property(x=>x.UploadedOn).IsRequired();
         }
     }
 }

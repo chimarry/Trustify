@@ -17,7 +17,9 @@ namespace Trustify.Backend.FeaturesCore.Database.Configuration
     {
         public void Configure(EntityTypeBuilder<Section> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(x => x.Title).IsRequired();
+            builder.Property(x => x.Title).HasMaxLength(255);
+            builder.Property(x => x.Description).HasMaxLength(1023);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Trustify.Backend.FeaturesService.IoC
                         options.UseNpgsql(connectionString,
                                             x => x.MigrationsAssembly("Trustify.Backend.Features.Providers.PostgreSQL"))
                                .ReplaceService<IMigrationsSqlGenerator, PostgreSqlMigrationsGenerator>(); break;
-                    default: throw new Exception();
+                    default: throw new Exception("Not supported");
                 }
             }
             , contextLifetime: ServiceLifetime.Scoped
