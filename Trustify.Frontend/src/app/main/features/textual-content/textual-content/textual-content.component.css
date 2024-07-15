@@ -1,0 +1,81 @@
+td,
+th {
+    text-align: center;
+    color: var(--trf-secondary-font);
+}
+
+th {
+    background: var(--trf-primary-background) !important;
+    color: var(--trf-secondary-font);
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    min-height: 62vh;
+    text-align: center;
+    color: var(--trf-secondary-font);
+}
+
+.content-text {
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}
+
+.trf-table-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/*
+.mat-column-title, .mat-column-length, .mat-column-actions{
+    background-color: var(--trf-primary-background);
+}
+*/
+
+.trf-30-col {
+    width: 30vw;
+    max-width: 30vw;
+}
+
+.trf-20-col {
+    width: 20vw;
+    max-width: 20vw;
+    text-wrap: wrap;
+    text-align: center;
+}
+
+.trf-10-col {
+    width: 10vw;
+    max-width: 10vw;
+    text-align: center;
+}
+
+.trf-5-col {
+    width: 5vw;
+    max-width: 5vw;
+    text-align: center;
+}
+
+
+.trf-table-paginator {
+    margin-top: 20px;
+    color: var(--mb-green-primary);
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: center;
+}
+
+.trf-table-paginator ::ng-deep .mat-select {
+    width: 50px !important;
+    height: 15px !important;
+}
+
+.trf-table-paginator ::ng-deep .mat-form-field {
+    width: 50px !important;
+}

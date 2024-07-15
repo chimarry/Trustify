@@ -1,0 +1,16 @@
+<mat-grid-list [cols]="2" rowHeight="70vh" gutterSize="10px">
+    @for (tile of displayImageList; track tile) {
+    <mat-grid-tile>
+        <trf-image-card [imageContent]="tile"></trf-image-card>
+    </mat-grid-tile>
+    }
+</mat-grid-list>
+<div class="trf-image-content">
+    <button mat-icon-button [hidden]="!canSeePrevious" (click)="pageDown()" size="2x">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+    <div [hidden]="!canSeeNext"></div>
+    <button mat-icon-button (click)="pageUp()" size="2x" [hidden]="!canSeeNext">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</div>

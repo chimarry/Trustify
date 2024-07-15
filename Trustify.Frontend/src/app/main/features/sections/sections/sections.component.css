@@ -1,0 +1,22 @@
+.img-left {
+    padding: 0;
+    margin: 5px;
+    float: inline-start;
+}
+
+.img-right {
+    padding: 0;
+    margin: 5px;
+    float: inline-end;
+}
+
+h1, h4{
+    margin-left: 0;
+    padding: 0;
+}
+
+p {
+    padding: 0;
+    margin: 5px;
+    text-align: justify;
+}

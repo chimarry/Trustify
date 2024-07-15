@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Route, RouterLink, RouterOutlet, Routes } from '@angular/router';
+import { Route, RouterLink, RouterModule, RouterOutlet, Routes } from '@angular/router';
+import { routes } from './admin-feature.routes';
 
 @Component({
   selector: 'trf-admin-feature',

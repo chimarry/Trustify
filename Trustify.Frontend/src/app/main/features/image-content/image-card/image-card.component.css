@@ -1,0 +1,19 @@
+.trf-image-card {
+    max-width: 430px;
+    max-height: 600px;
+    font-size: 8px;
+}
+
+.trf-image-header {
+    background-size: contain;
+}
+
+.trf-image-card-image {
+    height: 50vh;
+}
+
+.trf-image-card-actions {
+    display: flex;
+    flex-direction: row-wrap;
+    justify-content: end;
+}

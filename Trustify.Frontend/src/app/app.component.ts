@@ -19,4 +19,6 @@ import { LayoutComponent } from './layout/layout/layout/layout.component';
 })
 export class AppComponent {
   title = 'Trustify.Frontend';
+
+  ngOnInit():void{}
 }
