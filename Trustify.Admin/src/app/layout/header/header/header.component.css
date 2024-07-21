@@ -1,0 +1,24 @@
+.trf-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+.trf-icon>span{
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    padding-top:5px;
+}
+
+.trf-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 10vh;
+}
