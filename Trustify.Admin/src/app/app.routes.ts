@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout/layout/layout.component';
 import { UsersComponent } from './features/users/users/users.component';
+import { RolesComponent } from './features/roles/roles/roles.component';
 
 
 export const routes: Routes = [
@@ -25,7 +26,7 @@ export const routes: Routes = [
                 },
                 {
                     path: 'roles',
-                    component: LayoutComponent
+                    component: RolesComponent
                 }
             ]
     }

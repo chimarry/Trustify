@@ -1,0 +1,130 @@
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Register new user
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            <div [formGroup]="editUserFormGroup" class="trf-column">
+                <mat-form-field>
+                    <mat-label for="firstName">First name
+                    </mat-label>
+                    <input matInput id="firstName" formControlName="firstName" type="text" minlength="2"
+                        autocomplete="off">
+                    <mat-error>
+                        First name is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="lastName">Last name
+                    </mat-label>
+                    <input matInput id="lastName" formControlName="lastName" type="text" minlength="2"
+                        autocomplete="off">
+                    <mat-error>
+                        Last name is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="username">Username
+                    </mat-label>
+                    <input matInput id="username" formControlName="username" type="text" minlength="2" maxlength="36"
+                        autocomplete="off">
+                    <mat-error>
+                        Username is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="email">Email
+                    </mat-label>
+                    <input matInput id="email" formControlName="email" type="text" minlength="2" maxlength="36"
+                        autocomplete="off">
+                    <mat-error>
+                        Email is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="address">Address</mat-label>
+                    <input matInput id="address" formControlName="address" type="text" minlength="2" maxlength="127"
+                        autocomplete="off">
+                    <mat-error>
+                        Address is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="birthday">Birthday</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="birthday" >
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix 
+                        [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="password">Password
+                    </mat-label>
+                    <input matInput id="password" formControlName="password" type="password" minlength="5"
+                        maxlength="16" autocomplete="off">
+                    <mat-error>
+                        Password is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="confirmPassword">Confirm password
+                    </mat-label>
+                    <input matInput id="confirmPassword" formControlName="confirmPassword" type="password" minlength="5"
+                        maxlength="16" autocomplete="off">
+                    <mat-error>
+                        Passwords are not the same
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
+            Grant roles
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(permission of selectedRole; track permission.role){
+                    <mat-chip class="trf-role-selected">
+                        {{permission.role}}
+                        <button matChipRemove (click)="remove(permission)">
+                            <mat-icon>check_box</mat-icon>
+                        </button>
+                    </mat-chip>}
+                    @for(permission of notSelectedRoles; track permission.role){
+                    <mat-chip class="trf-role-not-selected">
+                        {{permission.role}}
+                        <button matChipRemove (click)="select(permission)">
+                            <mat-icon>
+                                check_box_outline_blank
+                            </mat-icon>
+                        </button>
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+            <mat-divider></mat-divider>
+            Add to groups
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(group of selectedGroups; track group.name){
+                    <mat-chip class="trf-role-selected">
+                        {{group.name}}
+                        <button matChipRemove (click)="removeFromGroup(group)">
+                            <mat-icon>check_box</mat-icon>
+                        </button>
+                    </mat-chip>}
+                    @for(group of notSelectedGroups; track group.name){
+                    <mat-chip class="trf-role-not-selected">
+                        {{group.name}}
+                        <button matChipRemove (click)="addToGroup(group)">
+                            <mat-icon>
+                                check_box_outline_blank
+                            </mat-icon>
+                        </button>
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button  [disabled]="editUserFormGroup.invalid" type="submit" (click)="confirm()"
+            class="trf-confirm-button ">Yes</button>
+        <button color="secondary" mat-raised-button  (click)="close()" class="trf-cancel-button ">No</button>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        User details
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            <div class="trf-column">
+                <mat-form-field>
+                    <mat-label for="firstName">First name
+                    </mat-label>
+                    <input disabled matInput id="firstName" [value]="user.firstName" type="text">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="lastName">Last name
+                    </mat-label>
+                    <input matInput id="lastName" [value]="user.lastName" type="text" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="username">Username
+                    </mat-label>
+                    <input matInput id="username" [value]="user.username" type="text" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="email">Email
+                    </mat-label>
+                    <input matInput id="email" [value]="user.email" type="text" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="address">Address</mat-label>
+                    <input matInput id="address" [value]="user.address" type="text" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="birthday">Birthday</mat-label>
+                    <input matInput disabled [matDatepicker]="picker" [value]="user.birthday">
+                    <mat-datepicker-toggle matIconSuffix 
+                        [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="isUserActive">Is User Active
+                    </mat-label>
+                    <input matInput id="isUserActive" [value]="user.isUserActive" type="text" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="lastActivity">Last activity
+                    </mat-label>
+                    <input matInput id="lastActivity" [value]="user.lastActivity" type="text" disabled>
+                </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
+            Roles
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(permission of user.roles; track permission.role){
+                    <mat-chip class="trf-role-selected">
+                        {{permission.role}}
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+            <mat-divider></mat-divider>
+            Add to groups
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(group of user.groups;track group.name){
+                    <mat-chip class="trf-role-selected">
+                        {{group.name}}
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button  type="submit"
+           class="trf-confirm-button ">Close</button>
+    </div>
+</div>

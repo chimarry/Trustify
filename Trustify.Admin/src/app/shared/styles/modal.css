@@ -1,0 +1,39 @@
+
+.trf-modal {
+    background-color: var(--trf-primary-background);
+    padding: 20px;
+}
+
+.trf-title {
+    color: var(--trf-primary-font) !important;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.trf-content {
+    color: var(--trf-primary-font) !important;
+    height: 60%;
+    margin: 0;
+    padding: 0;
+}
+
+.trf-dialog-size {
+    width: 30vw;
+    height: 40vh;
+    min-height: 40vh;
+}
+
+.trf-dialog_actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
+    margin-left: 20px !important;
+}
+
+.trf-dialog-size-large {
+    width: 50vw;
+    min-height: 40vh;
+}

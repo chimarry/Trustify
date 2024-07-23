@@ -9,5 +9,7 @@ import { AppMaterialModule } from '../../../modules/app-material/app-material.mo
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  public goToMainApp() {
+    window.location.href = "http://localhost:4200";
+  }
 }

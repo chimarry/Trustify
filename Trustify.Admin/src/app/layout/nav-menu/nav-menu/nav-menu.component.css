@@ -8,11 +8,17 @@
     height: 82vh;
     word-wrap: break-word;
     font-size: 14px;
+    padding: 0 !important;
+}
+
+.trf-nav-menu .mat-mdc-card-content{
+    padding:0px !important;
 }
 
 .trf-nav-menu ul {
     list-style-type: none;
     padding: 0px;
+    margin: 0;
 }
 
 .trf-nav-menu li {
@@ -25,12 +31,14 @@
     margin: 5px;
     background-color: var(--trf-primary-background);
     cursor: pointer;
+    border-radius: 5%;
 }
 
-.trf-nav-menu li>span {
+.trf-nav-menu li span {
     text-align: center;
     vertical-align: middle;
     padding: 0px;
+    padding-top: 4px;
     margin: 0px;
     margin-left:10px;
 }
