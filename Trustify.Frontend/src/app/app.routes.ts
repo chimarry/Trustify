@@ -4,6 +4,7 @@ import { ImageContentComponent } from './main/features/image-content/image-conte
 import { TextualContentComponent } from './main/features/textual-content/textual-content/textual-content.component';
 import { LargeContentComponent } from './main/features/large-content/large-content/large-content.component';
 import { SectionsComponent } from './main/features/sections/sections/sections.component';
+import { ImageGeneratorComponent } from './main/features/europeana/image-generator/image-generator.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +37,10 @@ export const routes: Routes = [
                 {
                     path: 'sections',
                     component: SectionsComponent
+                },
+                {
+                    path: 'image-generator',
+                    component: ImageGeneratorComponent
                 }
             ]
 

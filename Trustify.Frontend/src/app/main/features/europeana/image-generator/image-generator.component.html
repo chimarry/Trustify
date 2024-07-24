@@ -1,0 +1,32 @@
+<div style="display: flex;flex-direction: row;min-width: 70vw !important;">
+    <div style="display: flex;flex-direction: column; width: 30vw; margin-right: 20px;">
+        <mat-form-field style="width: 100%;">
+            <mat-label for="word">Word
+            </mat-label>
+            <input matInput id="word" [(ngModel)]="word" type="text" minlength="2" autocomplete="off">
+            <mat-error>
+                Word is invalid
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" (click)="generate()" [disabled]="isDisabled"
+            style="width: 100px;">Generate</button>
+        <p>
+            This service uses Europeana service and based on entered word, searches for images that are somehow related
+            to the
+            specified word. <br>
+            If the image is not found, default image is shown.
+        </p>
+        <p>
+            {{textSnippet}}
+        </p>
+    </div>
+    <mat-card>
+        <mat-card-content>
+            <img style="width: 400px !important;height: 400px !important;" [src]="image" width="400px">
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-icon-button><mat-icon>add</mat-icon></button>
+            <button mat-icon-button><mat-icon>download</mat-icon></button>
+        </mat-card-actions>
+    </mat-card>
+</div>

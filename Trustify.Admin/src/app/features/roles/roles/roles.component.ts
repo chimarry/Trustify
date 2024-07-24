@@ -27,7 +27,7 @@ export class RolesComponent extends TrfTableComponent {
     { role: "regular_user", composite: true, description: "Regular downloads" } as Role
   ]
 
-  public override displayedColumns: string[] = ["role","composite","description", "actions"]
+  public override displayedColumns: string[] = ["role", "composite", "description", "actions"]
 
   constructor(private dialog: MatDialog, userPreferenceService: UserPreferenceService) {
     super(userPreferenceService);
@@ -60,6 +60,8 @@ export class RolesComponent extends TrfTableComponent {
       .afterClosed()
       .subscribe(result => {
         if (result) {
+          this.roles.push(result);
+          this.dataSource.data = this.roles;
         }
       });
   }
@@ -72,6 +74,9 @@ export class RolesComponent extends TrfTableComponent {
       .afterClosed()
       .subscribe(result => {
         if (result as Role) {
+          role.role = (result as Role).role;
+          role.description = (result as Role).description;
+          role.composite = (result as Role).composite;
         }
       });
   }

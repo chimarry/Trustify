@@ -1,0 +1,2356 @@
+{
+    "apikey": "turrymeter",
+    "success": true,
+    "requestNumber": 999,
+    "itemsCount": 12,
+    "totalResults": 357974,
+    "items": [
+        {
+            "completeness": 0,
+            "country": [
+                "Germany"
+            ],
+            "dataProvider": [
+                "German National Library"
+            ],
+            "dcCreator": [
+                "Otto, Martin",
+                "Otto, Martin",
+                "Otto, Martin"
+            ],
+            "dcCreatorLangAware": {
+                "de": [
+                    "Otto, Martin"
+                ],
+                "def": [
+                    "Otto, Martin"
+                ],
+                "en": [
+                    "Otto, Martin"
+                ]
+            },
+            "dcLanguage": [
+                "eng"
+            ],
+            "dcLanguageLangAware": {
+                "def": [
+                    "eng"
+                ]
+            },
+            "dcTitleLangAware": {
+                "def": [
+                    "Law"
+                ],
+                "en": [
+                    "Law"
+                ]
+            },
+            "edmConcept": [
+                "http://data.europeana.eu/concept/2841",
+                "http://data.europeana.eu/concept/79"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Geschichte"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Historia"
+                },
+                {
+                    "def": "Монография"
+                },
+                {
+                    "def": "История"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "História"
+                },
+                {
+                    "def": "Монография"
+                },
+                {
+                    "def": "История"
+                },
+                {
+                    "def": "Monografija"
+                },
+                {
+                    "def": "Istorija"
+                },
+                {
+                    "def": "Monografija"
+                },
+                {
+                    "def": "Povijest"
+                },
+                {
+                    "def": "Monographie"
+                },
+                {
+                    "def": "Histoire"
+                },
+                {
+                    "def": "Monográfia"
+                },
+                {
+                    "def": "Történelem"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Dejiny"
+                },
+                {
+                    "def": "Monografska publikacija"
+                },
+                {
+                    "def": "Zgodovina"
+                },
+                {
+                    "def": "Monagraf"
+                },
+                {
+                    "def": "Stair"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Història"
+                },
+                {
+                    "def": "Monografi"
+                },
+                {
+                    "def": "Historia"
+                },
+                {
+                    "def": "Μονογραφία"
+                },
+                {
+                    "def": "Ιστορία"
+                },
+                {
+                    "def": "Monograph"
+                },
+                {
+                    "def": "History"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Storia"
+                },
+                {
+                    "def": "Monografía"
+                },
+                {
+                    "def": "Historia"
+                },
+                {
+                    "def": "Monograafia"
+                },
+                {
+                    "def": "Ajalugu"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Historia"
+                },
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Dějiny"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Historia"
+                },
+                {
+                    "def": "Monografi"
+                },
+                {
+                    "def": "Historie"
+                },
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Istorie"
+                },
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Geschiedenis"
+                },
+                {
+                    "def": "Vēsture"
+                },
+                {
+                    "def": "Storja"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Monografie",
+                    "Geschichte"
+                ],
+                "fi": [
+                    "Monografia",
+                    "Historia"
+                ],
+                "ru": [
+                    "Монография",
+                    "История"
+                ],
+                "pt": [
+                    "Monografia",
+                    "História"
+                ],
+                "bg": [
+                    "Монография",
+                    "История"
+                ],
+                "lt": [
+                    "Monografija",
+                    "Istorija"
+                ],
+                "hr": [
+                    "Monografija",
+                    "Povijest"
+                ],
+                "lv": [
+                    "Vēsture"
+                ],
+                "fr": [
+                    "Monographie",
+                    "Histoire"
+                ],
+                "hu": [
+                    "Monográfia",
+                    "Történelem"
+                ],
+                "sk": [
+                    "Dejiny",
+                    "Monografia"
+                ],
+                "sl": [
+                    "Zgodovina",
+                    "Monografska publikacija"
+                ],
+                "ga": [
+                    "Stair",
+                    "Monagraf"
+                ],
+                "ca": [
+                    "Monografia",
+                    "Història"
+                ],
+                "sv": [
+                    "Monografi",
+                    "Historia"
+                ],
+                "el": [
+                    "Μονογραφία",
+                    "Ιστορία"
+                ],
+                "mt": [
+                    "Storja"
+                ],
+                "en": [
+                    "Monograph",
+                    "History"
+                ],
+                "it": [
+                    "Monografia",
+                    "Storia"
+                ],
+                "es": [
+                    "Monografía",
+                    "Historia"
+                ],
+                "et": [
+                    "Monograafia",
+                    "Ajalugu"
+                ],
+                "eu": [
+                    "Monografia",
+                    "Historia"
+                ],
+                "cs": [
+                    "Monografie",
+                    "Dějiny"
+                ],
+                "pl": [
+                    "Monografia",
+                    "Historia"
+                ],
+                "da": [
+                    "Historie",
+                    "Monografi"
+                ],
+                "ro": [
+                    "Monografie",
+                    "Istorie"
+                ],
+                "nl": [
+                    "Monografie",
+                    "Geschiedenis"
+                ]
+            },
+            "edmDatasetName": [
+                "2048441_Ag_DE_DDB_NationalBibliothek"
+            ],
+            "edmIsShownAt": [
+                "http://d-nb.info/1031401911"
+            ],
+            "europeanaCollectionName": [
+                "2048441_Ag_DE_DDB_NationalBibliothek"
+            ],
+            "europeanaCompleteness": 0,
+            "guid": "https://www.europeana.eu/item/2048441/item_XECMEGBPNJ5J47PJDNHF7ZHXM4WR3SNG?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/2048441/item_XECMEGBPNJ5J47PJDNHF7ZHXM4WR3SNG",
+            "index": 0,
+            "language": [
+                "de"
+            ],
+            "link": "https://api.europeana.eu/record/2048441/item_XECMEGBPNJ5J47PJDNHF7ZHXM4WR3SNG.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "German Digital Library"
+            ],
+            "rights": [
+                "http://rightsstatements.org/vocab/InC/1.0/"
+            ],
+            "score": 67.34933,
+            "timestamp": 1688579094797,
+            "timestamp_created": "2017-04-05T13:29:58.064Z",
+            "timestamp_created_epoch": 1491398998064,
+            "timestamp_update": "2017-11-13T10:44:46.037Z",
+            "timestamp_update_epoch": 1510569886037,
+            "title": [
+                "Law",
+                "Law"
+            ],
+            "type": "TEXT",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 0,
+            "country": [
+                "Finland"
+            ],
+            "dataProvider": [
+                "Lusto - The Finnish Forest Museum"
+            ],
+            "dcCreator": [
+                "oilifo",
+                "oilifo",
+                "oilifo"
+            ],
+            "dcCreatorLangAware": {
+                "fi": [
+                    "oilifo"
+                ],
+                "def": [
+                    "oilifo"
+                ],
+                "en": [
+                    "oilifo"
+                ]
+            },
+            "dcTitleLangAware": {
+                "fi": [
+                    "Liikalaki metsätyökämppä\n\nP8240101.LIIKALAKI\n\nMetsittynyt kämpän pohja Liikalaessa."
+                ],
+                "en": [
+                    "Forestry Workers Act\n\nP8240101.LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE\n\nThe afforested bottom of the palm in Liikalae."
+                ]
+            },
+            "edmDatasetName": [
+                "2021008_Ag_FI_NDL_lusto"
+            ],
+            "edmIsShownAt": [
+                "http://finna.fi/Record/lusto.knp-161612"
+            ],
+            "edmIsShownBy": [
+                "https://api.collecte.fi/v1/images/144460/highres?customer=knp"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fapi.collecte.fi%2Fv1%2Fimages%2F144460%2Fhighres%3Fcustomer%3Dknp&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "2012-01-03"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "2012-01-03"
+                ]
+            },
+            "europeanaCollectionName": [
+                "2021008_Ag_FI_NDL_lusto"
+            ],
+            "europeanaCompleteness": 0,
+            "guid": "https://www.europeana.eu/item/2021008/_knp_161612?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/2021008/_knp_161612",
+            "index": 0,
+            "language": [
+                "fi"
+            ],
+            "link": "https://api.europeana.eu/record/2021008/_knp_161612.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "National Library of Finland"
+            ],
+            "rights": [
+                "http://creativecommons.org/licenses/by/4.0/"
+            ],
+            "score": 66.2439,
+            "timestamp": 1688645505942,
+            "timestamp_created": "2022-03-17T12:34:58.297Z",
+            "timestamp_created_epoch": 1647520498297,
+            "timestamp_update": "2022-03-17T12:34:58.297Z",
+            "timestamp_update_epoch": 1647520498297,
+            "title": [
+                "Forestry Workers Act\n\nP8240101.LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW OF THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE LAW ON THE\n\nThe afforested bottom of the palm in Liikalae.",
+                "Liikalaki metsätyökämppä\n\nP8240101.LIIKALAKI\n\nMetsittynyt kämpän pohja Liikalaessa."
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 8,
+            "country": [
+                "Belgium"
+            ],
+            "dataProvider": [
+                "Catholic University of Leuven"
+            ],
+            "dcDescription": [
+                "Inscriptions and textual elements: JOHN LAW.",
+                "Opschriften en tekstuele elementen: JOHN LAW."
+            ],
+            "dcDescriptionLangAware": {
+                "en": [
+                    "Inscriptions and textual elements: JOHN LAW."
+                ],
+                "nl": [
+                    "Opschriften en tekstuele elementen: JOHN LAW."
+                ]
+            },
+            "dcTitleLangAware": {
+                "en": [
+                    "John Law"
+                ],
+                "nl": [
+                    "John Law"
+                ]
+            },
+            "edmConcept": [
+                "http://vocab.getty.edu/aat/300041363"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Stahlstich (visuelles Werk)"
+                },
+                {
+                    "def": "gravuras em metal"
+                },
+                {
+                    "def": "steel engravings (visual works)"
+                },
+                {
+                    "def": "gravures sur acier"
+                },
+                {
+                    "def": "staalgravures"
+                },
+                {
+                    "def": "grabados al acero"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Stahlstich (visuelles Werk)"
+                ],
+                "pt": [
+                    "gravuras em metal"
+                ],
+                "en": [
+                    "steel engravings (visual works)"
+                ],
+                "fr": [
+                    "gravures sur acier"
+                ],
+                "nl": [
+                    "staalgravures"
+                ],
+                "es": [
+                    "grabados al acero"
+                ]
+            },
+            "edmDatasetName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "edmIsShownBy": [
+                "https://lib.is/IE4804089/stream?quality=LOW"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Flib.is%2FIE4804089%2Fstream%3Fquality%3DLOW&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "18XX"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "18XX"
+                ]
+            },
+            "europeanaCollectionName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "europeanaCompleteness": 8,
+            "guid": "https://www.europeana.eu/item/2024903/photography_ProvidedCHO_KU_Leuven_9983067490101488?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/2024903/photography_ProvidedCHO_KU_Leuven_9983067490101488",
+            "index": 0,
+            "language": [
+                "mul"
+            ],
+            "link": "https://api.europeana.eu/record/2024903/photography_ProvidedCHO_KU_Leuven_9983067490101488.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "PHOTOCONSORTIUM"
+            ],
+            "rights": [
+                "http://creativecommons.org/publicdomain/mark/1.0/"
+            ],
+            "score": 65.48161,
+            "timestamp": 1688676938693,
+            "timestamp_created": "2021-01-14T12:53:31.782Z",
+            "timestamp_created_epoch": 1610628811782,
+            "timestamp_update": "2022-05-16T07:59:42.490Z",
+            "timestamp_update_epoch": 1652687982490,
+            "title": [
+                "John Law",
+                "John Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 10,
+            "country": [
+                "Belgium"
+            ],
+            "dataProvider": [
+                "Catholic University of Leuven"
+            ],
+            "dcDescription": [
+                "Opschriften en tekstuele elementen: M. JEAN LAW CON.er DU ROY EN TOUS SES CON.ils CONTROLEUR GNAL DES FINANCES en 1720. Opschriften en tekstuele elementen: QUIN- / CAMPOIX. Opschriften en tekstuele elementen: Dit 's LAW zo groot, zo ongemeen, / Die Hondert duisent maakt van een; / en duuren dees Finanties nu, / Dan noemt Parys, zich bil'k Peru: / Maar schort het aan Argent et Foy, / Dan is het uyt met Quincampoix. Opschriften en tekstuele elementen: 1720. 1. Deel. Opschriften en tekstuele elementen: Pag. 228.",
+                "Inscriptions and textual elements: M. JEAN LAW CON.er DU ROY AND TOUS SES CON.ils CONTROLEUR GNAL DES FINANCES en 1720. Inscriptions and textual elements: QUIN- / CAMPOIX. Inscriptions and textual elements: This 's LAW so great, so uncommon, / Which makes Hundred and Thousand of one; / and duration dees Finances now, / Then Parys, calls itself bil'k Peru: / But lacks Argent et Foy, / Then it is out with Quincampoix. Inscriptions and textual elements: 1720. 1. Part. Inscriptions and textual elements: Pag. 228."
+            ],
+            "dcDescriptionLangAware": {
+                "en": [
+                    "Inscriptions and textual elements: M. JEAN LAW CON.er DU ROY AND TOUS SES CON.ils CONTROLEUR GNAL DES FINANCES en 1720. Inscriptions and textual elements: QUIN- / CAMPOIX. Inscriptions and textual elements: This 's LAW so great, so uncommon, / Which makes Hundred and Thousand of one; / and duration dees Finances now, / Then Parys, calls itself bil'k Peru: / But lacks Argent et Foy, / Then it is out with Quincampoix. Inscriptions and textual elements: 1720. 1. Part. Inscriptions and textual elements: Pag. 228."
+                ],
+                "nl": [
+                    "Opschriften en tekstuele elementen: M. JEAN LAW CON.er DU ROY EN TOUS SES CON.ils CONTROLEUR GNAL DES FINANCES en 1720. Opschriften en tekstuele elementen: QUIN- / CAMPOIX. Opschriften en tekstuele elementen: Dit 's LAW zo groot, zo ongemeen, / Die Hondert duisent maakt van een; / en duuren dees Finanties nu, / Dan noemt Parys, zich bil'k Peru: / Maar schort het aan Argent et Foy, / Dan is het uyt met Quincampoix. Opschriften en tekstuele elementen: 1720. 1. Deel. Opschriften en tekstuele elementen: Pag. 228."
+                ]
+            },
+            "dcTitleLangAware": {
+                "en": [
+                    "Jean Law"
+                ],
+                "nl": [
+                    "Jean Law"
+                ]
+            },
+            "edmConcept": [
+                "http://vocab.getty.edu/aat/300041365"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Radierung (Druckgrafik)"
+                },
+                {
+                    "def": "água-forte"
+                },
+                {
+                    "def": "etchings (prints)"
+                },
+                {
+                    "def": "gravures à l'eau forte"
+                },
+                {
+                    "def": "aguafuertes"
+                },
+                {
+                    "def": "etsen (prenten)"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Radierung (Druckgrafik)"
+                ],
+                "pt": [
+                    "água-forte"
+                ],
+                "en": [
+                    "etchings (prints)"
+                ],
+                "fr": [
+                    "gravures à l'eau forte"
+                ],
+                "es": [
+                    "aguafuertes"
+                ],
+                "nl": [
+                    "etsen (prenten)"
+                ]
+            },
+            "edmDatasetName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "edmIsShownBy": [
+                "https://lib.is/IE4815240/stream?quality=LOW"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Flib.is%2FIE4815240%2Fstream%3Fquality%3DLOW&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "1720"
+                },
+                {
+                    "def": "17XX"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "1720",
+                    "17XX"
+                ]
+            },
+            "europeanaCollectionName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "europeanaCompleteness": 10,
+            "guid": "https://www.europeana.eu/item/2024903/photography_ProvidedCHO_KU_Leuven_9983225290101488?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/2024903/photography_ProvidedCHO_KU_Leuven_9983225290101488",
+            "index": 0,
+            "language": [
+                "mul"
+            ],
+            "link": "https://api.europeana.eu/record/2024903/photography_ProvidedCHO_KU_Leuven_9983225290101488.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "PHOTOCONSORTIUM"
+            ],
+            "rights": [
+                "http://creativecommons.org/publicdomain/mark/1.0/"
+            ],
+            "score": 65.11833,
+            "timestamp": 1688676951705,
+            "timestamp_created": "2021-01-14T12:53:31.782Z",
+            "timestamp_created_epoch": 1610628811782,
+            "timestamp_update": "2022-05-16T07:59:42.490Z",
+            "timestamp_update_epoch": 1652687982490,
+            "title": [
+                "Jean Law",
+                "Jean Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ],
+            "year": [
+                "1720"
+            ]
+        },
+        {
+            "completeness": 10,
+            "country": [
+                "Belgium"
+            ],
+            "dataProvider": [
+                "Catholic University of Leuven"
+            ],
+            "dcDescription": [
+                "Opschriften en tekstuele elementen: JEAN LAW / Controlleur General des Finances / Sous la Regence / Né à Edinbourg, mort à Venise agé de 60 ans. Opschriften en tekstuele elementen: Tome I. Opschriften en tekstuele elementen: Pag 53.",
+                "Inscriptions and textual elements: JEAN LAW / Controlleur General des Finances / Sous la Regence / Né à Edinbourg, mort à Venise agé de 60 ans. Inscriptions and textual elements: Tome I. Inscriptions and textual elements: Pag 53."
+            ],
+            "dcDescriptionLangAware": {
+                "en": [
+                    "Inscriptions and textual elements: JEAN LAW / Controlleur General des Finances / Sous la Regence / Né à Edinbourg, mort à Venise agé de 60 ans. Inscriptions and textual elements: Tome I. Inscriptions and textual elements: Pag 53."
+                ],
+                "nl": [
+                    "Opschriften en tekstuele elementen: JEAN LAW / Controlleur General des Finances / Sous la Regence / Né à Edinbourg, mort à Venise agé de 60 ans. Opschriften en tekstuele elementen: Tome I. Opschriften en tekstuele elementen: Pag 53."
+                ]
+            },
+            "dcTitleLangAware": {
+                "en": [
+                    "Jean Law"
+                ],
+                "nl": [
+                    "Jean Law"
+                ]
+            },
+            "edmConcept": [
+                "http://vocab.getty.edu/aat/300041365",
+                "http://vocab.getty.edu/aat/300041340"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Radierung (Druckgrafik)"
+                },
+                {
+                    "def": "Stich (Gravur)"
+                },
+                {
+                    "def": "água-forte"
+                },
+                {
+                    "def": "gravuras (estampas)"
+                },
+                {
+                    "def": "etchings (prints)"
+                },
+                {
+                    "def": "engravings (prints)"
+                },
+                {
+                    "def": "gravures à l'eau forte"
+                },
+                {
+                    "def": "gravure"
+                },
+                {
+                    "def": "aguafuertes"
+                },
+                {
+                    "def": "grabados"
+                },
+                {
+                    "def": "etsen (prenten)"
+                },
+                {
+                    "def": "gravures"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Radierung (Druckgrafik)",
+                    "Stich (Gravur)"
+                ],
+                "pt": [
+                    "água-forte",
+                    "gravuras (estampas)"
+                ],
+                "en": [
+                    "engravings (prints)",
+                    "etchings (prints)"
+                ],
+                "fr": [
+                    "gravure",
+                    "gravures à l'eau forte"
+                ],
+                "es": [
+                    "aguafuertes",
+                    "grabados"
+                ],
+                "nl": [
+                    "gravures",
+                    "etsen (prenten)"
+                ]
+            },
+            "edmDatasetName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "edmIsShownBy": [
+                "https://lib.is/IE4848799/stream?quality=LOW"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Flib.is%2FIE4848799%2Fstream%3Fquality%3DLOW&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "16XX/17XX"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "16XX/17XX"
+                ]
+            },
+            "europeanaCollectionName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "europeanaCompleteness": 10,
+            "guid": "https://www.europeana.eu/item/2024903/photography_ProvidedCHO_KU_Leuven_9984988030101488?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/2024903/photography_ProvidedCHO_KU_Leuven_9984988030101488",
+            "index": 0,
+            "language": [
+                "mul"
+            ],
+            "link": "https://api.europeana.eu/record/2024903/photography_ProvidedCHO_KU_Leuven_9984988030101488.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "PHOTOCONSORTIUM"
+            ],
+            "rights": [
+                "http://creativecommons.org/publicdomain/mark/1.0/"
+            ],
+            "score": 65.06424,
+            "timestamp": 1688676991631,
+            "timestamp_created": "2021-01-14T12:53:31.782Z",
+            "timestamp_created_epoch": 1610628811782,
+            "timestamp_update": "2022-05-16T07:59:42.490Z",
+            "timestamp_update_epoch": 1652687982490,
+            "title": [
+                "Jean Law",
+                "Jean Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 10,
+            "country": [
+                "Belgium"
+            ],
+            "dataProvider": [
+                "Catholic University of Leuven"
+            ],
+            "dcCreator": [
+                "Thomas Lawrence, Sir",
+                "George Parker"
+            ],
+            "dcCreatorLangAware": {
+                "nl": [
+                    "Thomas Lawrence, Sir",
+                    "George Parker"
+                ]
+            },
+            "dcDescription": [
+                "Inscriptions and textual elements: Painted by Sir Thos. Lawrence. Inscriptions and textual elements: Engraved by G. Parker. Inscriptions and textual elements: EDWARD LAW, LORD ELLENBOROUGH. Inscriptions and textual elements: Ellenborough [signature]. Inscriptions and textual elements: FISHER, SON & C°. LONDON. 1831.",
+                "Opschriften en tekstuele elementen: Painted by Sir Thos. Lawrence. Opschriften en tekstuele elementen: Engraved by G. Parker. Opschriften en tekstuele elementen: EDWARD LAW, LORD ELLENBOROUGH. Opschriften en tekstuele elementen: Ellenborough [signatuur]. Opschriften en tekstuele elementen: FISHER, SON & C°. LONDON. 1831."
+            ],
+            "dcDescriptionLangAware": {
+                "en": [
+                    "Inscriptions and textual elements: Painted by Sir Thos. Lawrence. Inscriptions and textual elements: Engraved by G. Parker. Inscriptions and textual elements: EDWARD LAW, LORD ELLENBOROUGH. Inscriptions and textual elements: Ellenborough [signature]. Inscriptions and textual elements: FISHER, SON & C°. LONDON. 1831."
+                ],
+                "nl": [
+                    "Opschriften en tekstuele elementen: Painted by Sir Thos. Lawrence. Opschriften en tekstuele elementen: Engraved by G. Parker. Opschriften en tekstuele elementen: EDWARD LAW, LORD ELLENBOROUGH. Opschriften en tekstuele elementen: Ellenborough [signatuur]. Opschriften en tekstuele elementen: FISHER, SON & C°. LONDON. 1831."
+                ]
+            },
+            "dcTitleLangAware": {
+                "en": [
+                    "Edward Law"
+                ],
+                "nl": [
+                    "Edward Law"
+                ]
+            },
+            "edmConcept": [
+                "http://vocab.getty.edu/aat/300041365",
+                "http://vocab.getty.edu/aat/300041364"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Radierung (Druckgrafik)"
+                },
+                {
+                    "def": "água-forte"
+                },
+                {
+                    "def": "etchings (prints)"
+                },
+                {
+                    "def": "stipple engravings (prints)"
+                },
+                {
+                    "def": "gravures à l'eau forte"
+                },
+                {
+                    "def": "aguafuertes"
+                },
+                {
+                    "def": "grabado de puntos"
+                },
+                {
+                    "def": "etsen (prenten)"
+                },
+                {
+                    "def": "stippelgravures"
+                },
+                {
+                    "def": "點刻凹版"
+                },
+                {
+                    "def": "tien k'o ao pan"
+                },
+                {
+                    "def": "diǎn kè āo bǎn"
+                },
+                {
+                    "def": "dian ke ao ban"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Radierung (Druckgrafik)"
+                ],
+                "pt": [
+                    "água-forte"
+                ],
+                "zh-hant": [
+                    "點刻凹版"
+                ],
+                "zh-latn-wadegile": [
+                    "tien k'o ao pan"
+                ],
+                "en": [
+                    "etchings (prints)",
+                    "stipple engravings (prints)"
+                ],
+                "zh-latn-pinyin-x-hanyu": [
+                    "diǎn kè āo bǎn"
+                ],
+                "zh-latn-pinyin-x-notone": [
+                    "dian ke ao ban"
+                ],
+                "fr": [
+                    "gravures à l'eau forte"
+                ],
+                "es": [
+                    "aguafuertes",
+                    "grabado de puntos"
+                ],
+                "nl": [
+                    "etsen (prenten)",
+                    "stippelgravures"
+                ]
+            },
+            "edmDatasetName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "edmIsShownBy": [
+                "https://lib.is/IE4818957/stream?quality=LOW"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Flib.is%2FIE4818957%2Fstream%3Fquality%3DLOW&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "1831"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "1831"
+                ]
+            },
+            "europeanaCollectionName": [
+                "2024903_EuropeanaPhotography_KULeuven_1010"
+            ],
+            "europeanaCompleteness": 10,
+            "guid": "https://www.europeana.eu/item/2024903/photography_ProvidedCHO_KU_Leuven_9983273090101488?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/2024903/photography_ProvidedCHO_KU_Leuven_9983273090101488",
+            "index": 0,
+            "language": [
+                "mul"
+            ],
+            "link": "https://api.europeana.eu/record/2024903/photography_ProvidedCHO_KU_Leuven_9983273090101488.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "PHOTOCONSORTIUM"
+            ],
+            "rights": [
+                "http://creativecommons.org/publicdomain/mark/1.0/"
+            ],
+            "score": 64.9685,
+            "timestamp": 1688676957036,
+            "timestamp_created": "2021-01-14T12:53:31.782Z",
+            "timestamp_created_epoch": 1610628811782,
+            "timestamp_update": "2022-05-16T07:59:42.490Z",
+            "timestamp_update_epoch": 1652687982490,
+            "title": [
+                "Edward Law",
+                "Edward Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ],
+            "year": [
+                "1831"
+            ]
+        },
+        {
+            "completeness": 6,
+            "country": [
+                "Poland"
+            ],
+            "dataProvider": [
+                "Digital Library of Zielona Góra"
+            ],
+            "dcDescription": [
+                "comes from: Meyers Conversations Lexicon No. 444",
+                "steel",
+                "pochodzi z: Meyers Conversations Lexicon No. 444",
+                "staloryt"
+            ],
+            "dcDescriptionLangAware": {
+                "en": [
+                    "comes from: Meyers Conversations Lexicon No. 444",
+                    "steel"
+                ],
+                "pl": [
+                    "pochodzi z: Meyers Conversations Lexicon No. 444",
+                    "staloryt"
+                ]
+            },
+            "dcLanguage": [
+                "de"
+            ],
+            "dcLanguageLangAware": {
+                "def": [
+                    "de"
+                ]
+            },
+            "dcTitleLangAware": {
+                "en": [
+                    "John Law"
+                ],
+                "pl": [
+                    "John Law"
+                ]
+            },
+            "edmDatasetName": [
+                "0940424_Ag_PL_zbc.uz.zgora.pl"
+            ],
+            "edmIsShownAt": [
+                "http://fbc.pionier.net.pl/id/oai:zbc.uz.zgora.pl:11109"
+            ],
+            "edmIsShownBy": [
+                "http://zbc.uz.zgora.pl/Content/11109/G-I_727.djvu"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fzbc.uz.zgora.pl%2FContent%2F11109%2FG-I_727.djvu&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "1801/1900"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "1801/1900"
+                ]
+            },
+            "europeanaCollectionName": [
+                "0940424_Ag_PL_zbc.uz.zgora.pl"
+            ],
+            "europeanaCompleteness": 6,
+            "guid": "https://www.europeana.eu/item/0940424/_nnhZ876?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/0940424/_nnhZ876",
+            "index": 0,
+            "language": [
+                "pl"
+            ],
+            "link": "https://api.europeana.eu/record/0940424/_nnhZ876.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "Digital Libraries Federation"
+            ],
+            "rights": [
+                "http://rightsstatements.org/vocab/InC/1.0/"
+            ],
+            "score": 64.43214,
+            "timestamp": 1688682157213,
+            "timestamp_created": "2017-11-30T08:57:53.144Z",
+            "timestamp_created_epoch": 1512032273144,
+            "timestamp_update": "2017-11-30T08:57:53.144Z",
+            "timestamp_update_epoch": 1512032273144,
+            "title": [
+                "John Law",
+                "John Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 5,
+            "country": [
+                "Germany"
+            ],
+            "dataProvider": [
+                "Herzog Anton Ulrich Museum"
+            ],
+            "dcCreator": [
+                "https://d-nb.info/gnd/1031943609",
+                "https://d-nb.info/gnd/104160802",
+                "http://data.europeana.eu/agent/122977",
+                "Michel Odieuvre",
+                "Michel Odieuvre"
+            ],
+            "dcCreatorLangAware": {
+                "de": [
+                    "Michel Odieuvre"
+                ],
+                "def": [
+                    "https://d-nb.info/gnd/1031943609",
+                    "https://d-nb.info/gnd/104160802",
+                    "http://data.europeana.eu/agent/122977"
+                ],
+                "en": [
+                    "Michel Odieuvre"
+                ]
+            },
+            "dcTitleLangAware": {
+                "de": [
+                    "Jean Law"
+                ],
+                "en": [
+                    "Jean Law"
+                ]
+            },
+            "edmConcept": [
+                "http://data.europeana.eu/concept/106",
+                "https://d-nb.info/gnd/4113357-2",
+                "https://d-nb.info/gnd/4033760-1"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Porträt"
+                },
+                {
+                    "def": "Muotokuva"
+                },
+                {
+                    "def": "Портрет"
+                },
+                {
+                    "def": "Retrato"
+                },
+                {
+                    "def": "Портрет"
+                },
+                {
+                    "def": "Portretas"
+                },
+                {
+                    "def": "Portrets"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portrait"
+                },
+                {
+                    "def": "Arckép"
+                },
+                {
+                    "def": "Portrét"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portráid"
+                },
+                {
+                    "def": "Retrat"
+                },
+                {
+                    "def": "Porträtt"
+                },
+                {
+                    "def": "Ritratt"
+                },
+                {
+                    "def": "Προσωπογραφία"
+                },
+                {
+                    "def": "Portrait"
+                },
+                {
+                    "def": "Ritratto"
+                },
+                {
+                    "def": "Retrato"
+                },
+                {
+                    "def": "Portree"
+                },
+                {
+                    "def": "Erretratu"
+                },
+                {
+                    "def": "Portrét"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portræt"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Druckgrafik"
+                },
+                {
+                    "def": "Kupferstich"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Porträt"
+                ],
+                "fi": [
+                    "Muotokuva"
+                ],
+                "ru": [
+                    "Портрет"
+                ],
+                "def": [
+                    "Druckgrafik",
+                    "Kupferstich"
+                ],
+                "pt": [
+                    "Retrato"
+                ],
+                "bg": [
+                    "Портрет"
+                ],
+                "lt": [
+                    "Portretas"
+                ],
+                "lv": [
+                    "Portrets"
+                ],
+                "hr": [
+                    "Portret"
+                ],
+                "fr": [
+                    "Portrait"
+                ],
+                "hu": [
+                    "Arckép"
+                ],
+                "sk": [
+                    "Portrét"
+                ],
+                "sl": [
+                    "Portret"
+                ],
+                "ga": [
+                    "Portráid"
+                ],
+                "ca": [
+                    "Retrat"
+                ],
+                "sv": [
+                    "Porträtt"
+                ],
+                "mt": [
+                    "Ritratt"
+                ],
+                "el": [
+                    "Προσωπογραφία"
+                ],
+                "en": [
+                    "Portrait"
+                ],
+                "it": [
+                    "Ritratto"
+                ],
+                "es": [
+                    "Retrato"
+                ],
+                "et": [
+                    "Portree"
+                ],
+                "eu": [
+                    "Erretratu"
+                ],
+                "cs": [
+                    "Portrét"
+                ],
+                "pl": [
+                    "Portret"
+                ],
+                "ro": [
+                    "Portret"
+                ],
+                "da": [
+                    "Portræt"
+                ],
+                "nl": [
+                    "Portret"
+                ]
+            },
+            "edmDatasetName": [
+                "89_DDB_HAUM"
+            ],
+            "edmIsShownAt": [
+                "http://kk.haum-bs.de/?id=g-f-schmidt-v3-5136"
+            ],
+            "edmIsShownBy": [
+                "http://diglib.hab.de/varia/haum/g-f-schmidt-v3-5136/max/000001.jpg"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fdiglib.hab.de%2Fvaria%2Fhaum%2Fg-f-schmidt-v3-5136%2Fmax%2F000001.jpg&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "1737/1755"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "1737/1755"
+                ]
+            },
+            "europeanaCollectionName": [
+                "89_DDB_HAUM"
+            ],
+            "europeanaCompleteness": 5,
+            "guid": "https://www.europeana.eu/item/89/item_HNVR5WPDH4JCHG7HAVIIZFSU4TJ6WLEM?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/89/item_HNVR5WPDH4JCHG7HAVIIZFSU4TJ6WLEM",
+            "index": 0,
+            "language": [
+                "de"
+            ],
+            "link": "https://api.europeana.eu/record/89/item_HNVR5WPDH4JCHG7HAVIIZFSU4TJ6WLEM.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "German Digital Library"
+            ],
+            "rights": [
+                "http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            ],
+            "score": 64.2156,
+            "timestamp": 1688653728608,
+            "timestamp_created": "2020-02-08T01:21:28.382Z",
+            "timestamp_created_epoch": 1581124888382,
+            "timestamp_update": "2022-03-10T08:04:01.784Z",
+            "timestamp_update_epoch": 1646899441784,
+            "title": [
+                "Jean Law",
+                "Jean Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 5,
+            "country": [
+                "Germany"
+            ],
+            "dataProvider": [
+                "Herzog Anton Ulrich Museum"
+            ],
+            "dcCreator": [
+                "https://d-nb.info/gnd/1031943609",
+                "https://d-nb.info/gnd/104160802",
+                "http://data.europeana.eu/agent/122977",
+                "Michel Odieuvre",
+                "Michel Odieuvre"
+            ],
+            "dcCreatorLangAware": {
+                "de": [
+                    "Michel Odieuvre"
+                ],
+                "def": [
+                    "https://d-nb.info/gnd/1031943609",
+                    "https://d-nb.info/gnd/104160802",
+                    "http://data.europeana.eu/agent/122977"
+                ],
+                "en": [
+                    "Michel Odieuvre"
+                ]
+            },
+            "dcTitleLangAware": {
+                "de": [
+                    "Jean Law"
+                ],
+                "en": [
+                    "Jean Law"
+                ]
+            },
+            "edmConcept": [
+                "http://data.europeana.eu/concept/106",
+                "https://d-nb.info/gnd/4113357-2",
+                "https://d-nb.info/gnd/4033760-1"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Porträt"
+                },
+                {
+                    "def": "Muotokuva"
+                },
+                {
+                    "def": "Портрет"
+                },
+                {
+                    "def": "Retrato"
+                },
+                {
+                    "def": "Портрет"
+                },
+                {
+                    "def": "Portretas"
+                },
+                {
+                    "def": "Portrets"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portrait"
+                },
+                {
+                    "def": "Arckép"
+                },
+                {
+                    "def": "Portrét"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portráid"
+                },
+                {
+                    "def": "Retrat"
+                },
+                {
+                    "def": "Porträtt"
+                },
+                {
+                    "def": "Ritratt"
+                },
+                {
+                    "def": "Προσωπογραφία"
+                },
+                {
+                    "def": "Portrait"
+                },
+                {
+                    "def": "Ritratto"
+                },
+                {
+                    "def": "Retrato"
+                },
+                {
+                    "def": "Portree"
+                },
+                {
+                    "def": "Erretratu"
+                },
+                {
+                    "def": "Portrét"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portræt"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Druckgrafik"
+                },
+                {
+                    "def": "Kupferstich"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Porträt"
+                ],
+                "fi": [
+                    "Muotokuva"
+                ],
+                "ru": [
+                    "Портрет"
+                ],
+                "def": [
+                    "Druckgrafik",
+                    "Kupferstich"
+                ],
+                "pt": [
+                    "Retrato"
+                ],
+                "bg": [
+                    "Портрет"
+                ],
+                "lt": [
+                    "Portretas"
+                ],
+                "lv": [
+                    "Portrets"
+                ],
+                "hr": [
+                    "Portret"
+                ],
+                "fr": [
+                    "Portrait"
+                ],
+                "hu": [
+                    "Arckép"
+                ],
+                "sk": [
+                    "Portrét"
+                ],
+                "sl": [
+                    "Portret"
+                ],
+                "ga": [
+                    "Portráid"
+                ],
+                "ca": [
+                    "Retrat"
+                ],
+                "sv": [
+                    "Porträtt"
+                ],
+                "mt": [
+                    "Ritratt"
+                ],
+                "el": [
+                    "Προσωπογραφία"
+                ],
+                "en": [
+                    "Portrait"
+                ],
+                "it": [
+                    "Ritratto"
+                ],
+                "es": [
+                    "Retrato"
+                ],
+                "et": [
+                    "Portree"
+                ],
+                "eu": [
+                    "Erretratu"
+                ],
+                "cs": [
+                    "Portrét"
+                ],
+                "pl": [
+                    "Portret"
+                ],
+                "ro": [
+                    "Portret"
+                ],
+                "da": [
+                    "Portræt"
+                ],
+                "nl": [
+                    "Portret"
+                ]
+            },
+            "edmDatasetName": [
+                "89_DDB_HAUM"
+            ],
+            "edmIsShownAt": [
+                "http://kk.haum-bs.de/?id=g-f-schmidt-v3-5137"
+            ],
+            "edmIsShownBy": [
+                "http://diglib.hab.de/varia/haum/g-f-schmidt-v3-5137/max/000001.jpg"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fdiglib.hab.de%2Fvaria%2Fhaum%2Fg-f-schmidt-v3-5137%2Fmax%2F000001.jpg&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "1737/1755"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "1737/1755"
+                ]
+            },
+            "europeanaCollectionName": [
+                "89_DDB_HAUM"
+            ],
+            "europeanaCompleteness": 5,
+            "guid": "https://www.europeana.eu/item/89/item_KFV7XJBGKLEEWE7OCHVSPETJEF36ELY2?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/89/item_KFV7XJBGKLEEWE7OCHVSPETJEF36ELY2",
+            "index": 0,
+            "language": [
+                "de"
+            ],
+            "link": "https://api.europeana.eu/record/89/item_KFV7XJBGKLEEWE7OCHVSPETJEF36ELY2.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "German Digital Library"
+            ],
+            "rights": [
+                "http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            ],
+            "score": 64.2156,
+            "timestamp": 1688653802397,
+            "timestamp_created": "2020-02-08T01:21:28.382Z",
+            "timestamp_created_epoch": 1581124888382,
+            "timestamp_update": "2022-03-10T08:04:01.784Z",
+            "timestamp_update_epoch": 1646899441784,
+            "title": [
+                "Jean Law",
+                "Jean Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 0,
+            "country": [
+                "Germany"
+            ],
+            "dataProvider": [
+                "German National Library"
+            ],
+            "dcCreator": [
+                "Nuzzo, Luigi",
+                "Nuzzo, Luigi"
+            ],
+            "dcCreatorLangAware": {
+                "def": [
+                    "Nuzzo, Luigi"
+                ],
+                "en": [
+                    "Nuzzo, Luigi"
+                ]
+            },
+            "dcLanguage": [
+                "eng"
+            ],
+            "dcLanguageLangAware": {
+                "def": [
+                    "eng"
+                ]
+            },
+            "dcTitleLangAware": {
+                "def": [
+                    "Colonial Law"
+                ],
+                "en": [
+                    "Colonial Law"
+                ]
+            },
+            "edmConcept": [
+                "http://data.europeana.eu/concept/2841",
+                "http://data.europeana.eu/concept/66"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Recht"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Laki"
+                },
+                {
+                    "def": "Монография"
+                },
+                {
+                    "def": "Закон"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Direito"
+                },
+                {
+                    "def": "Монография"
+                },
+                {
+                    "def": "Право"
+                },
+                {
+                    "def": "Monografija"
+                },
+                {
+                    "def": "Teisė"
+                },
+                {
+                    "def": "Monografija"
+                },
+                {
+                    "def": "Pravo"
+                },
+                {
+                    "def": "Monographie"
+                },
+                {
+                    "def": "Droit"
+                },
+                {
+                    "def": "Monográfia"
+                },
+                {
+                    "def": "Jogrendszer"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Objektívne právo"
+                },
+                {
+                    "def": "Monografska publikacija"
+                },
+                {
+                    "def": "Pravo"
+                },
+                {
+                    "def": "Monagraf"
+                },
+                {
+                    "def": "Dlí"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Dret"
+                },
+                {
+                    "def": "Monografi"
+                },
+                {
+                    "def": "Juridik"
+                },
+                {
+                    "def": "Μονογραφία"
+                },
+                {
+                    "def": "Δίκαιο"
+                },
+                {
+                    "def": "Monograph"
+                },
+                {
+                    "def": "Law"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Diritto"
+                },
+                {
+                    "def": "Monografía"
+                },
+                {
+                    "def": "Derecho"
+                },
+                {
+                    "def": "Monograafia"
+                },
+                {
+                    "def": "Õigus"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Zuzenbide"
+                },
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Právo"
+                },
+                {
+                    "def": "Monografia"
+                },
+                {
+                    "def": "Prawo"
+                },
+                {
+                    "def": "Monografi"
+                },
+                {
+                    "def": "Jura"
+                },
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Drept"
+                },
+                {
+                    "def": "Monografie"
+                },
+                {
+                    "def": "Recht"
+                },
+                {
+                    "def": "Tieslietas"
+                },
+                {
+                    "def": "Liġi"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Monografie",
+                    "Recht"
+                ],
+                "fi": [
+                    "Monografia",
+                    "Laki"
+                ],
+                "ru": [
+                    "Монография",
+                    "Закон"
+                ],
+                "pt": [
+                    "Monografia",
+                    "Direito"
+                ],
+                "bg": [
+                    "Монография",
+                    "Право"
+                ],
+                "lt": [
+                    "Monografija",
+                    "Teisė"
+                ],
+                "hr": [
+                    "Monografija",
+                    "Pravo"
+                ],
+                "lv": [
+                    "Tieslietas"
+                ],
+                "fr": [
+                    "Monographie",
+                    "Droit"
+                ],
+                "hu": [
+                    "Monográfia",
+                    "Jogrendszer"
+                ],
+                "sk": [
+                    "Monografia",
+                    "Objektívne právo"
+                ],
+                "sl": [
+                    "Pravo",
+                    "Monografska publikacija"
+                ],
+                "ga": [
+                    "Dlí",
+                    "Monagraf"
+                ],
+                "ca": [
+                    "Monografia",
+                    "Dret"
+                ],
+                "sv": [
+                    "Monografi",
+                    "Juridik"
+                ],
+                "el": [
+                    "Μονογραφία",
+                    "Δίκαιο"
+                ],
+                "mt": [
+                    "Liġi"
+                ],
+                "en": [
+                    "Law",
+                    "Monograph"
+                ],
+                "it": [
+                    "Monografia",
+                    "Diritto"
+                ],
+                "es": [
+                    "Derecho",
+                    "Monografía"
+                ],
+                "et": [
+                    "Monograafia",
+                    "Õigus"
+                ],
+                "eu": [
+                    "Monografia",
+                    "Zuzenbide"
+                ],
+                "cs": [
+                    "Monografie",
+                    "Právo"
+                ],
+                "pl": [
+                    "Monografia",
+                    "Prawo"
+                ],
+                "da": [
+                    "Monografi",
+                    "Jura"
+                ],
+                "ro": [
+                    "Monografie",
+                    "Drept"
+                ],
+                "nl": [
+                    "Monografie",
+                    "Recht"
+                ]
+            },
+            "edmDatasetName": [
+                "2048441_Ag_DE_DDB_NationalBibliothek"
+            ],
+            "edmIsShownAt": [
+                "http://d-nb.info/1036301486"
+            ],
+            "europeanaCollectionName": [
+                "2048441_Ag_DE_DDB_NationalBibliothek"
+            ],
+            "europeanaCompleteness": 0,
+            "guid": "https://www.europeana.eu/item/2048441/item_SUT5ORIHDKP6ETGWPW3CP7HPPLYB556V?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/2048441/item_SUT5ORIHDKP6ETGWPW3CP7HPPLYB556V",
+            "index": 0,
+            "language": [
+                "de"
+            ],
+            "link": "https://api.europeana.eu/record/2048441/item_SUT5ORIHDKP6ETGWPW3CP7HPPLYB556V.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "German Digital Library"
+            ],
+            "rights": [
+                "http://rightsstatements.org/vocab/InC/1.0/"
+            ],
+            "score": 64.18965,
+            "timestamp": 1688578663269,
+            "timestamp_created": "2017-04-05T13:23:01.975Z",
+            "timestamp_created_epoch": 1491398581975,
+            "timestamp_update": "2017-11-13T10:38:24.266Z",
+            "timestamp_update_epoch": 1510569504266,
+            "title": [
+                "Colonial Law",
+                "Colonial Law"
+            ],
+            "type": "TEXT",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 5,
+            "country": [
+                "Germany"
+            ],
+            "dataProvider": [
+                "Herzog Anton Ulrich Museum"
+            ],
+            "dcCreator": [
+                "Michel Odieuvre",
+                "http://data.europeana.eu/agent/122977",
+                "https://d-nb.info/gnd/1031943609",
+                "https://d-nb.info/gnd/104160802",
+                "Michel Odieuvre"
+            ],
+            "dcCreatorLangAware": {
+                "de": [
+                    "Michel Odieuvre"
+                ],
+                "def": [
+                    "http://data.europeana.eu/agent/122977",
+                    "https://d-nb.info/gnd/1031943609",
+                    "https://d-nb.info/gnd/104160802"
+                ],
+                "en": [
+                    "Michel Odieuvre"
+                ]
+            },
+            "dcTitleLangAware": {
+                "de": [
+                    "Jean Law"
+                ],
+                "en": [
+                    "Jean Law"
+                ]
+            },
+            "edmConcept": [
+                "http://data.europeana.eu/concept/106",
+                "https://d-nb.info/gnd/4113357-2",
+                "https://d-nb.info/gnd/4033760-1"
+            ],
+            "edmConceptLabel": [
+                {
+                    "def": "Porträt"
+                },
+                {
+                    "def": "Muotokuva"
+                },
+                {
+                    "def": "Портрет"
+                },
+                {
+                    "def": "Retrato"
+                },
+                {
+                    "def": "Портрет"
+                },
+                {
+                    "def": "Portretas"
+                },
+                {
+                    "def": "Portrets"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portrait"
+                },
+                {
+                    "def": "Arckép"
+                },
+                {
+                    "def": "Portrét"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portráid"
+                },
+                {
+                    "def": "Retrat"
+                },
+                {
+                    "def": "Porträtt"
+                },
+                {
+                    "def": "Ritratt"
+                },
+                {
+                    "def": "Προσωπογραφία"
+                },
+                {
+                    "def": "Portrait"
+                },
+                {
+                    "def": "Ritratto"
+                },
+                {
+                    "def": "Retrato"
+                },
+                {
+                    "def": "Portree"
+                },
+                {
+                    "def": "Erretratu"
+                },
+                {
+                    "def": "Portrét"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Portræt"
+                },
+                {
+                    "def": "Portret"
+                },
+                {
+                    "def": "Druckgrafik"
+                },
+                {
+                    "def": "Kupferstich"
+                }
+            ],
+            "edmConceptPrefLabelLangAware": {
+                "de": [
+                    "Porträt"
+                ],
+                "fi": [
+                    "Muotokuva"
+                ],
+                "ru": [
+                    "Портрет"
+                ],
+                "def": [
+                    "Druckgrafik",
+                    "Kupferstich"
+                ],
+                "pt": [
+                    "Retrato"
+                ],
+                "bg": [
+                    "Портрет"
+                ],
+                "lt": [
+                    "Portretas"
+                ],
+                "lv": [
+                    "Portrets"
+                ],
+                "hr": [
+                    "Portret"
+                ],
+                "fr": [
+                    "Portrait"
+                ],
+                "hu": [
+                    "Arckép"
+                ],
+                "sk": [
+                    "Portrét"
+                ],
+                "sl": [
+                    "Portret"
+                ],
+                "ga": [
+                    "Portráid"
+                ],
+                "ca": [
+                    "Retrat"
+                ],
+                "sv": [
+                    "Porträtt"
+                ],
+                "mt": [
+                    "Ritratt"
+                ],
+                "el": [
+                    "Προσωπογραφία"
+                ],
+                "en": [
+                    "Portrait"
+                ],
+                "it": [
+                    "Ritratto"
+                ],
+                "es": [
+                    "Retrato"
+                ],
+                "et": [
+                    "Portree"
+                ],
+                "eu": [
+                    "Erretratu"
+                ],
+                "cs": [
+                    "Portrét"
+                ],
+                "pl": [
+                    "Portret"
+                ],
+                "ro": [
+                    "Portret"
+                ],
+                "da": [
+                    "Portræt"
+                ],
+                "nl": [
+                    "Portret"
+                ]
+            },
+            "edmDatasetName": [
+                "89_DDB_HAUM"
+            ],
+            "edmIsShownAt": [
+                "http://kk.haum-bs.de/?id=g-f-schmidt-ab3-0028"
+            ],
+            "edmIsShownBy": [
+                "http://diglib.hab.de/varia/haum/g-f-schmidt-ab3-0028/max/000001.jpg"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fdiglib.hab.de%2Fvaria%2Fhaum%2Fg-f-schmidt-ab3-0028%2Fmax%2F000001.jpg&type=IMAGE"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "1737/1755"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "1737/1755"
+                ]
+            },
+            "europeanaCollectionName": [
+                "89_DDB_HAUM"
+            ],
+            "europeanaCompleteness": 5,
+            "guid": "https://www.europeana.eu/item/89/item_LJTFFLBZWSS5RTAJ4OD5NQ7C2S3AXL7N?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/89/item_LJTFFLBZWSS5RTAJ4OD5NQ7C2S3AXL7N",
+            "index": 0,
+            "language": [
+                "de"
+            ],
+            "link": "https://api.europeana.eu/record/89/item_LJTFFLBZWSS5RTAJ4OD5NQ7C2S3AXL7N.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "German Digital Library"
+            ],
+            "rights": [
+                "http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            ],
+            "score": 64.0907,
+            "timestamp": 1688653830548,
+            "timestamp_created": "2020-02-08T01:21:28.382Z",
+            "timestamp_created_epoch": 1581124888382,
+            "timestamp_update": "2022-03-10T08:04:01.784Z",
+            "timestamp_update_epoch": 1646899441784,
+            "title": [
+                "Jean Law",
+                "Jean Law"
+            ],
+            "type": "IMAGE",
+            "ugc": [
+                false
+            ]
+        },
+        {
+            "completeness": 5,
+            "country": [
+                "Germany"
+            ],
+            "dataProvider": [
+                "University and State Library Darmstadt"
+            ],
+            "dcLanguage": [
+                "eng",
+                "eng"
+            ],
+            "dcLanguageLangAware": {
+                "def": [
+                    "eng",
+                    "eng"
+                ]
+            },
+            "dcTitleLangAware": {
+                "def": [
+                    "Mr. Law"
+                ],
+                "en": [
+                    "Mr. Law"
+                ]
+            },
+            "edmDatasetName": [
+                "495_DDB_darm"
+            ],
+            "edmIsShownAt": [
+                "http://tudigit.ulb.tu-darmstadt.de/show/his-Port-L-0048"
+            ],
+            "edmIsShownBy": [
+                "http://tudigit.ulb.tu-darmstadt.de/image/his-Port-L-0048/3/his-Port-L-0048.jpg"
+            ],
+            "edmPreview": [
+                "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Ftudigit.ulb.tu-darmstadt.de%2Fimage%2Fhis-Port-L-0048%2F3%2Fhis-Port-L-0048.jpg&type=TEXT"
+            ],
+            "edmTimespanLabel": [
+                {
+                    "def": "1701/1800"
+                }
+            ],
+            "edmTimespanLabelLangAware": {
+                "zxx": [
+                    "1701/1800"
+                ]
+            },
+            "europeanaCollectionName": [
+                "495_DDB_darm"
+            ],
+            "europeanaCompleteness": 5,
+            "guid": "https://www.europeana.eu/item/495/item_WPASEQ5QDVKLNTIOOSN7TT4P5HZRT5WP?utm_source=api&utm_medium=api&utm_campaign=turrymeter",
+            "id": "/495/item_WPASEQ5QDVKLNTIOOSN7TT4P5HZRT5WP",
+            "index": 0,
+            "language": [
+                "de"
+            ],
+            "link": "https://api.europeana.eu/record/495/item_WPASEQ5QDVKLNTIOOSN7TT4P5HZRT5WP.json?wskey=turrymeter",
+            "previewNoDistribute": false,
+            "provider": [
+                "German Digital Library"
+            ],
+            "rights": [
+                "http://creativecommons.org/publicdomain/zero/1.0/"
+            ],
+            "score": 63.43686,
+            "timestamp": 1688697429261,
+            "timestamp_created": "2021-04-19T16:09:49.256Z",
+            "timestamp_created_epoch": 1618848589256,
+            "timestamp_update": "2021-04-19T16:09:49.256Z",
+            "timestamp_update_epoch": 1618848589256,
+            "title": [
+                "Mr. Law",
+                "Mr. Law"
+            ],
+            "type": "TEXT",
+            "ugc": [
+                false
+            ]
+        }
+    ]
+}

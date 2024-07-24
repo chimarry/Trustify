@@ -1,1 +1,43 @@
-<p>add-role works!</p>
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Add new role
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            <div [formGroup]="addRoleFormGroup" class="trf-column">
+                <mat-form-field>
+                    <mat-label for="role">Role
+                    </mat-label>
+                    <input matInput id="role" formControlName="role" type="text" minlength="2"
+                        autocomplete="off">
+                    <mat-error>
+                        Role name is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="composite">Composite
+                    </mat-label>
+                    <input matInput id="composite" formControlName="composite" type="text" minlength="2"
+                        autocomplete="off">
+                    <mat-error>
+                        Composite is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="description">Description
+                    </mat-label>
+                    <input matInput id="description" formControlName="description" type="text" minlength="2" maxlength="36"
+                        autocomplete="off">
+                    <mat-error>
+                        Description is invalid
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button [disabled]="addRoleFormGroup.invalid" type="submit"
+            (click)="confirm()" class="trf-confirm-button ">Yes</button>
+        <button color="secondary" mat-raised-button (click)="close()" class="trf-cancel-button ">No</button>
+    </div>
+</div>
