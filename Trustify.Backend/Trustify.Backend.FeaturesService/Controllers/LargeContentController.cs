@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Trustify.Backend.FeaturesService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("large-content")]
     [ApiController]
     public class LargeContentController : ControllerBase
     {

@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.Features.P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.Features.Providers.MSSQL", "Trustify.Backend.Features.Providers.MSSQL\Trustify.Backend.Features.Providers.MSSQL.csproj", "{60FB3CEB-A92F-4341-8C28-6167C18A8A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.FeaturesTests", "Trustify.Backend.FeaturesTests\Trustify.Backend.FeaturesTests.csproj", "{567C7DFE-972D-4653-A256-13D623E03CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trustify.Backend.FeaturesTests", "Trustify.Backend.FeaturesTests\Trustify.Backend.FeaturesTests.csproj", "{567C7DFE-972D-4653-A256-13D623E03CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trustify.Backend.ImageGeneratorService", "Trustify.Backend.ImageGeneratorService\Trustify.Backend.ImageGeneratorService.csproj", "{3DD25F05-C132-4468-930B-388DBF2304C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{567C7DFE-972D-4653-A256-13D623E03CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{567C7DFE-972D-4653-A256-13D623E03CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{567C7DFE-972D-4653-A256-13D623E03CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD25F05-C132-4468-930B-388DBF2304C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD25F05-C132-4468-930B-388DBF2304C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD25F05-C132-4468-930B-388DBF2304C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD25F05-C132-4468-930B-388DBF2304C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{AFDDF7BC-A52D-4C96-8497-ECF3B819005F} = {06F0215A-8C68-43B7-8D5F-1876A50B4FBE}
 		{60FB3CEB-A92F-4341-8C28-6167C18A8A2E} = {06F0215A-8C68-43B7-8D5F-1876A50B4FBE}
 		{567C7DFE-972D-4653-A256-13D623E03CDA} = {09F6B51D-8CA2-4FBB-B968-6F95CA6F2429}
+		{3DD25F05-C132-4468-930B-388DBF2304C7} = {09F6B51D-8CA2-4FBB-B968-6F95CA6F2429}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D200267F-7C30-4090-9400-3EBD3D11B221}

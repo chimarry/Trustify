@@ -3,10 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Trustify.Backend.FeaturesService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("image-content")]
     [ApiController]
     public class ImageContentController : ControllerBase
     {
+        [HttpGet]
+        public IActionResult GetImage()
+        {
+            return Ok();
+        }
         // Adding new image
         // Getting one image/download
         // Getting all images related to something

@@ -1,0 +1,6 @@
+@Trustify.Backend.ImageGeneratorService_HostAddress = http://localhost:5029
+
+GET {{Trustify.Backend.ImageGeneratorService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
