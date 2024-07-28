@@ -1,5 +1,7 @@
 using Serilog;
+using System.Diagnostics;
 using Trustify.Backend.ImageGeneratorService.Middlewares;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,7 @@ builder.Host.UseSerilog((context, services, loggerConfiguration) =>
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(context.Configuration);
 });
+Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

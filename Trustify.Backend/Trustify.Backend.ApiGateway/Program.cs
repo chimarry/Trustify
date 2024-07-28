@@ -26,6 +26,9 @@ builder.Host.UseSerilog((context, services, loggerConfiguration) =>
         .ReadFrom.Configuration(context.Configuration);
 });
 
+Log.Logger = new LoggerConfiguration().Enrich.FromLogContext()
+                                       .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
