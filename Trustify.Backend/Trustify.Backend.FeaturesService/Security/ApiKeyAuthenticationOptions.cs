@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 
-namespace ProductManager.WebAPI.Security
+namespace Trustify.Backend.FeaturesService.Security
 {
     public class ApiKeyAuthenticationOptions : AuthenticationSchemeOptions
     {

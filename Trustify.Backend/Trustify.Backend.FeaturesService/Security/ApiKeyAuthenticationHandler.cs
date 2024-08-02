@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
-using ProductManager.WebAPI.Security;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
-using Trustify.Backend.ApiGateway.Exceptions;
-using Trustify.Backend.ApiGateway.Models;
 
-namespace Trustify.Backend.ApiGateway.Security
+namespace Trustify.Backend.FeaturesService.Security
 {
     /// <summary>
     /// Handles authentication with API key.

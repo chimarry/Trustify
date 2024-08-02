@@ -1,4 +1,4 @@
-﻿namespace Trustify.Backend.ApiGateway.Exceptions
+﻿namespace Trustify.Backend.FeaturesService.Exceptions
 {
     public class UnauthorizedException : Exception
     {

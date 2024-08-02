@@ -1,16 +1,16 @@
-﻿using ProductManager.Core.ErrorHandling;
-using ProductManager.WebAPI.Util;
+﻿using Trustify.Backend.FeaturesService.Exceptions;
+using Trustify.Backend.FeaturesService.Models;
 
-namespace ProductManager.WebAPI.Security
+namespace Trustify.Backend.FeaturesService.Security
 {
     public static class SecurityExtensionMethods
     {
         public static string GetAuthorizationHeader(this HttpRequest request)
         {
-            if (!request.Headers.ContainsKey(HttpConstants.Authorization))
+            if (!request.Headers.ContainsKey(HttpConstants.AuthorizationHeader))
                 throw new UnauthorizedException();
 
-            string encodedAccessToken = request.Headers[HttpConstants.Authorization];
+            string encodedAccessToken = request.Headers[HttpConstants.AuthorizationHeader];
 
             if (string.IsNullOrEmpty(encodedAccessToken))
                 throw new UnauthorizedException();
@@ -42,14 +42,6 @@ namespace ProductManager.WebAPI.Security
             }
 
             response.Cookies.Append(name, value, cookieOptions);
-        }
-
-        public static string GetClientIpAddress(this HttpRequest request, HttpContext context)
-        {
-            if (request.Headers.ContainsKey(HttpConstants.ForwardedFor))
-                return request.Headers[HttpConstants.ForwardedFor];
-            else
-                return context?.Connection?.RemoteIpAddress?.MapToIPv4()?.ToString() ?? string.Empty;
         }
     }
 }

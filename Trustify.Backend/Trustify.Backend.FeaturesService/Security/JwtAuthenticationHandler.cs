@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
-using System.Security.Claims;
 using System.Text.Encodings.Web;
 
-namespace ProductManager.WebAPI.Security
+namespace Trustify.Backend.FeaturesService.Security
 {
     /// <summary>
     /// Handles authentication of an user with JWT token.

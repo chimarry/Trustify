@@ -1,4 +1,4 @@
-﻿namespace Trustify.Backend.ApiGateway.Models
+﻿namespace Trustify.Backend.FeaturesService.Models
 {
     public static class HttpConstants
     {
