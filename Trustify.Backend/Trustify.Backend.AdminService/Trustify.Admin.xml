@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Trustify.Backend.AdminService</name>
+    </assembly>
+    <members>
+        <member name="T:Trustify.Backend.AdminService.Controllers.UsersController">
+            <summary>
+            Manages users in Keycloak server database.
+            </summary>
+        </member>
+        <member name="T:Trustify.Backend.AdminService.IoC.MvcOptionsExtensions">
+            <summary>
+             Implements MvcOptions extention methods in order to use a global route prefix in controllers
+            </summary>
+        </member>
+    </members>
+</doc>
