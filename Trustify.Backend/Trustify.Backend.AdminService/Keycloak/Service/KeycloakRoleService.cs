@@ -1,90 +1,99 @@
 ﻿using Flurl.Http;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using System;
-using System.Text;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Models;
-using Trustify.Backend.AdminService.Models;
 
 namespace Trustify.Backend.AdminService.Keycloak.Service
 {
-    public class KeycloakRoleService : IKeycloakRoleService
+    public class KeycloakRoleService : IRoleService
     {
-
-        private static HttpClient httpClient = new();
-
-        private static readonly JsonSerializerSettings serializerSettings = new() { NullValueHandling = NullValueHandling.Ignore };
-
         public KeycloakOptions KeycloakOptions { get; set; }
 
-        public KeycloakRoleService(IOptions<KeycloakOptions> keycloakOptions)
+        private readonly IHttpService httpService;
+        private readonly ILogger<KeycloakRoleService> logger;
+
+        public KeycloakRoleService(IOptions<KeycloakOptions> keycloakOptions,
+            IHttpService httpService, ILogger<KeycloakRoleService> logger)
         {
             this.KeycloakOptions = keycloakOptions.Value;
+            this.httpService = httpService;
+            this.logger = logger;
         }
 
-        public async Task<object> AddRole(RoleDTO role, string clientId, string token)
+        public async Task<bool> AddRole(RoleDTO role, string clientId, string token)
         {
-            ///{realm}/clients/{id}/roles
-            ///
-            // PUT /{realm}/users/{id}/groups/{groupId}
-
-            using StringContent stringContent = new StringContent(JsonConvert.SerializeObject(role, serializerSettings), Encoding.UTF8, "application/json");
-            using var request = new HttpRequestMessage();
-            // Set the request method and URL
-            request.Method = HttpMethod.Post;
-            request.RequestUri = new Uri($"{KeycloakOptions.Url}/clients/{clientId}/roles");
-            request.Content = stringContent;
-
-            // Set individual request headers
-            request.Headers.Add("Authorization", $"{HttpConstants.Bearer}{token}");
-
-            // Make the request
-            HttpResponseMessage response = await httpClient.SendAsync(request);
-            if (response.IsSuccessStatusCode)
+            IFlurlResponse? response = null;
+            try
             {
-                string contdent = await response.Content.ReadAsStringAsync();
-                new object();
+                response = await httpService.GetAdminBaseUrl(token)
+                                            .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
+                                            .WithOAuthBearerToken(token)
+                                            .PostJsonAsync(role);
+                return response.StatusCode is 200 or 201;
             }
-            string content = await response.Content.ReadAsStringAsync();
-            return null;
-
-            //return await KeycloakServiceUtil.GetBaseUrl(KeycloakOptions.Url, token)
-            //                          .AppendPathSegment($"/clients/{role.ClientId}/roles")
-            //                          .PostJsonAsync(role);
-            //await this.GetBaseUrl(options.Realm)
-            //    .AppendPathSegment($"/admin/realms/{options.Realm}/users/{userId}/groups/{groupId}")
-            //    .PutJsonAsync(new
-            //    {
-            //        options.Realm,
-            //        UserId = userId,
-            //        GroupId = groupId
-            //    })
-            //    .ConfigureAwait(false);
+            catch (Exception)
+            {
+                if (response != null)
+                {
+                    string message = await response.ResponseMessage.Content.ReadAsStringAsync();
+                    logger.LogError("Error message is {message}", message);
+                }
+                return false;
+            }
         }
 
-        public async Task<object> GetRoles(string clientId, string token)
+        public async Task<bool> DeleteRole(string roleName, string clientId, string token)
         {
-            ///{realm}/clients/{id}/roles
-            ///
-            // PUT /{realm}/users/{id}/groups/{groupId}
-
-            using var request = new HttpRequestMessage();
-            // Set the request method and URL
-            request.Method = HttpMethod.Get;
-            request.RequestUri = new Uri($"{KeycloakOptions.Url}/clients/{clientId}/roles");
-
-            // Set individual request headers
-            request.Headers.Add("Authorization", $"{HttpConstants.Bearer}{token}");
-
-            // Make the request
-            HttpResponseMessage response = await httpClient.SendAsync(request);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string content = await response.Content.ReadAsStringAsync();
-                return content;
+                IFlurlResponse response = await httpService.GetAdminBaseUrl(token)
+                                                        .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
+                                                        .AppendPathSegment(roleName)
+                                                        .WithOAuthBearerToken(token)
+                                                        .DeleteAsync();
+                return response.StatusCode is 200 or 201;
+
             }
-            return null;
+            catch (Exception ex)
+            {
+                logger.LogError("Error message is {message}", ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<RoleDTO?> GetRole(string roleName, string clientId, string token)
+        {
+            try
+            {
+                return await httpService.GetAdminBaseUrl(token)
+                                        .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
+                                        .AppendPathSegment(roleName)
+                                        .WithOAuthBearerToken(token)
+                                        .GetJsonAsync<RoleDTO>();
+
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Error message is {message}", ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<RoleDTO>?> GetRoles(string clientId, string token)
+        {
+            try
+            {
+                return await httpService.GetAdminBaseUrl(token)
+                                        .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
+                                        .WithOAuthBearerToken(token)
+                                        .GetJsonAsync<IEnumerable<RoleDTO>>();
+
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Error message is {message}", ex.Message);
+                return null;
+            }
         }
     }
 }

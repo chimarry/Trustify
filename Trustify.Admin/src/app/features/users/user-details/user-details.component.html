@@ -18,7 +18,7 @@
                 <mat-form-field>
                     <mat-label for="username">Username
                     </mat-label>
-                    <input matInput id="username" [value]="user.username" type="text" disabled>
+                    <input matInput id="userName" [value]="user.userName" type="text" disabled>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label for="email">Email
@@ -26,51 +26,54 @@
                     <input matInput id="email" [value]="user.email" type="text" disabled>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label for="address">Address</mat-label>
-                    <input matInput id="address" [value]="user.address" type="text" disabled>
+                    <mat-label for="createdTimestamp">Created timestamp</mat-label>
+                    <input matInput id="createdTimestamp" [value]="user.createdTimestamp" type="text" disabled>
                 </mat-form-field>
+
                 <mat-form-field>
-                    <mat-label for="birthday">Birthday</mat-label>
-                    <input matInput disabled [matDatepicker]="picker" [value]="user.birthday">
-                    <mat-datepicker-toggle matIconSuffix 
-                        [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label for="isUserActive">Is User Active
+                    <mat-label for="emailVerified">Is email verified
                     </mat-label>
-                    <input matInput id="isUserActive" [value]="user.isUserActive" type="text" disabled>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label for="lastActivity">Last activity
-                    </mat-label>
-                    <input matInput id="lastActivity" [value]="user.lastActivity" type="text" disabled>
+                    <input matInput id="emailVerified" [value]="user.emailVerified" type="text" disabled>
                 </mat-form-field>
             </div>
             <mat-divider></mat-divider>
-            Roles
+            Realm roles
             <div class="trf-row trf-start">
                 <mat-chip-set class="trf-roles-list">
-                    @for(permission of user.roles; track permission.role){
+                    @for(permission of user.realmRoles; track permission){
                     <mat-chip class="trf-role-selected">
-                        {{permission.role}}
+                        {{permission}}
                     </mat-chip>}
                 </mat-chip-set>
             </div>
             <mat-divider></mat-divider>
-            Add to groups
+            Groups
             <div class="trf-row trf-start">
                 <mat-chip-set class="trf-roles-list">
-                    @for(group of user.groups;track group.name){
+                    @for(group of user.groups; track group){
                     <mat-chip class="trf-role-selected">
-                        {{group.name}}
+                        {{group}}
                     </mat-chip>}
                 </mat-chip-set>
             </div>
+            <mat-divider></mat-divider>
+            Client roles
+            <mat-chip-set class="trf-roles-list">
+                @for(keypar of user.clientRoles|keyvalue; track keypar.key)
+                {
+                <div>
+                    @for(item of keypar.value; let i=$index; track i)
+                    {
+                    <mat-chip class="trf-role-selected">
+                        {{keypar.key}}:{{item}}
+                    </mat-chip>
+                    }
+                </div>
+                }
+            </mat-chip-set>
         </div>
     </div>
     <div mat-dialog-actions class="trf-dialog_actions">
-        <button color="primary" mat-raised-button  type="submit"
-           class="trf-confirm-button ">Close</button>
+        <button color="primary" mat-raised-button type="submit" class="trf-confirm-button ">Close</button>
     </div>
 </div>

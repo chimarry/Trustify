@@ -1,0 +1,54 @@
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Manage roles
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            Realm roles
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(permission of group.realmRoles; track permission){
+                    <mat-chip class="trf-role-selected">
+                        {{permission}}
+                        <button matChipRemove>
+                            <mat-icon>check_box</mat-icon>
+                        </button>
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+            <mat-divider style="margin:10px;"></mat-divider>
+            Client roles
+            <mat-select style="margin:10px;" id="selectedClient" fxFlex="15%" [(value)]="selectedClient"
+                placeholder="{{selectedClient?.name??'Select client'}}" (selectionChange)="selectClient($event.value)">
+                <mat-option *ngFor="let client of clients" [value]="client">
+                    {{client?.clientId}}
+                </mat-option>
+            </mat-select>
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(role of selectedRoles; track role){
+                    <mat-chip class="trf-role-selected">
+                        {{role}}
+                        <button matChipRemove (click)="removeFromGroup(role)">
+                            <mat-icon>check_box</mat-icon>
+                        </button>
+                    </mat-chip>}
+                    @for(role of notSelectedRoles; track role){
+                    <mat-chip class="trf-role-not-selected">
+                        {{role}}
+                        <button matChipRemove (click)="addToGroup(role)">
+                            <mat-icon>
+                                check_box_outline_blank
+                            </mat-icon>
+                        </button>
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button type="submit" (click)="confirm()"
+            class="trf-confirm-button ">Yes</button>
+        <button color="secondary" mat-raised-button (click)="close()" class="trf-cancel-button ">No</button>
+    </div>
+</div>

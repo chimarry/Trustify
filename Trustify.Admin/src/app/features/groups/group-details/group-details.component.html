@@ -1,0 +1,45 @@
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Group details
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            <div class="trf-column">
+                <mat-form-field>
+                    <mat-label for="name">Name
+                    </mat-label>
+                    <input disabled matInput id="name" [value]="group.name" type="text">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="path">Path
+                    </mat-label>
+                    <input matInput id="path" [value]="group.path" type="text" disabled>
+                </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
+            Realm roles
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(role of group.realmRoles; track role){
+                    <mat-chip class="trf-role-selected">
+                        {{role}}
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+            <mat-divider></mat-divider>
+            Client roles
+            @if(group && group.clientRoles && group.clientRoles['trustify_admin']){
+            <div class="trf-row trf-start">
+                <mat-chip-set class="trf-roles-list">
+                    @for(role of group.clientRoles['trustify_admin']; track role){
+                    <mat-chip class="trf-role-selected">
+                        {{role}}
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>}
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button class="trf-confirm-button" (click)="close()">Close</button>
+    </div>
+</div>

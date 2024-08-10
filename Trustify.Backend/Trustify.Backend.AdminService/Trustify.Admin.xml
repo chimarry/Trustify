@@ -4,14 +4,234 @@
         <name>Trustify.Backend.AdminService</name>
     </assembly>
     <members>
+        <member name="T:Trustify.Backend.AdminService.AutoMapper.AutoMapperConfig">
+            <summary>
+            Configure automapper to use certain mapping profiles. 
+            </summary>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.AutoMapper.AutoMapperConfig.CreateMapper">
+            <summary>
+            Create new instance of IMapper properly configured.
+            </summary>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.GroupsController.AddGroup(Trustify.Backend.AdminService.Models.GroupWrapper)">
+            <summary>
+            Adds group of users to the realm. 
+            </summary>
+            <param name="wrapper">Group data</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.GroupsController.AddClientRolesToGroup(Trustify.Backend.AdminService.Models.GroupRolesWrapper)">
+            <summary>
+            Add clients roles to the selected group.
+            </summary>
+            <param name="wrapper">Data about roles: name and identifier</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.GroupsController.DeleteClientRolesFromGroups(Trustify.Backend.AdminService.Models.GroupRolesWrapper)">
+            <summary>
+            Delete roles from the group.
+            </summary>
+            <param name="wrapper">Data such as group identifider and roles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.GroupsController.DeleteGroup(System.String)">
+            <summary>
+            Deletes selected group from the realm.
+            </summary>
+            <param name="groupId">The unique group identifier</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.GroupsController.GetGroups">
+            <summary>
+            Returns all groups of the realm.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.GroupsController.GetGroup(System.String)">
+            <summary>
+            Returns one selected group from the realm.
+            </summary>
+            <param name="groupId">Unique identifier of the group</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.RolesController.AddRole(Trustify.Backend.AdminService.Models.RoleWrapper,System.String)">
+            <summary>
+            Adds new role to the client.
+            </summary>
+            <param name="wrapper">Role data</param>
+            <param name="clientId">Clients' identifier</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.RolesController.GetRoles(System.String)">
+            <summary>
+            Returns all roles that belong to one client.
+            </summary>
+            <returns></returns>
+            <exception cref="T:Trustify.Backend.AdminService.Exceptions.UnauthorizedException"></exception>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.RolesController.DeleteRole(System.String,System.String)">
+            <summary>
+            Delete role.
+            </summary>
+            <param name="roleName">Roles' name</param>
+            <param name="clientId">Clients' identifier</param>
+            <returns></returns>
+            <exception cref="T:Trustify.Backend.AdminService.Exceptions.UnauthorizedException"></exception>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.RolesController.GetRole(System.String,System.String)">
+            <summary>
+            Returns one role.
+            </summary>
+            <param name="roleName">Roles' name</param>
+            <param name="clientId">Clients' identifier</param>
+            <returns></returns>
+            <exception cref="T:Trustify.Backend.AdminService.Exceptions.UnauthorizedException"></exception>
+        </member>
         <member name="T:Trustify.Backend.AdminService.Controllers.UsersController">
             <summary>
             Manages users in Keycloak server database.
             </summary>
         </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.#ctor(AutoMapper.IMapper,Trustify.Backend.AdminService.Keycloak.Service.IUserService)">
+            <summary>
+            Manages users in Keycloak server database.
+            </summary>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.RegisterUser(Trustify.Backend.AdminService.Models.UserWrapper)">
+            <summary>
+            Registers new user.
+            </summary>
+            <param name="user">User's data</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.AddUserInGroup(Trustify.Backend.AdminService.Controllers.UserIdGroupWrapper)">
+            <summary>
+            Adds new user in the group.
+            </summary>
+            <param name="wrapper">User and group identifiers</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.RemoveUserInGroup(Trustify.Backend.AdminService.Controllers.UserIdGroupWrapper)">
+            <summary>
+            Removes user from the group.
+            </summary>
+            <param name="wrapper">User and group identifiers</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.DeleteUser(Trustify.Backend.AdminService.Models.UserIdWrapper)">
+            <summary>
+            Deletes user from the server.
+            </summary>
+            <param name="wrapper">User identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.GetUserInfo(Trustify.Backend.AdminService.Models.UserIdWrapper)">
+            <summary>
+            Returns information about one user.
+            </summary>
+            <param name="wrapper">User identifier</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.GetUsers">
+            <summary>
+            Returns all users.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.UpdatePasword(Trustify.Backend.AdminService.Models.UserIdWrapper)">
+            <summary>
+            Requires user to update their password upon login.
+            </summary>
+            <param name="wrapper">User's identifier.</param>
+            <returns></returns>
+        </member>
         <member name="T:Trustify.Backend.AdminService.IoC.MvcOptionsExtensions">
             <summary>
              Implements MvcOptions extention methods in order to use a global route prefix in controllers
+            </summary>
+        </member>
+        <member name="T:Trustify.Backend.AdminService.IoC.StartupExtensionsBackup">
+            {realm}/clients/{id}/roles
+            
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.HttpService.GetAdminBaseUrl(System.String)">
+            <summary>
+            Sends HTTP request with access token to Keycloak.
+            </summary>
+            <param name="url"></param>
+            <param name="bearerToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.HttpService.GetBaseUrl(System.String)">
+            <summary>
+            Sends HTTP request with access token to Keycloak.
+            </summary>
+            <param name="url"></param>
+            <param name="bearerToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakClientService.GetClients(System.String)">
+            <summary>
+            Returns basic information about clients.
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakGroupService.AddGroup(Trustify.Backend.AdminService.Keycloak.DTO.GroupDTO,System.String)">
+            <summary>
+            Adds group of users to the realm. 
+            </summary>
+            <param name="group">Group data</param>
+            <param name="token">Access token of logged in user</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakGroupService.DeleteGroup(System.String,System.String)">
+            <summary>
+            Deletes selected group from the realm.
+            </summary>
+            <param name="groupId">The unique group identifier</param>
+            <param name="token">The access token of the logged in user</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakGroupService.AddClientRolesToGroup(System.Collections.Generic.IEnumerable{Trustify.Backend.AdminService.Keycloak.DTO.RoleDTO},System.String,System.String,System.String)">
+            <summary>
+            Add clients roles to the selected group.
+            </summary>
+            <param name="roles">Data about roles: name and identifier</param>
+            <param name="groupId">Unique group identifier</param>
+            <param name="clientId">Unique identifier of the client</param>
+            <param name="token">Access token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakGroupService.DeleteClientRolesFromGroup(System.Collections.Generic.IEnumerable{Trustify.Backend.AdminService.Keycloak.DTO.RoleDTO},System.String,System.String,System.String)">
+            <summary>
+            Delete roles from the group.
+            </summary>
+            <param name="roles">Role's data array</param>
+            <param name="groupId">Unique identifier of the group</param>
+            <param name="clientId">Unique identifier of the client</param>
+            <param name="token">Access token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakGroupService.GetAllGroups(System.String)">
+            <summary>
+            Returns all groups of the realm.
+            </summary>
+            <param name="token">Access token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakGroupService.GetGroup(System.String,System.String)">
+            <summary>
+            Returns one selected group from the realm.
+            </summary>
+            <param name="groupId">Unique identifier of the group</param>
+            <param name="token">Access token</param>
+            <returns></returns>
+        </member>
+        <member name="T:Trustify.Backend.AdminService.Middlewares.ErrorHandlingMiddleware">
+            <summary>
+            Capture synchronous and asynchronous exceptions from the HTTP pipeline and generate error responses. 
             </summary>
         </member>
     </members>

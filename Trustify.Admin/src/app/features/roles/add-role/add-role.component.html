@@ -6,21 +6,12 @@
         <div class="trf-column trf-start">
             <div [formGroup]="addRoleFormGroup" class="trf-column">
                 <mat-form-field>
-                    <mat-label for="role">Role
+                    <mat-label for="name">Name
                     </mat-label>
-                    <input matInput id="role" formControlName="role" type="text" minlength="2"
+                    <input matInput id="name" formControlName="name" type="text" minlength="2"
                         autocomplete="off">
                     <mat-error>
                         Role name is invalid
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label for="composite">Composite
-                    </mat-label>
-                    <input matInput id="composite" formControlName="composite" type="text" minlength="2"
-                        autocomplete="off">
-                    <mat-error>
-                        Composite is invalid
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>

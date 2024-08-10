@@ -14,9 +14,9 @@
             <div class="content-text">{{element.lastName}}</div>
         </td>
     </ng-container>
-    <ng-container matColumnDef="username">
+    <ng-container matColumnDef="userName">
         <th mat-header-cell *matHeaderCellDef class="trf-10-col">Username</th>
-        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
     </ng-container>
     <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef class="trf-10-col">Email</th>
@@ -24,18 +24,11 @@
             <div class="content-text">{{element.email}}</div>
         </td>
     </ng-container>
-    <ng-container matColumnDef="address">
-        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Address </th>
-        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-    </ng-container>
-    <ng-container matColumnDef="birthday">
-        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Birthday </th>
-        <td mat-cell *matCellDef="let element"> {{element.birthday| date:'MMM d, y, H:mm'}} </td>
-    </ng-container>
-    <ng-container matColumnDef="isUserActive">
-        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Active</th>
+
+    <ng-container matColumnDef="createdTimestamp">
+        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Created Timestamp</th>
         <td mat-cell *matCellDef="let element">
-            <div class="content-text">{{element.isUserActive}}</div>
+            <div class="content-text">{{element.createdTimestamp}}</div>
         </td>
     </ng-container>
     <ng-container matColumnDef="actions">
@@ -43,13 +36,13 @@
             Actions</th>
         <td mat-cell *matCellDef="let element">
             <div class="trf-table-actions">
-                <button mat-icon-button matTooltipPosition="above" (click)="getDetails(element)" matTooltipClass="tooltip" matTooltip="Details">
+                <button mat-icon-button matTooltipPosition="above" (click)="getDetails(element.id)" matTooltipClass="tooltip" matTooltip="Details">
                     <mat-icon>details</mat-icon>
                 </button>
-                <button mat-icon-button matTooltipPosition="above" (click)="editUser(element)" matTooltipClass="tooltip" matTooltip="Edit user">
+                <button mat-icon-button matTooltipPosition="above" (click)="updatePassword(element.id)" matTooltipClass="tooltip" matTooltip="Edit user">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button (click)="delete(element.username)" mat-icon-button matTooltipPosition="above"
+                <button (click)="delete(element.id)" mat-icon-button matTooltipPosition="above"
                     matTooltipClass="tooltip" matTooltip="Delete user">
                     <mat-icon>delete</mat-icon>
                 </button>

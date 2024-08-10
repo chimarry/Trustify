@@ -1,0 +1,34 @@
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Add new group
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            <div [formGroup]="addGroupFormGroup" class="trf-column">
+                <mat-form-field>
+                    <mat-label for="name">Name
+                    </mat-label>
+                    <input matInput id="name" formControlName="name" type="text" minlength="2" maxlength="60"
+                        autocomplete="off">
+                    <mat-error>
+                       Group name is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="path">Path
+                    </mat-label>
+                    <input matInput id="path" formControlName="path" type="text" maxlength="255"
+                        autocomplete="off">
+                    <mat-error>
+                        Path is invalid
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button [disabled]="addGroupFormGroup.invalid" type="submit"
+            (click)="confirm()" class="trf-confirm-button ">Yes</button>
+        <button color="secondary" mat-raised-button (click)="close()" class="trf-cancel-button ">No</button>
+    </div>
+</div>

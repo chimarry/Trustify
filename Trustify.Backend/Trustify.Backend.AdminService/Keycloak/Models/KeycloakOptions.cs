@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Trustify.Backend.AdminService.Keycloak.Models
+﻿namespace Trustify.Backend.AdminService.Keycloak.Models
 {
     public class KeycloakOptions
     {
         public string Url { get; set; } = string.Empty;
+
+        public string AdminUrl { get; set; } = string.Empty;
+
+        public string RolesUrlFormat { get; set; } = string.Empty;
 
         public string Realm { get; set; } = string.Empty;
 
         public string Username { get; set; } = string.Empty;
 
         public string Password { get; set; } = string.Empty;
+
+        public string GroupsUrlFormat { get; set; } = string.Empty;
 
         public string RedirectUrlAfterProfileUpdate { get; set; } = string.Empty;
 

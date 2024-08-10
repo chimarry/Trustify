@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserPreferenceService {
 
   private defaultLanugage: string = "en";
-  public pageSizes: Array<number> = [1, 5, 10, 15, 20, 25, 50, 100];
+  public pageSizes: Array<number> = [5, 10, 15, 20, 25, 50, 100];
 
   constructor() {
   }

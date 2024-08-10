@@ -1,0 +1,28 @@
+.trf-roles-list {
+    margin: 20px 0px;
+}
+
+.trf-role-not-selected {
+    background-color: var(--trf-neg-primary) !important;
+    color: var(--trf-neg-primary-font) !important;
+}
+
+.trf-role-selected {
+    background-color: var(--trf-confirm) !important;
+    color: var(--trf-confirm-font) !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: var(--trf-confirm) !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: var(--trf-confirm);
+}
+
+::ng-deep .mat-form-field {
+    border-bottom: 1px solid var(--trf-confirm-font);
+    width: 50%;
+}

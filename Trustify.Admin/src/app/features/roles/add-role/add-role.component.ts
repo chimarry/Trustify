@@ -14,8 +14,7 @@ import { Role } from '../../../core/models/role';
 export class AddRoleComponent {
 
   public addRoleFormGroup: FormGroup = new FormGroup({
-    role: new FormControl("", [Validators.required]),
-    composite: new FormControl(false, [Validators.required]),
+    name: new FormControl("", [Validators.required]),
     description: new FormControl("", [Validators.required]),
   });
 
@@ -31,8 +30,7 @@ export class AddRoleComponent {
 
   confirm() {
     this.dialogRef.close({
-      role: this.addRoleFormGroup.controls['role'].value,
-      composite: this.addRoleFormGroup.controls['composite'].value,
+      name: this.addRoleFormGroup.controls['name'].value,
       description: this.addRoleFormGroup.controls['description'].value
     });
   }

@@ -1,0 +1,1191 @@
+{
+  "definitions": {
+    "ClientDTO": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "Credentials": {
+      "additionalProperties": false,
+      "properties": {
+        "temporary": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "type": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "value": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "FederatedIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "identityProvider": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "userId": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "userName": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "GroupDTO": {
+      "additionalProperties": false,
+      "properties": {
+        "clientRoles": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "type": "object",
+          "x-nullable": true
+        },
+        "id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "path": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "realmRoles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "GroupRolesWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "groupId": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "roleWrappers": {
+          "items": {
+            "$ref": "#/definitions/RoleWrapper"
+          },
+          "type": "array",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "GroupWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "path": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "RoleDTO": {
+      "additionalProperties": false,
+      "properties": {
+        "clientRole": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "RoleWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "UserDTO": {
+      "additionalProperties": false,
+      "properties": {
+        "clientRoles": {
+          "additionalProperties": {},
+          "type": "object",
+          "x-nullable": true
+        },
+        "createdTimestamp": {
+          "format": "int64",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "credentials": {
+          "items": {
+            "$ref": "#/definitions/Credentials"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "email": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "enabled": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "federatedIdentities": {
+          "items": {
+            "$ref": "#/definitions/FederatedIdentity"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "federationLink": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "firstName": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "groups": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "id": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "lastName": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "realmRoles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "requiredActions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "userName": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "UserIdGroupWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "groupId": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "userId": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "UserIdWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "UserWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "credentials": {
+          "items": {
+            "$ref": "#/definitions/Credentials"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "email": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "enabled": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "firstName": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "lastName": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "requiredActions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "userName": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    }
+  },
+  "info": {
+    "title": "Trustify.Admin",
+    "version": "v1.0"
+  },
+  "paths": {
+    "/api/v1.0/clients": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ClientDTO"
+            }
+          }
+        },
+        "tags": [
+          "Clients"
+        ]
+      }
+    },
+    "/api/v1.0/groups": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Returns all groups of the realm.",
+        "tags": [
+          "Groups"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "Group data",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/GroupWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Adds group of users to the realm.",
+        "tags": [
+          "Groups"
+        ]
+      }
+    },
+    "/api/v1.0/groups/delete": {
+      "put": {
+        "parameters": [
+          {
+            "description": "The unique group identifier",
+            "in": "query",
+            "name": "groupId",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Deletes selected group from the realm.",
+        "tags": [
+          "Groups"
+        ]
+      }
+    },
+    "/api/v1.0/groups/group": {
+      "get": {
+        "parameters": [
+          {
+            "description": "Unique identifier of the group",
+            "in": "query",
+            "name": "groupId",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GroupDTO"
+            }
+          }
+        },
+        "summary": "Returns one selected group from the realm.",
+        "tags": [
+          "Groups"
+        ]
+      }
+    },
+    "/api/v1.0/groups/roles": {
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "Data about roles: name and identifier",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/GroupRolesWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Add clients roles to the selected group.",
+        "tags": [
+          "Groups"
+        ]
+      }
+    },
+    "/api/v1.0/groups/roles/delete": {
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "Data such as group identifider and roles",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/GroupRolesWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete roles from the group.",
+        "tags": [
+          "Groups"
+        ]
+      }
+    },
+    "/api/v1.0/roles": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "clientId",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RoleDTO"
+            }
+          }
+        },
+        "summary": "Returns all roles that belong to one client.",
+        "tags": [
+          "Roles"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "Clients' identifier",
+            "in": "query",
+            "name": "clientId",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "Role data",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RoleWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Adds new role to the client.",
+        "tags": [
+          "Roles"
+        ]
+      }
+    },
+    "/api/v1.0/roles/delete": {
+      "put": {
+        "parameters": [
+          {
+            "description": "Roles' name",
+            "in": "query",
+            "name": "roleName",
+            "type": "string"
+          },
+          {
+            "description": "Clients' identifier",
+            "in": "query",
+            "name": "clientId",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete role.",
+        "tags": [
+          "Roles"
+        ]
+      }
+    },
+    "/api/v1.0/roles/role": {
+      "get": {
+        "parameters": [
+          {
+            "description": "Roles' name",
+            "in": "query",
+            "name": "roleName",
+            "type": "string"
+          },
+          {
+            "description": "Clients' identifier",
+            "in": "query",
+            "name": "clientId",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Returns one role.",
+        "tags": [
+          "Roles"
+        ]
+      }
+    },
+    "/api/v1.0/test": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1.0/test/access-denied": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1.0/test/login": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "returnUrl",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1.0/test/login-callback": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1.0/test/super-admin": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1.0/test/user-info": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Tests"
+        ]
+      }
+    },
+    "/api/v1.0/users": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Returns all users.",
+        "tags": [
+          "Users"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "User's data",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Registers new user.",
+        "tags": [
+          "Users"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1.0/users/delete": {
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "User identifier.",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserIdWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Deletes user from the server.",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1.0/users/group/add": {
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "User and group identifiers",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserIdGroupWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Adds new user in the group.",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1.0/users/group/remove": {
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "User and group identifiers",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserIdGroupWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Removes user from the group.",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1.0/users/password": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "User's identifier.",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserIdWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Requires user to update their password upon login.",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1.0/users/user-info": {
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          },
+          {
+            "description": "User identifier",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserIdWrapper"
+            }
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDTO"
+            }
+          }
+        },
+        "summary": "Returns information about one user.",
+        "tags": [
+          "Users"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "x-components": {}
+}

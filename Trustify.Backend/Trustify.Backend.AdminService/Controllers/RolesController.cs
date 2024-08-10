@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using Trustify.Backend.AdminService.Exceptions;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Service;
 using Trustify.Backend.AdminService.Models;
@@ -9,37 +12,70 @@ namespace Trustify.Backend.AdminService.Controllers
 {
     [Route("roles")]
     [ApiController]
-    public class RolesController : TrustifyAdminControllerBase
+    [Authorize(Policy = TrustifyPolicy.Authenticated)]
+    [Authorize(Policy = TrustifyPolicy.Restricted)]
+    public class RolesController(IRoleService roleService, IMapper mapper) : TrustifyAdminControllerBase
     {
-        private readonly IKeycloakRoleService roleService;
+        private readonly IRoleService roleService = roleService;
+        private readonly IMapper mapper = mapper;
 
-        public RolesController(IKeycloakRoleService roleService)
-        {
-            this.roleService = roleService;
-        }
-
+        /// <summary>
+        /// Adds new role to the client.
+        /// </summary>
+        /// <param name="wrapper">Role data</param>
+        /// <param name="clientId">Clients' identifier</param>
+        /// <returns></returns>
         [HttpPost]
-        [Authorize(Policy = TrustifyPolicy.Restricted)]
-        public async Task<IActionResult> AddRole([FromBody] RoleWrapper wrapper)
+        public async Task<IActionResult> AddRole([FromBody] RoleWrapper wrapper, [FromQuery] string clientId)
         {
-            string? accessToken = await GetTokenFromRequest();
-            if (accessToken == null)
-                return BadRequest("No access token");
+            string accessToken = await GetTokenFromRequestOrThrow();
 
-
-            var dto = new RoleDTO { ClientRole = true, Name = wrapper.Name, Description = wrapper.Description };
-            var result = await roleService.AddRole(dto, "8695a1b6-eba4-45f4-8df6-989847e44984", accessToken);
+            var result = await roleService.AddRole(mapper.Map<RoleDTO>(wrapper), clientId, accessToken);
             return Ok(result);
         }
 
+        /// <summary>
+        /// Returns all roles that belong to one client.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="UnauthorizedException"></exception>
         [HttpGet]
-        [Authorize(Policy = TrustifyPolicy.Restricted)]
-        public async Task<IActionResult> GetRoles()
+        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(RoleDTO))]
+        public async Task<IActionResult> GetRoles([FromQuery] string clientId)
         {
-            string? accessToken = await GetTokenFromRequest();
-            if (accessToken == null)
-                return BadRequest("No access token");
-            return Ok(await roleService.GetRoles("8695a1b6-eba4-45f4-8df6-989847e44984", accessToken));
+            string accessToken = await GetTokenFromRequestOrThrow();
+
+            return Ok(await roleService.GetRoles(clientId, accessToken));
+        }
+
+        /// <summary>
+        /// Delete role.
+        /// </summary>
+        /// <param name="roleName">Roles' name</param>
+        /// <param name="clientId">Clients' identifier</param>
+        /// <returns></returns>
+        /// <exception cref="UnauthorizedException"></exception>
+        [HttpPut("delete")]
+        public async Task<IActionResult> DeleteRole([FromQuery] string roleName, [FromQuery] string clientId)
+        {
+            string accessToken = await GetTokenFromRequestOrThrow();
+
+            return Ok(await roleService.DeleteRole(roleName, clientId, accessToken));
+        }
+
+        /// <summary>
+        /// Returns one role.
+        /// </summary>
+        /// <param name="roleName">Roles' name</param>
+        /// <param name="clientId">Clients' identifier</param>
+        /// <returns></returns>
+        /// <exception cref="UnauthorizedException"></exception>
+        [HttpGet("role")]
+        public async Task<IActionResult> GetRole([FromQuery] string roleName, [FromQuery] string clientId)
+        {
+            string accessToken = await GetTokenFromRequestOrThrow();
+
+            return Ok(await roleService.GetRole(roleName, clientId, accessToken));
         }
     }
 }

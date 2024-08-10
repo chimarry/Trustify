@@ -1,17 +1,23 @@
 <div class="trf-row trf-end">
+    <mat-select style="margin:10px;width: 300px;" id="selectedClient" fxFlex="15%" [(value)]="selectedClient"
+        placeholder="{{selectedClient?.name??'Select client'}}" (selectionChange)="selectClient($event.value)">
+        <mat-option *ngFor="let client of clients" [value]="client">
+            {{client?.clientId}}
+        </mat-option>
+    </mat-select>
     <button mat-icon-button (click)="addNewRole()"><mat-icon>add</mat-icon></button>
 </div>
 <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8" matSort #tbSort="matSort">
     <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef class="trf-20-col">Role</th>
         <td mat-cell *matCellDef="let element">
-            <div class="content-text">{{element.role}}</div>
+            <div class="content-text">{{element.name}}</div>
         </td>
     </ng-container>
-    <ng-container matColumnDef="composite">
-        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Composite</th>
+    <ng-container matColumnDef="clientRole">
+        <th mat-header-cell *matHeaderCellDef class="trf-10-col">ClientRole</th>
         <td mat-cell *matCellDef="let element">
-            <div class="content-text">{{element.composite}}</div>
+            <div class="content-text">{{element.clientRole}}</div>
         </td>
     </ng-container>
     <ng-container matColumnDef="description">
@@ -23,10 +29,11 @@
             Actions</th>
         <td mat-cell *matCellDef="let element">
             <div class="trf-table-actions">
-                <button mat-icon-button matTooltipPosition="above" (click)="editRole(element)" matTooltipClass="tooltip" matTooltip="Edit role">
+                <!-- <button mat-icon-button matTooltipPosition="above" (click)="editRole(element)" matTooltipClass="tooltip"
+                    matTooltip="Edit role">
                     <mat-icon>edit</mat-icon>
-                </button>
-                <button (click)="delete(element.role)" mat-icon-button matTooltipPosition="above"
+                </button> -->
+                <button (click)="delete(element)" mat-icon-button matTooltipPosition="above"
                     matTooltipClass="tooltip" matTooltip="Delete role">
                     <mat-icon>delete</mat-icon>
                 </button>

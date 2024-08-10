@@ -7,7 +7,51 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Trustify.Backend.AdminService.IoC
 {
-    public static class StartupExtensionsBackup
+    using System.Net.Http;
+
+    ///{realm}/clients/{id}/roles
+    ///
+    // PUT /{realm}/users/{id}/groups/{groupId}
+
+    //using StringContent stringContent = new StringContent(JsonConvert.SerializeObject(role, serializerSettings), Encoding.UTF8, "application/json");
+    //using var request = new HttpRequestMessage();
+    //// Set the request method and URL
+    //request.Method = HttpMethod.Post;
+    //request.RequestUri = new Uri($"{KeycloakOptions.Url}/clients/{clientId}/roles");
+    //request.Content = stringContent;
+
+    //// Set individual request headers
+    //request.Headers.Add("Authorization", $"{HttpConstants.Bearer}{token}");
+
+    //// Make the request
+    //HttpResponseMessage response = await httpClient.SendAsync(request);
+    //if (response.IsSuccessStatusCode)
+    //{
+    //    string contdent = await response.Content.ReadAsStringAsync();
+    //    new object();
+    //}
+    //string content = await response.Content.ReadAsStringAsync();
+    //return null;
+
+
+
+//    using var request = new HttpRequestMessage();
+//    // Set the request method and URL
+//    request.Method = HttpMethod.Get;
+//            request.RequestUri = new Uri($"{KeycloakOptions.AdminUrl}/clients/{clientId}/roles");
+
+//    // Set individual request headers
+//    request.Headers.Add("Authorization", $"{HttpConstants.Bearer}{token}");
+
+//            // Make the request
+//            HttpResponseMessage response = await httpClient.SendAsync(request);
+//            if (response.IsSuccessStatusCode)
+//            {
+//                string content = await response.Content.ReadAsStringAsync();
+//                return content;
+//            }
+//return null;
+public static class StartupExtensionsBackup
     {
         //public static void ConfigureAuthenticationAuthorization(this IServiceCollection services, IConfiguration configuration)
         //{

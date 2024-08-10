@@ -1,0 +1,43 @@
+<div class="trf-row trf-end">
+    <button mat-icon-button (click)="addNewGroup()"><mat-icon>add</mat-icon></button>
+</div>
+<table mat-table [dataSource]="dataSource" class="table mat-elevation-z8" matSort #tbSort="matSort">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="trf-30-col">Name</th>
+        <td mat-cell *matCellDef="let element">
+            <div class="content-text">{{element.name}}</div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="path">
+        <th mat-header-cell *matHeaderCellDef class="trf-30-col">Path</th>
+        <td mat-cell *matCellDef="let element">
+            <div class="content-text">{{element.path}}</div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+            Actions</th>
+        <td mat-cell *matCellDef="let element">
+            <div class="trf-table-actions">
+                <button (click)="getDetails(element.id)" mat-icon-button matTooltipPosition="above"
+                    matTooltipClass="tooltip" matTooltip="See details">
+                    <mat-icon>info</mat-icon>
+                </button>
+                <button (click)="manageRoles(element)" mat-icon-button matTooltipPosition="above"
+                    matTooltipClass="tooltip" matTooltip="Manage roles">
+                    <mat-icon>settings_account_box
+                    </mat-icon>
+                </button>
+                <button (click)="delete(element.id)" mat-icon-button matTooltipPosition="above"
+                matTooltipClass="tooltip" matTooltip="Delete group">
+                <mat-icon>delete</mat-icon>
+            </button>
+            </div>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="trf-table-header"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="trf-table-row" (click)="select(row)">
+    </tr>
+</table>
+<mat-paginator class="trf-table-paginator" #paginatorPageSize showFirstLastButtons
+    [pageSizeOptions]="pageSizes"></mat-paginator>

@@ -1,2 +1,2 @@
-@Trustify.Backend.AdminService_HostAddress = http://localhost:5285
+@Trustify.Backend.AdminService_HostAddress = http://192.168.100.6:5285
 

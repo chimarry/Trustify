@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Trustify.Backend.AdminService.Security;
+using System.Net;
 
 namespace Trustify.Backend.AdminService.Controllers
 {
@@ -18,7 +20,7 @@ namespace Trustify.Backend.AdminService.Controllers
 
         [HttpGet("super-admin")]
         // [Authorize(Roles = "trustify.realm.super_administrator")]
-        [Authorize(Policy = "Restricted")]
+        [Authorize(Policy = TrustifyPolicy.Authenticated)]
         public async Task<IActionResult> CheckSuperAdministrator()
         {
             var authResult = await HttpContext.AuthenticateAsync(OpenIdConnectDefaults.AuthenticationScheme);
@@ -33,6 +35,7 @@ namespace Trustify.Backend.AdminService.Controllers
             if (accessToken == null)
                 return BadRequest();
 
+            HttpResponseMessage response;
             string authorizeHeader = "Bearer " + accessToken;
             // /admin/realms/$REALM_NAME/clients?clientId=$CLIENT_ID
             string uri = "http://192.168.56.101:8080/admin/realms/trustify/clients?clientId=trustify_admin";
@@ -46,14 +49,15 @@ namespace Trustify.Backend.AdminService.Controllers
                 request.Headers.Add("Authorization", authorizeHeader);
 
                 // Make the request
-                HttpResponseMessage response = await httpClient.SendAsync(request);
-                if (response.IsSuccessStatusCode)
+                response = await httpClient.SendAsync(request);
+                if (response.StatusCode != HttpStatusCode.NoContent)
                 {
+
                     string content = await response.Content.ReadAsStringAsync();
                     return Ok(content);
                 }
             }
-            return BadRequest();
+            return BadRequest("failed");
         }
 
         [HttpGet("user-info")]
