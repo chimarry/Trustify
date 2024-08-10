@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Trustify.Backend.AdminService.AutoMapper;
 using Trustify.Backend.AdminService.Exceptions;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Service;
@@ -32,7 +33,7 @@ namespace Trustify.Backend.AdminService.Controllers
             string accessToken = await GetTokenFromRequestOrThrow();
 
             var result = await groupService.AddGroup(mapper.Map<GroupDTO>(wrapper), accessToken);
-            return Ok(result);
+            return HttpResultMessage.FilteredResult(result);
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace Trustify.Backend.AdminService.Controllers
             var roles = mapper.Map<IEnumerable<RoleWrapper>, IEnumerable<RoleDTO>>(wrapper.RoleWrappers);
 
             var result = await groupService.AddClientRolesToGroup(roles, wrapper.GroupId, wrapper.ClientId, accessToken);
-            return Ok(result);
+            return HttpResultMessage.FilteredResult(result);
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Trustify.Backend.AdminService.Controllers
             var roles = mapper.Map<IEnumerable<RoleWrapper>, IEnumerable<RoleDTO>>(wrapper.RoleWrappers);
 
             var result = await groupService.DeleteClientRolesFromGroup(roles, wrapper.GroupId, wrapper.ClientId, accessToken);
-            return Ok(result);
+            return HttpResultMessage.FilteredResult(result);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Trustify.Backend.AdminService.Controllers
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await groupService.DeleteGroup(groupId, accessToken));
+            return HttpResultMessage.FilteredResult(await groupService.DeleteGroup(groupId, accessToken));
         }
 
         /// <summary>
@@ -88,7 +89,7 @@ namespace Trustify.Backend.AdminService.Controllers
             
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await groupService.GetAllGroups(accessToken));
+            return HttpResultMessage.FilteredResult(await groupService.GetAllGroups(accessToken));
         }
 
         /// <summary>
@@ -97,12 +98,12 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="groupId">Unique identifier of the group</param>
         /// <returns></returns>
         [HttpGet("group")]
-        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(GroupDTO))]
+        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(ResultMessage<GroupDTO>))]
         public async Task<IActionResult> GetGroup([FromQuery] string groupId)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await groupService.GetGroup(groupId, accessToken));
+            return HttpResultMessage.FilteredResult(await groupService.GetGroup(groupId, accessToken));
         }
     }
 }

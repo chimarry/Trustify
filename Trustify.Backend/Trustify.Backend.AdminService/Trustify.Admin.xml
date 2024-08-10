@@ -14,6 +14,54 @@
             Create new instance of IMapper properly configured.
             </summary>
         </member>
+        <member name="T:Trustify.Backend.AdminService.AutoMapper.HttpResultMessage">
+            <summary>
+            Resposible for sending result to client based on message from managers
+            </summary>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.AutoMapper.HttpResultMessage.FilteredResult``1(Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage{``0})">
+            <summary>
+            Returns result with appropriate HTTP error code
+            </summary>
+            <typeparam name="T">Parameter type that needs to be class</typeparam>
+            <param name="result">Data to analyze and send to client</param>
+            <param name="contentType">Defines content type of result</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.AutoMapper.HttpResultMessage.ErrorWithDetails``1(Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage{``0})">
+            <summary>
+            Returns result with appropriate HTTP error code and detailed message
+            </summary>
+            <typeparam name="T">Parameter type that needs to be class</typeparam>
+            <param name="result">Data to analyze and send to client</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.AutoMapper.HttpResultMessage.Success``1(Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage{``0})">
+            <summary>
+            Returns result with HTTP success code
+            </summary>
+            <typeparam name="T">Parameter type that needs to be class</typeparam>
+            <param name="result">Data to analyze and send to client</param>
+            <param name="contentType">Content type of result</param>
+            <returns></returns>
+        </member>
+        <member name="T:Trustify.Backend.AdminService.AutoMapper.ResultMessageExtensionMethods">
+            <summary>
+            Encapsulates mapper logic related to objects of a type ResultMessage <see cref="T:Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage`1"/>
+            </summary>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.AutoMapper.ResultMessageExtensionMethods.Map``2(Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage{``1},AutoMapper.IMapper)">
+            <summary>
+            Because ResultMessage is a generic class, this method allows user to convert from ResultMessage<typeparamref name="OriginalType"/>
+            to ResultMessage<typeparamref name="WrapperType"/>, thus mapping operation result from OriginalType to Wrapper. It can be used for 
+            wrapping primitive operation results in class objects.
+            </summary>
+            <typeparam name="WrapperType">Type to convert to</typeparam>
+            <typeparam name="OriginalType">Original type</typeparam>
+            <param name="resultMessage">Object that is mapped</param>
+            <param name="_mapper">Injected AutoMapper mapper</param>
+            <returns>New ResultMessage object</returns>
+        </member>
         <member name="M:Trustify.Backend.AdminService.Controllers.GroupsController.AddGroup(Trustify.Backend.AdminService.Models.GroupWrapper)">
             <summary>
             Adds group of users to the realm. 
@@ -153,6 +201,20 @@
             <param name="wrapper"></param>
             <returns></returns>
         </member>
+        <member name="M:Trustify.Backend.AdminService.Exceptions.IExceptionHandler.HandleException(System.Exception)">
+            <summary>
+            Handles exception.
+            </summary>
+            <param name="exception">Exception to handle.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Exceptions.IExceptionHandler.HandleException(System.Exception,System.Object)">
+            <summary>
+            Handles exception.
+            </summary>
+            <param name="exception">Exception to handle.</param>
+            <returns></returns>
+        </member>
         <member name="T:Trustify.Backend.AdminService.IoC.MvcOptionsExtensions">
             <summary>
              Implements MvcOptions extention methods in order to use a global route prefix in controllers
@@ -161,6 +223,42 @@
         <member name="T:Trustify.Backend.AdminService.IoC.StartupExtensionsBackup">
             {realm}/clients/{id}/roles
             
+        </member>
+        <member name="T:Trustify.Backend.AdminService.Keycloak.DTO.OperationStatus">
+            <summary>
+            Descriptive values for some standard outcomes of method execution.
+            </summary>
+        </member>
+        <member name="T:Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage`1">
+            <summary>
+            Data class that enables sharing result, status and detailed message of some method 
+            </summary>
+            <typeparam name="T">Type of result</typeparam>
+        </member>
+        <member name="P:Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage`1.Result">
+            <summary>
+            Result operation returns
+            </summary>
+        </member>
+        <member name="P:Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage`1.Status">
+            <summary>
+            Status of operation
+            </summary>
+        </member>
+        <member name="P:Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage`1.IsSuccess">
+            <summary>
+            Check for operation success
+            </summary>
+        </member>
+        <member name="P:Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage`1.Message">
+            <summary>
+            Detailed message of operation success
+            </summary>
+        </member>
+        <member name="M:Trustify.Backend.AdminService.Keycloak.DTO.ResultMessage`1.#ctor">
+            <summary>
+            Creates successful ResultMessage object with no Result object
+            </summary>
         </member>
         <member name="M:Trustify.Backend.AdminService.Keycloak.Service.HttpService.GetAdminBaseUrl(System.String)">
             <summary>

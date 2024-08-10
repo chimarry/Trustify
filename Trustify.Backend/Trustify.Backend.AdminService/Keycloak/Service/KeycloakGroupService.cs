@@ -1,25 +1,20 @@
 ﻿using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.Extensions.Options;
+using Trustify.Backend.AdminService.Exceptions;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Models;
 
 namespace Trustify.Backend.AdminService.Keycloak.Service
 {
-    public class KeycloakGroupService : IGroupService
+    public class KeycloakGroupService(IOptions<KeycloakOptions> keycloakOptions, IHttpService httpService,
+        ILogger<KeycloakGroupService> logger, IExceptionHandler exceptionHandler) : IGroupService
     {
-        public KeycloakOptions KeycloakOptions { get; set; }
+        public KeycloakOptions KeycloakOptions { get; set; } = keycloakOptions.Value;
 
-        private readonly IHttpService httpService;
-        private readonly ILogger<KeycloakGroupService> logger;
-
-        public KeycloakGroupService(IOptions<KeycloakOptions> keycloakOptions, IHttpService httpService,
-            ILogger<KeycloakGroupService> logger)
-        {
-            KeycloakOptions = keycloakOptions.Value;
-            this.httpService = httpService;
-            this.logger = logger;
-        }
+        private readonly IHttpService httpService = httpService;
+        private readonly ILogger<KeycloakGroupService> logger = logger;
+        private readonly IExceptionHandler exceptionHandler = exceptionHandler;
 
         /// <summary>
         /// Adds group of users to the realm. 
@@ -27,7 +22,7 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
         /// <param name="group">Group data</param>
         /// <param name="token">Access token of logged in user</param>
         /// <returns></returns>
-        public async Task<bool> AddGroup(GroupDTO group, string token)
+        public async Task<ResultMessage<bool>> AddGroup(GroupDTO group, string token)
         {
             IFlurlResponse? response = null;
             try
@@ -37,17 +32,13 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                                             .WithOAuthBearerToken(token)
                                             .PostJsonAsync(group);
 
-                return true;
+                return new ResultMessage<bool>(true);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                if (response != null)
-                {
-                    string message = await response.ResponseMessage.Content.ReadAsStringAsync();
-                    logger.LogError("Error message is {message}", message);
-                }
-                return false;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
@@ -57,7 +48,7 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
         /// <param name="groupId">The unique group identifier</param>
         /// <param name="token">The access token of the logged in user</param>
         /// <returns></returns>
-        public async Task<bool> DeleteGroup(string groupId, string token)
+        public async Task<ResultMessage<bool>> DeleteGroup(string groupId, string token)
         {
             try
             {
@@ -66,13 +57,13 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                                                         .AppendPathSegment(groupId)
                                                         .WithOAuthBearerToken(token)
                                                         .DeleteAsync();
-                return response.StatusCode is 200 or 201 or 204;
 
+                return new ResultMessage<bool>(true, OperationStatus.Success);
             }
             catch (Exception ex)
             {
-                logger.LogError("Error message is {message}", ex.Message);
-                return false;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
@@ -84,7 +75,7 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
         /// <param name="clientId">Unique identifier of the client</param>
         /// <param name="token">Access token</param>
         /// <returns></returns>
-        public async Task<bool> AddClientRolesToGroup(IEnumerable<RoleDTO> roles, string groupId, string clientId, string token)
+        public async Task<ResultMessage<bool>> AddClientRolesToGroup(IEnumerable<RoleDTO> roles, string groupId, string clientId, string token)
         {
             string pathSegment = $"groups/{groupId}/role-mappings/clients/{clientId}";
             IFlurlResponse? response = null;
@@ -95,17 +86,13 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                                             .WithOAuthBearerToken(token)
                                             .PostJsonAsync(roles);
 
-                return true;
+                return new ResultMessage<bool>(true, OperationStatus.Success);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                if (response != null)
-                {
-                    string message = await response.ResponseMessage.Content.ReadAsStringAsync();
-                    logger.LogError("Error message is {message}", message);
-                }
-                return false;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
@@ -117,7 +104,7 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
         /// <param name="clientId">Unique identifier of the client</param>
         /// <param name="token">Access token</param>
         /// <returns></returns>
-        public async Task<bool> DeleteClientRolesFromGroup(IEnumerable<RoleDTO> roles, string groupId, string clientId, string token)
+        public async Task<ResultMessage<bool>> DeleteClientRolesFromGroup(IEnumerable<RoleDTO> roles, string groupId, string clientId, string token)
         {
             string pathSegment = $"{KeycloakOptions.AdminUrl}/trustify/groups/{groupId}/role-mappings/clients/{clientId}";
             IFlurlResponse? response = null;
@@ -125,17 +112,13 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
             {
                 await httpService.SendRequest(pathSegment, roles, token, HttpMethod.Delete);
 
-                return true;
+                return new ResultMessage<bool>(true, OperationStatus.Success);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                if (response != null)
-                {
-                    string message = await response.ResponseMessage.Content.ReadAsStringAsync();
-                    logger.LogError("Error message is {message}", message);
-                }
-                return false;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
@@ -144,27 +127,21 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
         /// </summary>
         /// <param name="token">Access token</param>
         /// <returns></returns>
-        public async Task<IEnumerable<GroupDTO>?> GetAllGroups(string token)
+        public async Task<ResultMessage<IEnumerable<GroupDTO>>> GetAllGroups(string token)
         {
             try
             {
-            //    HttpClientHandler httpClientHandler = new HttpClientHandler();
-            //    httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain,
-            //      errors) => true;
-            //    HttpClient httpClient = new HttpClient(httpClientHandler);
-            //    var flurlClient = new FlurlClient(httpClient);
 
-            //    return await flurlClient.Request($"{KeycloakOptions.AdminUrl}/{KeycloakOptions.Realm}")
-            //                    .WithOAuthBearerToken(token)
-                                       return await httpService.GetAdminBaseUrl(token)
-                                        .AppendPathSegment("groups")
-                                        .GetJsonAsync<IEnumerable<GroupDTO>>();
+                var list = await httpService.GetAdminBaseUrl(token)
+                    .AppendPathSegment("groups")
+                    .GetJsonAsync<IEnumerable<GroupDTO>>();
+                return new ResultMessage<IEnumerable<GroupDTO>>(list);
 
             }
             catch (Exception ex)
             {
-                logger.LogError("Error message is {message}", ex.Message);
-                throw ex;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<IEnumerable<GroupDTO>>(status, message);
             }
         }
 
@@ -174,21 +151,22 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
         /// <param name="groupId">Unique identifier of the group</param>
         /// <param name="token">Access token</param>
         /// <returns></returns>
-        public async Task<GroupDTO?> GetGroup(string groupId, string token)
+        public async Task<ResultMessage<GroupDTO>> GetGroup(string groupId, string token)
         {
             try
             {
-                return await httpService.GetAdminBaseUrl(token)
+                var group = await httpService.GetAdminBaseUrl(token)
                                        .AppendPathSegment("groups")
                                        .AppendPathSegment(groupId)
                                        .WithOAuthBearerToken(token)
                                        .GetJsonAsync<GroupDTO>();
+                return new ResultMessage<GroupDTO>(group);
 
             }
             catch (Exception ex)
             {
-                logger.LogError("Error message is {message}", ex.Message);
-                return null;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<GroupDTO>(status, message);
             }
         }
     }

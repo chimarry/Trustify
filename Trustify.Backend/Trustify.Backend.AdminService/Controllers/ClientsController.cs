@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Trustify.Backend.AdminService.AutoMapper;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Service;
 using Trustify.Backend.AdminService.Security;
@@ -19,12 +20,12 @@ namespace Trustify.Backend.AdminService.Controllers
         private readonly IClientService clientService = clientService;
 
         [HttpGet]
-        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(ClientDTO))]
+        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(ResultMessage<ClientDTO>))]
         public async Task<IActionResult> GetClientsInfo()
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await clientService.GetClients(accessToken));
+            return HttpResultMessage.FilteredResult(await clientService.GetClients(accessToken));
         }
     }
 }

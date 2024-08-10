@@ -3,39 +3,41 @@ using Flurl;
 using Flurl.Http;
 using Microsoft.Extensions.Options;
 using System.Text.RegularExpressions;
+using Trustify.Backend.AdminService.Exceptions;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Models;
 
 namespace Trustify.Backend.AdminService.Keycloak.Service
 {
-    public class KeycloakUserService(IOptions<KeycloakOptions> keycloakOptions, IMapper mapper, IHttpService httpService, ILogger<KeycloakRoleService> logger) : IUserService
+    public class KeycloakUserService(IOptions<KeycloakOptions> keycloakOptions, IHttpService httpService, ILogger<KeycloakRoleService> logger, IExceptionHandler exceptionHandler) : IUserService
     {
         public KeycloakOptions KeycloakOptions { get; set; } = keycloakOptions.Value;
 
         private readonly IHttpService httpService = httpService;
         private readonly ILogger<KeycloakRoleService> logger = logger;
-        private readonly IMapper mapper = mapper;
+        private readonly IExceptionHandler exceptionHandler = exceptionHandler;
 
-        public async Task<IEnumerable<UserDTO>> GetAllUsers(string accessToken)
+        public async Task<ResultMessage<IEnumerable<UserDTO>>> GetAllUsers(string accessToken)
         {
             try
             {
-                return await httpService.GetAdminBaseUrl(accessToken)
+                var list = await httpService.GetAdminBaseUrl(accessToken)
                                            .AppendPathSegment($"/users")
                                            .GetJsonAsync<IEnumerable<UserDTO>>();
+                return new ResultMessage<IEnumerable<UserDTO>>(list);
             }
             catch (Exception ex)
             {
-                throw ex;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<IEnumerable<UserDTO>>(status, message);
             }
         }
 
-        public async Task<bool> AddUserInGroup(string userId, string groupId, string accessToken)
+        public async Task<ResultMessage<bool>> AddUserInGroup(string userId, string groupId, string accessToken)
         {
-            IFlurlResponse? response = null;
             try
             {
-                response = await httpService.GetAdminBaseUrl(accessToken)
+                IFlurlResponse? response = await httpService.GetAdminBaseUrl(accessToken)
                      .AppendPathSegment($"/users/{userId}/groups/{groupId}")
                      .PutJsonAsync(new
                      {
@@ -43,15 +45,16 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                          UserId = userId,
                          GroupId = groupId
                      });
-                return response.StatusCode is 200 or 201 or 204;
+                return new ResultMessage<bool>(true, OperationStatus.Success);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
-        public async Task<bool> RemoveUserFromGroup(string userId, string groupId, string accessToken)
+        public async Task<ResultMessage<bool>> RemoveUserFromGroup(string userId, string groupId, string accessToken)
         {
             IFlurlResponse? response = null;
             try
@@ -59,26 +62,29 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                 response = await httpService.GetAdminBaseUrl(accessToken)
                    .AppendPathSegment($"/users/{userId}/groups/{groupId}")
                    .DeleteAsync();
-                return response.StatusCode is 200 or 201 or 204;
+                return new ResultMessage<bool>(true, OperationStatus.Success);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
-        public async Task<IEnumerable<GroupDTO>> GetUserGroups(string userId, string accessToken)
+        public async Task<ResultMessage<IEnumerable<GroupDTO>>> GetUserGroups(string userId, string accessToken)
         {
             IFlurlResponse? response = null;
             try
             {
-                return await httpService.GetAdminBaseUrl(accessToken)
+                var list = await httpService.GetAdminBaseUrl(accessToken)
                 .AppendPathSegment($"/users/{userId}/groups")
                 .GetJsonAsync<IEnumerable<GroupDTO>>();
+                return new ResultMessage<IEnumerable<GroupDTO>>(list);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<IEnumerable<GroupDTO>>(status, message);
             }
         }
 
@@ -87,7 +93,7 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
             throw new NotImplementedException();
         }
 
-        public async Task<bool> RemoveUser(string userId, string accessToken)
+        public async Task<ResultMessage<bool>> RemoveUser(string userId, string accessToken)
         {
             IFlurlResponse? response = null;
             try
@@ -95,15 +101,16 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                 response = await httpService.GetAdminBaseUrl(accessToken)
                                             .AppendPathSegment($"/users/{userId}")
                                             .DeleteAsync();
-                return response.StatusCode is 200 or 201 or 204;
+                return new ResultMessage<bool>(true, OperationStatus.Success);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
-        public async Task<bool> RegisterUser(UserDTO user, string accessToken)
+        public async Task<ResultMessage<bool>> RegisterUser(UserDTO user, string accessToken)
         {
             IFlurlResponse? response = null;
             try
@@ -111,15 +118,16 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                 response = await httpService.GetAdminBaseUrl(accessToken)
                                 .AppendPathSegment($"/users")
                                 .PostJsonAsync(user);
-                return response.StatusCode is 200 or 201 or 204;
+                return new ResultMessage<bool>(true);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
-        public async Task<UserDTO> GetUser(string userId, string accessToken)
+        public async Task<ResultMessage<UserDTO>> GetUser(string userId, string accessToken)
         {
 
             IFlurlResponse? response = null;
@@ -128,7 +136,7 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                 UserDTO user = await httpService.GetAdminBaseUrl(accessToken)
                                            .AppendPathSegment($"/users/{userId}")
                                            .GetJsonAsync<UserDTO>();
-                user.Groups = (await GetUserGroups(userId, accessToken)).Select(x => x.Name ?? string.Empty);
+                user.Groups = (await GetUserGroups(userId, accessToken)).Result?.Select(x => x.Name ?? string.Empty);
                 var roleMappings = await httpService.GetAdminBaseUrl(accessToken)
                     .AppendPathSegment($"/users/{userId}/role-mappings")
                     .GetJsonAsync<RoleMappingsDTO>();
@@ -142,11 +150,12 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                         user.ClientRoles.Add(item.Key, roles);
                     }
                 }
-                return user;
+                return new ResultMessage<UserDTO>(user);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<UserDTO>(status, message);
             }
         }
 

@@ -10,7 +10,7 @@ import { GroupsService } from '../../../api/services';
   standalone: true,
   imports: [AppMaterialModule, NgFor],
   templateUrl: './remove-from-group.component.html',
-  styleUrls: ['./remove-from-group.component.css','../../../shared/styles/modal.css']
+  styleUrls: ['./remove-from-group.component.css', '../../../shared/styles/modal.css']
 })
 export class RemoveFromGroupComponent {
   public selectedGroup: GroupDTO | null = null;
@@ -18,12 +18,12 @@ export class RemoveFromGroupComponent {
   public groups: GroupDTO[] = [];
 
   constructor(private dialogRef: MatDialogRef<RemoveFromGroupComponent>,
-    private groupService: GroupsService, @Inject(MAT_DIALOG_DATA) public data: GroupDTO[]) {
-this.userGroups=data;
+    @Inject(MAT_DIALOG_DATA) public data: GroupDTO[]) {
+    this.userGroups = data;
   }
 
   ngOnInit() {
-   this.groups = this.userGroups;
+    this.groups = this.userGroups;
   }
 
   close() {

@@ -1,26 +1,21 @@
 ﻿using Flurl.Http;
 using Microsoft.Extensions.Options;
+using Trustify.Backend.AdminService.Exceptions;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Models;
 
 namespace Trustify.Backend.AdminService.Keycloak.Service
 {
-    public class KeycloakRoleService : IRoleService
+    public class KeycloakRoleService(IOptions<KeycloakOptions> keycloakOptions,
+        IHttpService httpService, ILogger<KeycloakRoleService> logger, IExceptionHandler exceptionHandler) : IRoleService
     {
-        public KeycloakOptions KeycloakOptions { get; set; }
+        public KeycloakOptions KeycloakOptions { get; set; } = keycloakOptions.Value;
 
-        private readonly IHttpService httpService;
-        private readonly ILogger<KeycloakRoleService> logger;
+        private readonly IHttpService httpService = httpService;
+        private readonly ILogger<KeycloakRoleService> logger = logger;
+        private readonly IExceptionHandler exceptionHandler = exceptionHandler;
 
-        public KeycloakRoleService(IOptions<KeycloakOptions> keycloakOptions,
-            IHttpService httpService, ILogger<KeycloakRoleService> logger)
-        {
-            this.KeycloakOptions = keycloakOptions.Value;
-            this.httpService = httpService;
-            this.logger = logger;
-        }
-
-        public async Task<bool> AddRole(RoleDTO role, string clientId, string token)
+        public async Task<ResultMessage<bool>> AddRole(RoleDTO role, string clientId, string token)
         {
             IFlurlResponse? response = null;
             try
@@ -29,20 +24,16 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                                             .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
                                             .WithOAuthBearerToken(token)
                                             .PostJsonAsync(role);
-                return response.StatusCode is 200 or 201;
+                return new ResultMessage<bool>(true, OperationStatus.Success);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                if (response != null)
-                {
-                    string message = await response.ResponseMessage.Content.ReadAsStringAsync();
-                    logger.LogError("Error message is {message}", message);
-                }
-                return false;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
-        public async Task<bool> DeleteRole(string roleName, string clientId, string token)
+        public async Task<ResultMessage<bool>> DeleteRole(string roleName, string clientId, string token)
         {
             try
             {
@@ -51,48 +42,50 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
                                                         .AppendPathSegment(roleName)
                                                         .WithOAuthBearerToken(token)
                                                         .DeleteAsync();
-                return response.StatusCode is 200 or 201;
+                return new ResultMessage<bool>(true, OperationStatus.Success);
 
             }
             catch (Exception ex)
             {
-                logger.LogError("Error message is {message}", ex.Message);
-                return false;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<bool>(status, message);
             }
         }
 
-        public async Task<RoleDTO?> GetRole(string roleName, string clientId, string token)
+        public async Task<ResultMessage<RoleDTO>> GetRole(string roleName, string clientId, string token)
         {
             try
             {
-                return await httpService.GetAdminBaseUrl(token)
-                                        .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
-                                        .AppendPathSegment(roleName)
-                                        .WithOAuthBearerToken(token)
-                                        .GetJsonAsync<RoleDTO>();
+                var role = await httpService.GetAdminBaseUrl(token)
+                                         .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
+                                         .AppendPathSegment(roleName)
+                                         .WithOAuthBearerToken(token)
+                                         .GetJsonAsync<RoleDTO>();
+                return new ResultMessage<RoleDTO>(role);
 
             }
             catch (Exception ex)
             {
-                logger.LogError("Error message is {message}", ex.Message);
-                return null;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<RoleDTO>(status, message);
             }
         }
 
-        public async Task<IEnumerable<RoleDTO>?> GetRoles(string clientId, string token)
+        public async Task<ResultMessage<IEnumerable<RoleDTO>>> GetRoles(string clientId, string token)
         {
             try
             {
-                return await httpService.GetAdminBaseUrl(token)
+                var list = await httpService.GetAdminBaseUrl(token)
                                         .AppendPathSegment(httpService.GetPathSegment(KeycloakOptions.RolesUrlFormat, clientId))
                                         .WithOAuthBearerToken(token)
                                         .GetJsonAsync<IEnumerable<RoleDTO>>();
+                return new ResultMessage<IEnumerable<RoleDTO>>(list);
 
             }
             catch (Exception ex)
             {
-                logger.LogError("Error message is {message}", ex.Message);
-                return null;
+                (OperationStatus status, string message) = exceptionHandler.HandleException(ex);
+                return new ResultMessage<IEnumerable<RoleDTO>>(status, message);
             }
         }
     }

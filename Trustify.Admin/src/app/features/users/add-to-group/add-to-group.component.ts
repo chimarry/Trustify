@@ -4,6 +4,7 @@ import { NgFor } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GroupDTO } from '../../../api/models';
 import { GroupsService } from '../../../api/services';
+import { ResultMessage } from '../../../core/models/result-message';
 
 @Component({
   selector: 'trf-add-to-group',
@@ -26,7 +27,7 @@ export class AddToGroupComponent {
     this.groupService.getApiV10Groups({}).subscribe({
       next: response => {
         if (response) {
-          this.groups = response as GroupDTO[];
+          this.groups = (response as ResultMessage).result as GroupDTO[];
           this.groups = this.groups.filter(group => !this.contains(this.userGroups, group));
         }
 

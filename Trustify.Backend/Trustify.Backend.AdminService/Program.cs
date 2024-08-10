@@ -41,6 +41,7 @@ builder.Services.AddScoped<IGroupService, KeycloakGroupService>();
 builder.Services.AddScoped<IUserService, KeycloakUserService>();
 builder.Services.AddScoped<IClientService, KeycloakClientService>();
 builder.Services.AddScoped<IHttpService, HttpService>();
+builder.Services.AddScoped<IExceptionHandler, ExceptionHandler>();
 builder.Services.AddSingleton(AutoMapperConfig.CreateMapper());
 builder.Services.AddHttpClient(string.Empty, _ => { })
                     .ConfigurePrimaryHttpMessageHandler(() =>

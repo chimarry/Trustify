@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Trustify.Backend.AdminService.AutoMapper;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Models;
 using Trustify.Backend.AdminService.Keycloak.Service;
@@ -30,7 +31,7 @@ namespace Trustify.Backend.AdminService.Controllers
         public async Task<IActionResult> RegisterUser([FromBody] UserWrapper user)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
-            return Ok(await userService.RegisterUser(mapper.Map<UserDTO>(user), accessToken));
+            return HttpResultMessage.FilteredResult(await userService.RegisterUser(mapper.Map<UserDTO>(user), accessToken));
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace Trustify.Backend.AdminService.Controllers
         public async Task<IActionResult> AddUserInGroup([FromBody] UserIdGroupWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
-            return Ok(await userService.AddUserInGroup(wrapper.UserId, wrapper.GroupId, accessToken));
+            return HttpResultMessage.FilteredResult(await userService.AddUserInGroup(wrapper.UserId, wrapper.GroupId, accessToken));
         }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace Trustify.Backend.AdminService.Controllers
         public async Task<IActionResult> RemoveUserInGroup([FromBody] UserIdGroupWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
-            return Ok(await userService.RemoveUserFromGroup(wrapper.UserId, wrapper.GroupId, accessToken));
+            return HttpResultMessage.FilteredResult(await userService.RemoveUserFromGroup(wrapper.UserId, wrapper.GroupId, accessToken));
         }
 
         [HttpPut]
@@ -72,7 +73,7 @@ namespace Trustify.Backend.AdminService.Controllers
         public async Task<IActionResult> DeleteUser([FromBody] UserIdWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
-            return Ok(await userService.RemoveUser(wrapper.UserId, accessToken));
+            return HttpResultMessage.FilteredResult(await userService.RemoveUser(wrapper.UserId, accessToken));
         }
 
         /// <summary>
@@ -81,12 +82,12 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="wrapper">User identifier</param>
         /// <returns></returns>
         [HttpPut("user-info")]
-        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(UserDTO))]
+        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(ResultMessage<UserDTO>))]
         public async Task<IActionResult> GetUserInfo([FromBody] UserIdWrapper wrapper)
         {
 
             string accessToken = await GetTokenFromRequestOrThrow();
-            return Ok(await userService.GetUser(wrapper.UserId, accessToken));
+            return HttpResultMessage.FilteredResult(await userService.GetUser(wrapper.UserId, accessToken));
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Trustify.Backend.AdminService.Controllers
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await userService.GetAllUsers(accessToken));
+            return HttpResultMessage.FilteredResult(await userService.GetAllUsers(accessToken));
         }
 
         /// <summary>
@@ -126,7 +127,7 @@ namespace Trustify.Backend.AdminService.Controllers
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-           return Ok( await userService.GetUserGroups(wrapper.UserId, accessToken));
+            return HttpResultMessage.FilteredResult( await userService.GetUserGroups(wrapper.UserId, accessToken));
         }
     }
 }

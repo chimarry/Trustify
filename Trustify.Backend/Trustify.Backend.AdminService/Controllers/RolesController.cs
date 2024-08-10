@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Trustify.Backend.AdminService.AutoMapper;
 using Trustify.Backend.AdminService.Exceptions;
 using Trustify.Backend.AdminService.Keycloak.DTO;
 using Trustify.Backend.AdminService.Keycloak.Service;
@@ -31,7 +32,7 @@ namespace Trustify.Backend.AdminService.Controllers
             string accessToken = await GetTokenFromRequestOrThrow();
 
             var result = await roleService.AddRole(mapper.Map<RoleDTO>(wrapper), clientId, accessToken);
-            return Ok(result);
+            return HttpResultMessage.FilteredResult(result);
         }
 
         /// <summary>
@@ -40,12 +41,12 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <returns></returns>
         /// <exception cref="UnauthorizedException"></exception>
         [HttpGet]
-        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(RoleDTO))]
+        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(ResultMessage<RoleDTO>))]
         public async Task<IActionResult> GetRoles([FromQuery] string clientId)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await roleService.GetRoles(clientId, accessToken));
+            return HttpResultMessage.FilteredResult(await roleService.GetRoles(clientId, accessToken));
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Trustify.Backend.AdminService.Controllers
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await roleService.DeleteRole(roleName, clientId, accessToken));
+            return HttpResultMessage.FilteredResult(await roleService.DeleteRole(roleName, clientId, accessToken));
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Trustify.Backend.AdminService.Controllers
         {
             string accessToken = await GetTokenFromRequestOrThrow();
 
-            return Ok(await roleService.GetRole(roleName, clientId, accessToken));
+            return HttpResultMessage.FilteredResult(await roleService.GetRole(roleName, clientId, accessToken));
         }
     }
 }

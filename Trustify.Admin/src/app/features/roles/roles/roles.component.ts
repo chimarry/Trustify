@@ -10,6 +10,8 @@ import { EditRoleComponent } from '../edit-role/edit-role.component';
 import { ClientsService, RolesService } from '../../../api/services';
 import { ClientDTO, RoleDTO, RoleWrapper } from '../../../api/models';
 import { NgFor } from '@angular/common';
+import { ResultMessage } from '../../../core/models/result-message';
+import { DisplayMessageService } from '../../../core/services/display-message.service';
 
 @Component({
   selector: 'trf-roles',
@@ -27,6 +29,7 @@ export class RolesComponent extends TrfTableComponent {
   public override displayedColumns: string[] = ["role", "clientRole", "description", "actions"]
 
   constructor(private dialog: MatDialog, private clientService: ClientsService,
+    private displayMessageService: DisplayMessageService,
     private roleService: RolesService, userPreferenceService: UserPreferenceService) {
     super(userPreferenceService);
   }
@@ -37,7 +40,7 @@ export class RolesComponent extends TrfTableComponent {
       .subscribe({
         next: response => {
           if (response) {
-            this.clients = response as ClientDTO[];
+            this.clients = (response as ResultMessage).result as ClientDTO[];
           }
         }
       })
@@ -53,7 +56,7 @@ export class RolesComponent extends TrfTableComponent {
     } as RolesService.GetApiV10RolesParams)
       .subscribe({
         next: response => {
-          this.dataSource.data = response as RoleDTO[];
+          this.dataSource.data = (response as ResultMessage).result as RoleDTO[];
         }
       })
   }
@@ -74,7 +77,12 @@ export class RolesComponent extends TrfTableComponent {
             clientId: this.selectedClient?.id
           } as RolesService.PutApiV10RolesDeleteParams)
             .subscribe({
-              next: response => this.getRoles()
+              next: response => {
+                if (response && response as ResultMessage) {
+                  this.displayMessageService.displayStatus((response as ResultMessage).status);
+                }
+                this.getRoles()
+              }
             })
         }
       });
@@ -88,13 +96,17 @@ export class RolesComponent extends TrfTableComponent {
       .subscribe(result => {
         if (result) {
           var data = result as RoleWrapper;
-          console.log(data)
           this.roleService.postApiV10Roles({
             body: data as RoleWrapper,
             clientId: this.selectedClient?.id
           } as RolesService.PostApiV10RolesParams)
             .subscribe({
-              next: response => this.getRoles()
+              next: response => {
+                if (response && response as ResultMessage) {
+                  this.displayMessageService.displayStatus((response as ResultMessage).status);
+                }
+                this.getRoles();
+              }
             })
         }
       });
@@ -106,12 +118,8 @@ export class RolesComponent extends TrfTableComponent {
       data: role
     })
       .afterClosed()
-      .subscribe(result => {
-        if (result as Role) {
-          role.role = (result as Role).role;
-          role.description = (result as Role).description;
-          role.composite = (result as Role).composite;
-        }
+      .subscribe(response => {
+
       });
   }
 }

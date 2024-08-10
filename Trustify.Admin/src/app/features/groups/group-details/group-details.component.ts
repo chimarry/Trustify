@@ -16,7 +16,6 @@ export class GroupDetailsComponent {
 
   constructor(private dialogRef: MatDialogRef<GroupDetailsComponent>, @Inject(MAT_DIALOG_DATA) public data: GroupDTO) {
     this.group = data;
-    console.log(this.group)
   }
 
   ngOnInit() {

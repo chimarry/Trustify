@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ClientsService, RolesService } from '../../../api/services';
 import { AppMaterialModule } from '../../../modules/app-material/app-material.module';
 import { NgFor } from '@angular/common';
+import { ResultMessage } from '../../../core/models/result-message';
 
 @Component({
   selector: 'trf-manage-roles',
@@ -33,8 +34,7 @@ export class ManageRolesComponent {
       .subscribe({
         next: response => {
           if (response) {
-            this.clients = response as ClientDTO[];
-            console.log(this.clients)
+            this.clients =(response as ResultMessage).result as ClientDTO[];
           }
         }
       })
@@ -97,7 +97,7 @@ export class ManageRolesComponent {
     } as RolesService.GetApiV10RolesParams)
       .subscribe({
         next: roleArray => {
-          this.clientRoles = roleArray as RoleDTO[];
+          this.clientRoles = (roleArray as ResultMessage).result as RoleDTO[];
           if (this.group.clientRoles) {
             this.selectedRoles = this.group?.clientRoles[clientId];
           }

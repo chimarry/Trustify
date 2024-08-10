@@ -14,6 +14,8 @@ import { UsersService } from '../../../api/services';
 import { GroupDTO, UserDTO, UserWrapper } from '../../../api/models';
 import { AddToGroupComponent } from '../add-to-group/add-to-group.component';
 import { RemoveFromGroupComponent } from '../remove-from-group/remove-from-group.component';
+import { ResultMessage } from '../../../core/models/result-message';
+import { DisplayMessageService } from '../../../core/services/display-message.service';
 
 @Component({
   selector: 'trf-users',
@@ -28,7 +30,8 @@ export class UsersComponent extends TrfTableComponent {
 
   public override displayedColumns: string[] = ["userName", "firstName", "lastName", "email", "createdTimestamp", "actions"]
 
-  constructor(public date: DatePipe, private dialog: MatDialog, private userService: UsersService,
+  constructor(public date: DatePipe, private displayMessageService: DisplayMessageService,
+    private dialog: MatDialog, private userService: UsersService,
     userPreferenceService: UserPreferenceService) {
     super(userPreferenceService);
   }
@@ -43,7 +46,7 @@ export class UsersComponent extends TrfTableComponent {
       .subscribe({
         next: response => {
           if (response)
-            this.dataSource.data = response as UserDTO[];
+            this.dataSource.data = (response as ResultMessage).result as UserDTO[];
         }
       })
   }
@@ -67,7 +70,12 @@ export class UsersComponent extends TrfTableComponent {
               }
             }).subscribe(
               {
-                next: response => this.getUsers()
+                next: response => {
+                  if (response && response as ResultMessage) {
+                    this.displayMessageService.displayStatus((response as ResultMessage).status);
+                  }
+                  this.getUsers()
+                }
               })
           }
         }
@@ -87,6 +95,9 @@ export class UsersComponent extends TrfTableComponent {
           } as UsersService.PostApiV10UsersParams)
             .subscribe({
               next: response => {
+                if (response && response as ResultMessage) {
+                  this.displayMessageService.displayStatus((response as ResultMessage).status);
+                }
                 this.getUsers();
               }
             })
@@ -103,7 +114,7 @@ export class UsersComponent extends TrfTableComponent {
           if (response)
             this.dialog.open(AddToGroupComponent, {
               panelClass: "trf-dialog-size-large",
-              data: response as GroupDTO[]
+              data: (response as ResultMessage).result as GroupDTO[]
             })
               .afterClosed()
               .subscribe(result => {
@@ -117,6 +128,9 @@ export class UsersComponent extends TrfTableComponent {
                   } as UsersService.PutApiV10UsersGroupAddParams)
                     .subscribe({
                       next: response => {
+                        if (response && response as ResultMessage) {
+                          this.displayMessageService.displayStatus((response as ResultMessage).status);
+                        }
                         this.getUsers();
                       }
                     })
@@ -135,7 +149,7 @@ export class UsersComponent extends TrfTableComponent {
           if (response)
             this.dialog.open(RemoveFromGroupComponent, {
               panelClass: "trf-dialog-size-large",
-              data: response as GroupDTO[]
+              data: (response as ResultMessage).result as GroupDTO[]
             })
               .afterClosed()
               .subscribe(result => {
@@ -148,6 +162,9 @@ export class UsersComponent extends TrfTableComponent {
                   } as UsersService.PutApiV10UsersGroupRemoveParams)
                     .subscribe({
                       next: response => {
+                        if (response && response as ResultMessage) {
+                          this.displayMessageService.displayStatus((response as ResultMessage).status);
+                        }
                         this.getUsers();
                       }
                     })

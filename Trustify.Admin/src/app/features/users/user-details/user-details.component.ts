@@ -5,6 +5,7 @@ import { AppMaterialModule } from '../../../modules/app-material/app-material.mo
 import { UsersService } from '../../../api/services';
 import { UserDTO } from '../../../api/models';
 import { KeyValuePipe } from '@angular/common';
+import { ResultMessage } from '../../../core/models/result-message';
 
 @Component({
   selector: 'trf-user-details',
@@ -25,7 +26,7 @@ export class UserDetailsComponent {
     } as UsersService.PutApiV10UsersUserInfoParams)
       .subscribe({
         next: response =>{
-          this.user = response as UserDTO;
+          this.user = (response as ResultMessage).result as UserDTO;
       }
       })
   }

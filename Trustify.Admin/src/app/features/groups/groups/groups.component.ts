@@ -11,6 +11,8 @@ import { GroupDetailsComponent } from '../group-details/group-details.component'
 import { AppMaterialModule } from '../../../modules/app-material/app-material.module';
 import { ManageRolesComponent } from '../manage-roles/manage-roles.component';
 import { Group } from '../../../core/models/group';
+import { ResultMessage } from '../../../core/models/result-message';
+import { DisplayMessageService } from '../../../core/services/display-message.service';
 
 @Component({
   selector: 'trf-groups',
@@ -26,7 +28,7 @@ export class GroupsComponent extends TrfTableComponent {
 
   public override displayedColumns: string[] = ["name", "path", "actions"];
 
-  constructor(private dialog: MatDialog, private groupService: GroupsService,
+  constructor(private dialog: MatDialog,private displayMessageService:DisplayMessageService, private groupService: GroupsService,
     userPreferenceService: UserPreferenceService) {
     super(userPreferenceService);
   }
@@ -41,7 +43,7 @@ export class GroupsComponent extends TrfTableComponent {
       .subscribe({
         next: response => {
           if (response)
-            this.dataSource.data = response as GroupDTO[];
+            this.dataSource.data = (response as ResultMessage).result as GroupDTO[];
         }
       });
   }
@@ -62,7 +64,12 @@ export class GroupsComponent extends TrfTableComponent {
             groupId: groupId
           } as GroupsService.PutApiV10GroupsDeleteParams)
             .subscribe({
-              next: response => this.getGroups()
+              next: response => {
+                if (response && response as ResultMessage) {
+                  this.displayMessageService.displayStatus((response as ResultMessage).status);
+                }
+                this.getGroups()
+              }
             }
             )
         }
@@ -81,6 +88,9 @@ export class GroupsComponent extends TrfTableComponent {
           } as GroupsService.PostApiV10GroupsParams)
             .subscribe({
               next: response => {
+                if (response && response as ResultMessage) {
+                  this.displayMessageService.displayStatus((response as ResultMessage).status);
+                }
                 this.getGroups();
               }
             })
@@ -96,7 +106,7 @@ export class GroupsComponent extends TrfTableComponent {
         if (response) {
           this.dialog.open(ManageRolesComponent, {
             panelClass: "trf-dialog-size-large",
-            data: response as GroupDTO
+            data: (response as ResultMessage).result as GroupDTO
           })
             .afterClosed()
             .subscribe(
@@ -113,7 +123,11 @@ export class GroupsComponent extends TrfTableComponent {
                       }
                     } as GroupsService.PutApiV10GroupsRolesDeleteParams)
                       .subscribe({
-                        next: response => console.log(response)
+                        next: response =>{
+                          if (response && response as ResultMessage) {
+                            this.displayMessageService.displayStatus((response as ResultMessage).status);
+                          }
+                        }
                       });
                     // Add roles
                     this.groupService.putApiV10GroupsRoles({
@@ -123,7 +137,11 @@ export class GroupsComponent extends TrfTableComponent {
                         clientId: result.clientId
                       }
                     }).subscribe({
-                      next: response => console.log(response)
+                      next: response => {
+                        if (response && response as ResultMessage) {
+                          this.displayMessageService.displayStatus((response as ResultMessage).status);
+                        }
+                      }
                     })
                   }
                 }
@@ -144,7 +162,7 @@ export class GroupsComponent extends TrfTableComponent {
       if (response) {
         this.dialog.open(GroupDetailsComponent, {
           panelClass: "trf-dialog-size-large",
-          data: response as GroupDTO
+          data: (response as ResultMessage).result as GroupDTO
         })
           .afterClosed()
           .subscribe(result => {

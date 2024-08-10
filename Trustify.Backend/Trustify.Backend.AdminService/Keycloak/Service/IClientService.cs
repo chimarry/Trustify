@@ -4,6 +4,6 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
 {
     public interface IClientService
     {
-        Task<IEnumerable<ClientDTO>> GetClients(string token);
+        Task<ResultMessage<IEnumerable<ClientDTO>>> GetClients(string token);
     }
 }
