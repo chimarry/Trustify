@@ -37,10 +37,13 @@
         <td mat-cell *matCellDef="let element">
             <div class="trf-table-actions">
                 <button mat-icon-button matTooltipPosition="above" (click)="getDetails(element.id)" matTooltipClass="tooltip" matTooltip="Details">
-                    <mat-icon>details</mat-icon>
+                    <mat-icon>info</mat-icon>
                 </button>
-                <button mat-icon-button matTooltipPosition="above" (click)="updatePassword(element.id)" matTooltipClass="tooltip" matTooltip="Edit user">
-                    <mat-icon>edit</mat-icon>
+                <button mat-icon-button matTooltipPosition="above" (click)="groupAdd(element.id)" matTooltipClass="tooltip" matTooltip="Add to group">
+                    <mat-icon>group_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltipPosition="above" (click)="groupRemove(element.id)" matTooltipClass="tooltip" matTooltip="Remove from group">
+                    <mat-icon>group_remove</mat-icon>
                 </button>
                 <button (click)="delete(element.id)" mat-icon-button matTooltipPosition="above"
                     matTooltipClass="tooltip" matTooltip="Delete user">

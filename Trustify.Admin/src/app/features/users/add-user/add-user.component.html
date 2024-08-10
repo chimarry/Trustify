@@ -42,20 +42,21 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label for="address">Address</mat-label>
-                    <input matInput id="address" formControlName="address" type="text" minlength="2" maxlength="127"
+                    <mat-label for="emailVerified">Email verified
+                    </mat-label>
+                    <input matInput id="emailVerified" formControlName="emailVerified" type="text"
                         autocomplete="off">
                     <mat-error>
-                        Address is invalid
+                        Email verified is invalid
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label for="birthday">Birthday</mat-label>
-                    <input matInput [matDatepicker]="picker"  formControlName="birthday">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matIconSuffix 
-                        [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-label for="enabled">Enabled
+                    </mat-label>
+                    <input matInput id="enabled" formControlName="enabled" type="text" autocomplete="off">
+                    <mat-error>
+                        Enabled is invalid
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label for="password">Password
@@ -75,56 +76,21 @@
                         Passwords are not the same
                     </mat-error>
                 </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="requiredActions">Required actions
+                    </mat-label>
+                    <input matInput id="requiredActions" formControlName="requiredActions" type="text" minlength="5"
+                        maxlength="128" autocomplete="off">
+                    <mat-error>
+                        Required actions are invalid
+                    </mat-error>
+                </mat-form-field>
             </div>
             <mat-divider></mat-divider>
-            Grant roles
-            <div class="trf-row trf-start">
-                <mat-chip-set class="trf-roles-list">
-                    @for(permission of selectedRole; track permission.role){
-                    <mat-chip class="trf-role-selected">
-                        {{permission.role}}
-                        <button matChipRemove (click)="remove(permission)">
-                            <mat-icon>check_box</mat-icon>
-                        </button>
-                    </mat-chip>}
-                    @for(permission of notSelectedRoles; track permission.role){
-                    <mat-chip class="trf-role-not-selected">
-                        {{permission.role}}
-                        <button matChipRemove (click)="select(permission)">
-                            <mat-icon>
-                                check_box_outline_blank
-                            </mat-icon>
-                        </button>
-                    </mat-chip>}
-                </mat-chip-set>
-            </div>
-            <mat-divider></mat-divider>
-            Add to groups
-            <div class="trf-row trf-start">
-                <mat-chip-set class="trf-roles-list">
-                    @for(group of selectedGroups; track group.name){
-                    <mat-chip class="trf-role-selected">
-                        {{group.name}}
-                        <button matChipRemove (click)="removeFromGroup(group)">
-                            <mat-icon>check_box</mat-icon>
-                        </button>
-                    </mat-chip>}
-                    @for(group of notSelectedGroups; track group.name){
-                    <mat-chip class="trf-role-not-selected">
-                        {{group.name}}
-                        <button matChipRemove (click)="addToGroup(group)">
-                            <mat-icon>
-                                check_box_outline_blank
-                            </mat-icon>
-                        </button>
-                    </mat-chip>}
-                </mat-chip-set>
+
+            <div mat-dialog-actions class="trf-dialog_actions">
+                <button color="primary" mat-raised-button [disabled]="registerUserFormGroup.invalid" type="submit"
+                    (click)="confirm()" class="trf-confirm-button ">Yes</button>
+                <button color="secondary" mat-raised-button (click)="close()" class="trf-cancel-button ">No</button>
             </div>
         </div>
-    </div>
-    <div mat-dialog-actions class="trf-dialog_actions" >
-        <button color="primary" mat-raised-button  [disabled]="registerUserFormGroup.invalid" type="submit" (click)="confirm()"
-            class="trf-confirm-button ">Yes</button>
-        <button color="secondary" mat-raised-button  (click)="close()" class="trf-cancel-button ">No</button>
-    </div>
-</div>

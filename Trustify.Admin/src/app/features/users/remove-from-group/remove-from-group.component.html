@@ -1,0 +1,20 @@
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Remove from group
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            <mat-select style="margin:10px;width: 300px;" id="selectedGroup" fxFlex="15%" [(value)]="selectedGroup"
+                placeholder="{{selectedGroup?.name??'Select group'}}" (selectionChange)="selectGroup($event.value)">
+                <mat-option *ngFor="let group of groups" [value]="group">
+                    {{group?.name}}
+                </mat-option>
+            </mat-select>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button 
+            (click)="confirm()" class="trf-confirm-button ">Yes</button>
+        <button color="secondary" mat-raised-button (click)="close()" class="trf-cancel-button ">No</button>
+    </div>
+</div>

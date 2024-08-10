@@ -21,6 +21,7 @@ class UsersService extends __BaseService {
   static readonly putApiV10UsersDeletePath = '/api/v1.0/users/delete';
   static readonly putApiV10UsersGroupAddPath = '/api/v1.0/users/group/add';
   static readonly putApiV10UsersGroupRemovePath = '/api/v1.0/users/group/remove';
+  static readonly getApiV10UsersGroupsPath = '/api/v1.0/users/groups';
   static readonly postApiV10UsersPasswordPath = '/api/v1.0/users/password';
   static readonly putApiV10UsersUserInfoPath = '/api/v1.0/users/user-info';
 
@@ -320,6 +321,56 @@ class UsersService extends __BaseService {
   }
 
   /**
+   * Returns user groups
+   * @param params The `UsersService.GetApiV10UsersGroupsParams` containing the following parameters:
+   *
+   * - `x-api-key`: API key
+   *
+   * - `UserId`:
+   *
+   * - `Authorization`: Authorization
+   */
+  getApiV10UsersGroupsResponse(params: UsersService.GetApiV10UsersGroupsParams): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.xApiKey != null) __headers = __headers.set('x-api-key', params.xApiKey.toString());
+    if (params.UserId != null) __params = __params.set('UserId', params.UserId.toString());
+    if (params.Authorization != null) __headers = __headers.set('Authorization', params.Authorization.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/v1.0/users/groups`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * Returns user groups
+   * @param params The `UsersService.GetApiV10UsersGroupsParams` containing the following parameters:
+   *
+   * - `x-api-key`: API key
+   *
+   * - `UserId`:
+   *
+   * - `Authorization`: Authorization
+   */
+  getApiV10UsersGroups(params: UsersService.GetApiV10UsersGroupsParams): __Observable<null> {
+    return this.getApiV10UsersGroupsResponse(params).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
    * Requires user to update their password upon login.
    * @param params The `UsersService.PostApiV10UsersPasswordParams` containing the following parameters:
    *
@@ -535,6 +586,23 @@ module UsersService {
      * User and group identifiers
      */
     body?: UserIdGroupWrapper;
+
+    /**
+     * Authorization
+     */
+    Authorization?: any;
+  }
+
+  /**
+   * Parameters for getApiV10UsersGroups
+   */
+  export interface GetApiV10UsersGroupsParams {
+
+    /**
+     * API key
+     */
+    xApiKey?: any;
+    UserId?: string;
 
     /**
      * Authorization

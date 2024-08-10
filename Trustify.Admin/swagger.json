@@ -3,6 +3,10 @@
     "ClientDTO": {
       "additionalProperties": false,
       "properties": {
+        "clientId": {
+          "type": "string",
+          "x-nullable": true
+        },
         "id": {
           "type": "string",
           "x-nullable": true
@@ -169,7 +173,13 @@
       "additionalProperties": false,
       "properties": {
         "clientRoles": {
-          "additionalProperties": {},
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
           "type": "object",
           "x-nullable": true
         },
@@ -1094,6 +1104,38 @@
           }
         },
         "summary": "Removes user from the group.",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1.0/users/groups": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Returns user groups",
         "tags": [
           "Users"
         ]

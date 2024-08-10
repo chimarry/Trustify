@@ -115,5 +115,18 @@ namespace Trustify.Backend.AdminService.Controllers
                 wrapper.UserId, [RequiredActions.UpdatePassword], accessToken);
             return Ok();
         }
+
+        /// <summary>
+        /// Returns user groups
+        /// </summary>
+        /// <param name="wrapper"></param>
+        /// <returns></returns>
+        [HttpGet("groups")]
+        public async Task<IActionResult> GetUserGroups([FromQuery]UserIdWrapper wrapper)
+        {
+            string accessToken = await GetTokenFromRequestOrThrow();
+
+           return Ok( await userService.GetUserGroups(wrapper.UserId, accessToken));
+        }
     }
 }

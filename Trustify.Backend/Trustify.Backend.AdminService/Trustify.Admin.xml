@@ -146,6 +146,13 @@
             <param name="wrapper">User's identifier.</param>
             <returns></returns>
         </member>
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.GetUserGroups(Trustify.Backend.AdminService.Models.UserIdWrapper)">
+            <summary>
+            Returns user groups
+            </summary>
+            <param name="wrapper"></param>
+            <returns></returns>
+        </member>
         <member name="T:Trustify.Backend.AdminService.IoC.MvcOptionsExtensions">
             <summary>
              Implements MvcOptions extention methods in order to use a global route prefix in controllers

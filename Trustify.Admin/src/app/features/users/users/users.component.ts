@@ -11,7 +11,9 @@ import { Role } from '../../../core/models/role';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UsersService } from '../../../api/services';
-import { UserDTO, UserWrapper } from '../../../api/models';
+import { GroupDTO, UserDTO, UserWrapper } from '../../../api/models';
+import { AddToGroupComponent } from '../add-to-group/add-to-group.component';
+import { RemoveFromGroupComponent } from '../remove-from-group/remove-from-group.component';
 
 @Component({
   selector: 'trf-users',
@@ -79,6 +81,7 @@ export class UsersComponent extends TrfTableComponent {
       .afterClosed()
       .subscribe(result => {
         if (result) {
+          console.log(result)
           this.userService.postApiV10Users({
             body: result as UserWrapper
           } as UsersService.PostApiV10UsersParams)
@@ -89,6 +92,69 @@ export class UsersComponent extends TrfTableComponent {
             })
         }
       });
+  }
+
+  public groupAdd(userId: string) {
+    this.userService.getApiV10UsersGroups({
+      UserId: userId
+    } as UsersService.GetApiV10UsersGroupsParams)
+      .subscribe({
+        next: response => {
+          if (response)
+            this.dialog.open(AddToGroupComponent, {
+              panelClass: "trf-dialog-size-large",
+              data: response as GroupDTO[]
+            })
+              .afterClosed()
+              .subscribe(result => {
+                if (result) {
+                  console.log(result)
+                  this.userService.putApiV10UsersGroupAdd({
+                    body: {
+                      userId: userId,
+                      groupId: result.group
+                    }
+                  } as UsersService.PutApiV10UsersGroupAddParams)
+                    .subscribe({
+                      next: response => {
+                        this.getUsers();
+                      }
+                    })
+                }
+              });
+        }
+      })
+  }
+
+  public groupRemove(userId: string) {
+    this.userService.getApiV10UsersGroups({
+      UserId: userId
+    } as UsersService.GetApiV10UsersGroupsParams)
+      .subscribe({
+        next: response => {
+          if (response)
+            this.dialog.open(RemoveFromGroupComponent, {
+              panelClass: "trf-dialog-size-large",
+              data: response as GroupDTO[]
+            })
+              .afterClosed()
+              .subscribe(result => {
+                if (result) {
+                  this.userService.putApiV10UsersGroupRemove({
+                    body: {
+                      userId: userId,
+                      groupId: result.group
+                    }
+                  } as UsersService.PutApiV10UsersGroupRemoveParams)
+                    .subscribe({
+                      next: response => {
+                        this.getUsers();
+                      }
+                    })
+                }
+              });
+        }
+      })
   }
 
   public getDetails(userId: string) {

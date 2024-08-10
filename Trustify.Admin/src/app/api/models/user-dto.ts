@@ -2,7 +2,7 @@
 import { Credentials } from './credentials';
 import { FederatedIdentity } from './federated-identity';
 export interface UserDTO {
-  clientRoles?: null | {[key: string]: any};
+  clientRoles?: null | {[key: string]: Array<string>};
   createdTimestamp?: null | number;
   credentials?: null | Array<Credentials>;
   email?: null | string;

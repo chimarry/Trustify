@@ -1,6 +1,6 @@
 /* tslint:disable */
 export interface ClientDTO {
-  id?: null | string;
   clientId?: null | string;
+  id?: null | string;
   name?: null | string;
 }
