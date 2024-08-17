@@ -1,9 +1,11 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, ObservableInput } from 'rxjs';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponseBase } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, map, Observable, ObservableInput } from 'rxjs';
 import { HttpUtilServiceService } from '../services/http-util-service.service';
 import { Messages } from '../models/messages';
 import { DisplayMessageService } from '../services/display-message.service';
+import { AuthService } from '../../api/services';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +15,22 @@ import { DisplayMessageService } from '../services/display-message.service';
  */
 export class ErrorHandlingInterceptorService implements HttpInterceptor {
 
+  private router: Router = inject(Router);
   constructor(
-    private displayMessageService: DisplayMessageService) {
+    private displayMessageService: DisplayMessageService, private authService: AuthService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
-    console.log("intercepter")
     let authReq = req;
 
     return next.handle(req).pipe(
       catchError(error => {
-          return this.handleError(error, authReq, next);
+        if (error instanceof HttpErrorResponse) {
+          if (error.message.includes('Http failure during parsing')) {
+            this.router.navigate([''])
+          }
+        }
+        return this.handleError(error, authReq, next);
       }));
   }
 
@@ -36,7 +43,20 @@ export class ErrorHandlingInterceptorService implements HttpInterceptor {
         this.displayMessageService.displayStatus(error.error.status);
       }
       else if (error.status && error.status != 401) {
+        console.log(error)
         this.displayMessageService.displayHttpStatusCode(error.status);
+      } else if (error.status && error.status == 401) {
+        this.displayMessageService.displayHttpStatusCode(error.status);
+        this.authService.postApiV10Auth({} as AuthService.PostApiV10AuthParams)
+          .pipe(
+            map(e => {
+              // userPreferenceService.setUser((e as ResultMessage).result as AuthWrapper)
+              return true;
+            }),
+            catchError(error => {
+              throw error;
+            })
+          )
       }
     }
     throw error;

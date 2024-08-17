@@ -1,12 +1,17 @@
 export { ClientDTO } from './models/client-dto';
+export { ClientDTOResultMessage } from './models/client-dtoresult-message';
 export { Credentials } from './models/credentials';
 export { FederatedIdentity } from './models/federated-identity';
 export { GroupDTO } from './models/group-dto';
+export { GroupDTOResultMessage } from './models/group-dtoresult-message';
 export { GroupRolesWrapper } from './models/group-roles-wrapper';
 export { GroupWrapper } from './models/group-wrapper';
+export { OperationStatus } from './models/operation-status';
 export { RoleDTO } from './models/role-dto';
+export { RoleDTOResultMessage } from './models/role-dtoresult-message';
 export { RoleWrapper } from './models/role-wrapper';
 export { UserDTO } from './models/user-dto';
+export { UserDTOResultMessage } from './models/user-dtoresult-message';
 export { UserIdGroupWrapper } from './models/user-id-group-wrapper';
 export { UserIdWrapper } from './models/user-id-wrapper';
 export { UserWrapper } from './models/user-wrapper';

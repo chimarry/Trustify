@@ -32,7 +32,7 @@ namespace Trustify.Backend.AdminService.Middlewares
 
         private Task HandleException(HttpContext context, Exception ex)
         {
-            HttpStatusCode code = HttpStatusCode.InternalServerError; // 500 if unexpected
+           HttpStatusCode code = HttpStatusCode.InternalServerError; // 500 if unexpected
 
             // Specify different custom exceptions here
             if (ex is UnauthorizedException)
@@ -42,6 +42,10 @@ namespace Trustify.Backend.AdminService.Middlewares
             else if (ex is HttpRequestException)
             {
                 code = HttpStatusCode.FailedDependency;
+            }
+            else if(ex is ForbiddenAccessException)
+            {
+                code = HttpStatusCode.Forbidden;
             }
 
             context.Response.ContentType = "application/json";

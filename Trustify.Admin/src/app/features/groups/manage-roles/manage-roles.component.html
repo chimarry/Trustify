@@ -10,21 +10,18 @@
                     @for(permission of group.realmRoles; track permission){
                     <mat-chip class="trf-role-selected">
                         {{permission}}
-                        <button matChipRemove>
-                            <mat-icon>check_box</mat-icon>
-                        </button>
                     </mat-chip>}
                 </mat-chip-set>
             </div>
             <mat-divider style="margin:10px;"></mat-divider>
             Client roles
-            <mat-select style="margin:10px;" id="selectedClient" fxFlex="15%" [(value)]="selectedClient"
+            <mat-select style="margin:10px;width: 350px;" id="selectedClient" fxFlex="15%" [(value)]="selectedClient"
                 placeholder="{{selectedClient?.name??'Select client'}}" (selectionChange)="selectClient($event.value)">
                 <mat-option *ngFor="let client of clients" [value]="client">
                     {{client?.clientId}}
                 </mat-option>
             </mat-select>
-            <div class="trf-row trf-start">
+            <div class="trf-row trf-start" style="min-height: 20vh;">
                 <mat-chip-set class="trf-roles-list">
                     @for(role of selectedRoles; track role){
                     <mat-chip class="trf-role-selected">

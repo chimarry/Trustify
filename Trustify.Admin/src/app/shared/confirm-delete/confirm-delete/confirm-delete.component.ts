@@ -7,7 +7,7 @@ import { AppMaterialModule } from '../../../modules/app-material/app-material.mo
   standalone: true,
   imports: [AppMaterialModule],
   templateUrl: './confirm-delete.component.html',
-  styleUrl: './confirm-delete.component.css'
+  styleUrls: ['./confirm-delete.component.css','../../styles/modal.css']
 })
 export class ConfirmDeleteComponent {
   constructor(private dialogRef: MatDialogRef<ConfirmDeleteComponent>) { }

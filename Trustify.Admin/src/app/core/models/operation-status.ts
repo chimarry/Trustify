@@ -8,5 +8,6 @@ export enum OperationStatus {
     NotSupported = "NotSupported",
     NotCompatible = "NotCompatible",
     UnknownError = "UnknownError",
-    Unauthorized = "Unauthorized"
+    Unauthorized = "Unauthorized",
+    ForbiddenAccess = "ForbiddenAccess"
 }

@@ -5,6 +5,134 @@
         "version": "v1.0"
     },
     "paths": {
+        "/api/v1.0/auth": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logins user to the server.",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key",
+                        "schema": {
+                            "type": "String"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization",
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Check if user is logged in.",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key",
+                        "schema": {
+                            "type": "String"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization",
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1.0/auth/log-out": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Terminates session for the user.",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key",
+                        "schema": {
+                            "type": "String"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization",
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/v1.0/auth/role": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "parameters": [
+                    {
+                        "name": "roleName",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key",
+                        "schema": {
+                            "type": "String"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization",
+                        "schema": {
+                            "type": "String"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/v1.0/clients": {
             "get": {
                 "tags": [
@@ -34,17 +162,17 @@
                         "content": {
                             "text/plain": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ClientDTO"
+                                    "$ref": "#/components/schemas/ClientDTOResultMessage"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ClientDTO"
+                                    "$ref": "#/components/schemas/ClientDTOResultMessage"
                                 }
                             },
                             "text/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ClientDTO"
+                                    "$ref": "#/components/schemas/ClientDTOResultMessage"
                                 }
                             }
                         }
@@ -311,17 +439,17 @@
                         "content": {
                             "text/plain": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GroupDTO"
+                                    "$ref": "#/components/schemas/GroupDTOResultMessage"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GroupDTO"
+                                    "$ref": "#/components/schemas/GroupDTOResultMessage"
                                 }
                             },
                             "text/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/GroupDTO"
+                                    "$ref": "#/components/schemas/GroupDTOResultMessage"
                                 }
                             }
                         }
@@ -423,17 +551,17 @@
                         "content": {
                             "text/plain": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/RoleDTO"
+                                    "$ref": "#/components/schemas/RoleDTOResultMessage"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/RoleDTO"
+                                    "$ref": "#/components/schemas/RoleDTOResultMessage"
                                 }
                             },
                             "text/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/RoleDTO"
+                                    "$ref": "#/components/schemas/RoleDTOResultMessage"
                                 }
                             }
                         }
@@ -1033,17 +1161,17 @@
                         "content": {
                             "text/plain": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserDTO"
+                                    "$ref": "#/components/schemas/UserDTOResultMessage"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserDTO"
+                                    "$ref": "#/components/schemas/UserDTOResultMessage"
                                 }
                             },
                             "text/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserDTO"
+                                    "$ref": "#/components/schemas/UserDTOResultMessage"
                                 }
                             }
                         }
@@ -1161,6 +1289,28 @@
                 },
                 "additionalProperties": false
             },
+            "ClientDTOResultMessage": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/ClientDTO"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/OperationStatus"
+                    },
+                    "isSuccess": {
+                        "type": "boolean",
+                        "description": "Check for operation success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Detailed message of operation success",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "Data class that enables sharing result, status and detailed message of some method"
+            },
             "Credentials": {
                 "type": "object",
                 "properties": {
@@ -1233,6 +1383,28 @@
                 },
                 "additionalProperties": false
             },
+            "GroupDTOResultMessage": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/GroupDTO"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/OperationStatus"
+                    },
+                    "isSuccess": {
+                        "type": "boolean",
+                        "description": "Check for operation success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Detailed message of operation success",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "Data class that enables sharing result, status and detailed message of some method"
+            },
             "GroupRolesWrapper": {
                 "type": "object",
                 "properties": {
@@ -1272,6 +1444,24 @@
                 },
                 "additionalProperties": false
             },
+            "OperationStatus": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                ],
+                "type": "integer",
+                "description": "Descriptive values for some standard outcomes of method execution.",
+                "format": "int32"
+            },
             "RoleDTO": {
                 "type": "object",
                 "properties": {
@@ -1293,6 +1483,28 @@
                     }
                 },
                 "additionalProperties": false
+            },
+            "RoleDTOResultMessage": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/RoleDTO"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/OperationStatus"
+                    },
+                    "isSuccess": {
+                        "type": "boolean",
+                        "description": "Check for operation success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Detailed message of operation success",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "Data class that enables sharing result, status and detailed message of some method"
             },
             "RoleWrapper": {
                 "type": "object",
@@ -1400,6 +1612,28 @@
                     }
                 },
                 "additionalProperties": false
+            },
+            "UserDTOResultMessage": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/UserDTO"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/OperationStatus"
+                    },
+                    "isSuccess": {
+                        "type": "boolean",
+                        "description": "Check for operation success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Detailed message of operation success",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false,
+                "description": "Data class that enables sharing result, status and detailed message of some method"
             },
             "UserIdGroupWrapper": {
                 "type": "object",

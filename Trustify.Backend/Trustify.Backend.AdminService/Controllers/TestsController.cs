@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Trustify.Backend.AdminService.Security;
 using System.Net;
+using Flurl.Http;
+using Trustify.Backend.AdminService.Keycloak.DTO;
 
 namespace Trustify.Backend.AdminService.Controllers
 {
@@ -35,28 +37,33 @@ namespace Trustify.Backend.AdminService.Controllers
             if (accessToken == null)
                 return BadRequest();
 
-            HttpResponseMessage response;
-            string authorizeHeader = "Bearer " + accessToken;
+            //HttpResponseMessage response;
+            //string authorizeHeader = "Bearer " + accessToken;
             // /admin/realms/$REALM_NAME/clients?clientId=$CLIENT_ID
-            string uri = "http://192.168.56.101:8080/admin/realms/trustify/clients?clientId=trustify_admin";
-            using (var request = new HttpRequestMessage())
-            {
-                // Set the request method and URL
-                request.Method = HttpMethod.Get;
-                request.RequestUri = new Uri(uri);
+            //var response = new Flurl.Url("https://192.168.56.101:8443/admin/realms/trustify/clients?clientId=trustify_admin")
+            //      .WithOAuthBearerToken(accessToken)
+            //      .GetStringAsync();
+            //return Ok(response);
+            return Ok(authResult?.Principal);
+            //string uri = "https://192.168.56.101:8443/admin/realms/trustify/clients?clientId=trustify_admin";
+            //using (var request = new HttpRequestMessage())
+            //{
+            //    // Set the request method and URL
+            //    request.Method = HttpMethod.Get;
+            //    request.RequestUri = new Uri(uri);
 
-                // Set individual request headers
-                request.Headers.Add("Authorization", authorizeHeader);
+            //    // Set individual request headers
+            //    request.Headers.Add("Authorization", authorizeHeader);
 
-                // Make the request
-                response = await httpClient.SendAsync(request);
-                if (response.StatusCode != HttpStatusCode.NoContent)
-                {
+            //    // Make the request
+            //    response = await httpClient.SendAsync(request);
+            //    if (response.StatusCode != HttpStatusCode.NoContent)
+            //    {
 
-                    string content = await response.Content.ReadAsStringAsync();
-                    return Ok(content);
-                }
-            }
+            //        string content = await response.Content.ReadAsStringAsync();
+            //        return Ok(content);
+            //    }
+            //}
             return BadRequest("failed");
         }
 
@@ -76,7 +83,7 @@ namespace Trustify.Backend.AdminService.Controllers
             if (accessToken == null)
                 return BadRequest();
 
-            string uri = "http://192.168.56.101:8080/realms/trustify/protocol/openid-connect/userinfo";
+            string uri = "https://192.168.56.101:8443/realms/trustify/protocol/openid-connect/userinfo";
             string authorizeHeader = "Bearer " + accessToken;
             using (var request = new HttpRequestMessage())
             {

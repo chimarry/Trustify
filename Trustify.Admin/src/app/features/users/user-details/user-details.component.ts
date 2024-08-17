@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../../core/models/user';
 import { AppMaterialModule } from '../../../modules/app-material/app-material.module';
 import { UsersService } from '../../../api/services';
-import { UserDTO } from '../../../api/models';
+import { UserDTO, UserDTOResultMessage } from '../../../api/models';
 import { KeyValuePipe } from '@angular/common';
 import { ResultMessage } from '../../../core/models/result-message';
 
@@ -26,7 +26,7 @@ export class UserDetailsComponent {
     } as UsersService.PutApiV10UsersUserInfoParams)
       .subscribe({
         next: response =>{
-          this.user = (response as ResultMessage).result as UserDTO;
+          this.user = (response as UserDTOResultMessage).result as UserDTO;
       }
       })
   }

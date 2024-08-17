@@ -1,3 +1,4 @@
+export { AuthService } from './services/auth.service';
 export { ClientsService } from './services/clients.service';
 export { GroupsService } from './services/groups.service';
 export { RolesService } from './services/roles.service';

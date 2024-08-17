@@ -106,7 +106,7 @@ export class GroupsComponent extends TrfTableComponent {
         if (response) {
           this.dialog.open(ManageRolesComponent, {
             panelClass: "trf-dialog-size-large",
-            data: (response as ResultMessage).result as GroupDTO
+            data: ((response as unknown) as ResultMessage).result as GroupDTO
           })
             .afterClosed()
             .subscribe(
@@ -162,13 +162,10 @@ export class GroupsComponent extends TrfTableComponent {
       if (response) {
         this.dialog.open(GroupDetailsComponent, {
           panelClass: "trf-dialog-size-large",
-          data: (response as ResultMessage).result as GroupDTO
+          data: ((response as unknown) as ResultMessage).result as GroupDTO
         })
           .afterClosed()
           .subscribe(result => {
-            if (result) {
-              console.log("Details were shown.")
-            }
           });
       }
     })

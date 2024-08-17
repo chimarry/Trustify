@@ -34,7 +34,10 @@ namespace Trustify.Backend.AdminService.Exceptions
                 return (OperationStatus.InvalidData, notConfiguredException.Message);
             else if (exception is TaskCanceledException taskCanceledException)
                 return (OperationStatus.Success, taskCanceledException.Message);
-
+            else if (exception.Message.Contains("Call failed with status code 403"))
+                return (OperationStatus.ForbiddenAccess, exception.Message);
+            else if(exception.Message.Contains("Call failed with status code 401"))
+                return (OperationStatus.Unauthorized, exception.Message);
             return (OperationStatus.UnknownError, exception.Message);
         }
     }

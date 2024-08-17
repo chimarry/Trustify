@@ -89,7 +89,6 @@ export class UsersComponent extends TrfTableComponent {
       .afterClosed()
       .subscribe(result => {
         if (result) {
-          console.log(result)
           this.userService.postApiV10Users({
             body: result as UserWrapper
           } as UsersService.PostApiV10UsersParams)
@@ -119,7 +118,6 @@ export class UsersComponent extends TrfTableComponent {
               .afterClosed()
               .subscribe(result => {
                 if (result) {
-                  console.log(result)
                   this.userService.putApiV10UsersGroupAdd({
                     body: {
                       userId: userId,

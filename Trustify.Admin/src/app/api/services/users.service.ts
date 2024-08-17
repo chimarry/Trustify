@@ -10,7 +10,7 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 import { UserWrapper } from '../models/user-wrapper';
 import { UserIdWrapper } from '../models/user-id-wrapper';
 import { UserIdGroupWrapper } from '../models/user-id-group-wrapper';
-import { UserDTO } from '../models/user-dto';
+import { UserDTOResultMessage } from '../models/user-dtoresult-message';
 @Injectable({
   providedIn: 'root',
 })
@@ -432,7 +432,7 @@ class UsersService extends __BaseService {
    *
    * @return OK
    */
-  putApiV10UsersUserInfoResponse(params: UsersService.PutApiV10UsersUserInfoParams): __Observable<__StrictHttpResponse<UserDTO>> {
+  putApiV10UsersUserInfoResponse(params: UsersService.PutApiV10UsersUserInfoParams): __Observable<__StrictHttpResponse<UserDTOResultMessage>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -452,7 +452,7 @@ class UsersService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<UserDTO>;
+        return _r as __StrictHttpResponse<UserDTOResultMessage>;
       })
     );
   }
@@ -468,9 +468,9 @@ class UsersService extends __BaseService {
    *
    * @return OK
    */
-  putApiV10UsersUserInfo(params: UsersService.PutApiV10UsersUserInfoParams): __Observable<UserDTO> {
+  putApiV10UsersUserInfo(params: UsersService.PutApiV10UsersUserInfoParams): __Observable<UserDTOResultMessage> {
     return this.putApiV10UsersUserInfoResponse(params).pipe(
-      __map(_r => _r.body as UserDTO)
+      __map(_r => _r.body as UserDTOResultMessage)
     );
   }
 }

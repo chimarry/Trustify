@@ -27,4 +27,13 @@ export class UserPreferenceService {
   public setNumberOfItems(number: number) {
     localStorage.setItem("number", number.toLocaleString());
   }
+
+  // public getUser():AuthWrapper{
+  //   let item = localStorage.getItem("user");
+  //  return  item? JSON.parse(item) :null;
+  // }
+
+  // public setUser(data:AuthWrapper){
+  //   localStorage.setItem("user",JSON.stringify(data));
+  // }
 }

@@ -6,10 +6,11 @@
 
 .trf-title {
     color: var(--trf-primary-font) !important;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     margin: 0;
     padding: 0;
+    margin-bottom: 20px;
 }
 
 .trf-content {
@@ -17,11 +18,11 @@
     height: 70%;
     margin: 0;
     padding: 0;
+    min-height: 30vh;
 }
 
 .trf-dialog-size {
     width: 30vw;
-    height: 40vh;
     min-height: 40vh;
 }
 

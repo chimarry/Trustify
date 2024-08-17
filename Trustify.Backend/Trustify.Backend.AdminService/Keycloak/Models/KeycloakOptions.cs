@@ -10,18 +10,12 @@
 
         public string Realm { get; set; } = string.Empty;
 
-        public string Username { get; set; } = string.Empty;
+        public string ClientId { get; set; } = string.Empty;
 
-        public string Password { get; set; } = string.Empty;
+        public string ClientSecret { get; set; } = string.Empty;
 
-        public string GroupsUrlFormat { get; set; } = string.Empty;
+        public string Authority { get; set; } = string.Empty;
 
-        public string RedirectUrlAfterProfileUpdate { get; set; } = string.Empty;
-
-        public string ClientIdForUrlRedirectionAfterProfileUpdate { get; set; } = string.Empty;
-
-        public int ProfileUpdateLinkLifeSpanInSeconds { get; set; } = 86400;
-
-        public bool SendEmailToNewUsers { get; set; } = false;
+        public string RefreshTokenUrl { get; set; } = string.Empty;
     }
 }

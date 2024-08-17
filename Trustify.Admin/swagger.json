@@ -18,6 +18,28 @@
       },
       "type": "object"
     },
+    "ClientDTOResultMessage": {
+      "additionalProperties": false,
+      "description": "Data class that enables sharing result, status and detailed message of some method",
+      "properties": {
+        "isSuccess": {
+          "description": "Check for operation success",
+          "type": "boolean"
+        },
+        "message": {
+          "description": "Detailed message of operation success",
+          "type": "string",
+          "x-nullable": true
+        },
+        "result": {
+          "$ref": "#/definitions/ClientDTO"
+        },
+        "status": {
+          "$ref": "#/definitions/OperationStatus"
+        }
+      },
+      "type": "object"
+    },
     "Credentials": {
       "additionalProperties": false,
       "properties": {
@@ -90,6 +112,28 @@
       },
       "type": "object"
     },
+    "GroupDTOResultMessage": {
+      "additionalProperties": false,
+      "description": "Data class that enables sharing result, status and detailed message of some method",
+      "properties": {
+        "isSuccess": {
+          "description": "Check for operation success",
+          "type": "boolean"
+        },
+        "message": {
+          "description": "Detailed message of operation success",
+          "type": "string",
+          "x-nullable": true
+        },
+        "result": {
+          "$ref": "#/definitions/GroupDTO"
+        },
+        "status": {
+          "$ref": "#/definitions/OperationStatus"
+        }
+      },
+      "type": "object"
+    },
     "GroupRolesWrapper": {
       "additionalProperties": false,
       "properties": {
@@ -129,6 +173,24 @@
       },
       "type": "object"
     },
+    "OperationStatus": {
+      "description": "Descriptive values for some standard outcomes of method execution.",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "format": "int32",
+      "type": "integer"
+    },
     "RoleDTO": {
       "additionalProperties": false,
       "properties": {
@@ -147,6 +209,28 @@
         "name": {
           "type": "string",
           "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "RoleDTOResultMessage": {
+      "additionalProperties": false,
+      "description": "Data class that enables sharing result, status and detailed message of some method",
+      "properties": {
+        "isSuccess": {
+          "description": "Check for operation success",
+          "type": "boolean"
+        },
+        "message": {
+          "description": "Detailed message of operation success",
+          "type": "string",
+          "x-nullable": true
+        },
+        "result": {
+          "$ref": "#/definitions/RoleDTO"
+        },
+        "status": {
+          "$ref": "#/definitions/OperationStatus"
         }
       },
       "type": "object"
@@ -258,6 +342,28 @@
       },
       "type": "object"
     },
+    "UserDTOResultMessage": {
+      "additionalProperties": false,
+      "description": "Data class that enables sharing result, status and detailed message of some method",
+      "properties": {
+        "isSuccess": {
+          "description": "Check for operation success",
+          "type": "boolean"
+        },
+        "message": {
+          "description": "Detailed message of operation success",
+          "type": "string",
+          "x-nullable": true
+        },
+        "result": {
+          "$ref": "#/definitions/UserDTO"
+        },
+        "status": {
+          "$ref": "#/definitions/OperationStatus"
+        }
+      },
+      "type": "object"
+    },
     "UserIdGroupWrapper": {
       "additionalProperties": false,
       "properties": {
@@ -332,6 +438,116 @@
     "version": "v1.0"
   },
   "paths": {
+    "/api/v1.0/auth": {
+      "get": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Check if user is logged in.",
+        "tags": [
+          "Auth"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Logins user to the server.",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1.0/auth/log-out": {
+      "post": {
+        "parameters": [
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Terminates session for the user.",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1.0/auth/role": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "roleName",
+            "type": "string"
+          },
+          {
+            "description": "API key",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "String"
+          },
+          {
+            "description": "Authorization",
+            "in": "header",
+            "name": "Authorization",
+            "type": "String"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/api/v1.0/clients": {
       "get": {
         "parameters": [
@@ -357,7 +573,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/ClientDTO"
+              "$ref": "#/definitions/ClientDTOResultMessage"
             }
           }
         },
@@ -494,7 +710,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/GroupDTO"
+              "$ref": "#/definitions/GroupDTOResultMessage"
             }
           }
         },
@@ -612,7 +828,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/RoleDTO"
+              "$ref": "#/definitions/RoleDTOResultMessage"
             }
           }
         },
@@ -1217,7 +1433,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/UserDTO"
+              "$ref": "#/definitions/UserDTOResultMessage"
             }
           }
         },

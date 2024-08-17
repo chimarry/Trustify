@@ -3,6 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationInterface } from './api-configuration';
 
+import { AuthService } from './services/auth.service';
 import { ClientsService } from './services/clients.service';
 import { GroupsService } from './services/groups.service';
 import { RolesService } from './services/roles.service';
@@ -22,6 +23,7 @@ import { UsersService } from './services/users.service';
   declarations: [],
   providers: [
     ApiConfiguration,
+    AuthService,
     ClientsService,
     GroupsService,
     RolesService,

@@ -11,7 +11,7 @@ import { ResultMessage } from '../../../core/models/result-message';
   standalone: true,
   imports: [AppMaterialModule, NgFor],
   templateUrl: './manage-roles.component.html',
-  styleUrl: './manage-roles.component.css'
+  styleUrls: ['./manage-roles.component.css','../../../shared/styles/modal.css']
 })
 export class ManageRolesComponent {
   public group: GroupDTO;
@@ -34,7 +34,7 @@ export class ManageRolesComponent {
       .subscribe({
         next: response => {
           if (response) {
-            this.clients =(response as ResultMessage).result as ClientDTO[];
+            this.clients = ((response as unknown) as ResultMessage).result as ClientDTO[];
           }
         }
       })
@@ -97,12 +97,13 @@ export class ManageRolesComponent {
     } as RolesService.GetApiV10RolesParams)
       .subscribe({
         next: roleArray => {
-          this.clientRoles = (roleArray as ResultMessage).result as RoleDTO[];
-          if (this.group.clientRoles) {
+          var roles = ((roleArray as unknown) as ResultMessage).result as RoleDTO[];
+          this.clientRoles = roles;
+          if (this.group.clientRoles && this.group.clientRoles[clientId]) {
             this.selectedRoles = this.group?.clientRoles[clientId];
           }
-          if (roleArray) {
-            this.notSelectedRoles = (roleArray as RoleDTO[]).filter(role => this.notContains(this.selectedRoles, role.name))
+          if (roles) {
+            this.notSelectedRoles = roles.filter(role => this.notContains(this.selectedRoles, role.name))
               .map(x => x.name ?? "");
           }
         }
@@ -110,6 +111,8 @@ export class ManageRolesComponent {
   }
 
   private notContains(array: string[], word: string | null | undefined) {
+    if (array === undefined)
+      return true;
     return array.findIndex(x => x === word) === -1;
   }
 }

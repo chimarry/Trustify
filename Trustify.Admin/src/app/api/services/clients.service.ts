@@ -7,7 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { ClientDTO } from '../models/client-dto';
+import { ClientDTOResultMessage } from '../models/client-dtoresult-message';
 @Injectable({
   providedIn: 'root',
 })
@@ -30,7 +30,7 @@ class ClientsService extends __BaseService {
    *
    * @return OK
    */
-  getApiV10ClientsResponse(params: ClientsService.GetApiV10ClientsParams): __Observable<__StrictHttpResponse<ClientDTO>> {
+  getApiV10ClientsResponse(params: ClientsService.GetApiV10ClientsParams): __Observable<__StrictHttpResponse<ClientDTOResultMessage>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -49,7 +49,7 @@ class ClientsService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<ClientDTO>;
+        return _r as __StrictHttpResponse<ClientDTOResultMessage>;
       })
     );
   }
@@ -62,9 +62,9 @@ class ClientsService extends __BaseService {
    *
    * @return OK
    */
-  getApiV10Clients(params: ClientsService.GetApiV10ClientsParams): __Observable<ClientDTO> {
+  getApiV10Clients(params: ClientsService.GetApiV10ClientsParams): __Observable<ClientDTOResultMessage> {
     return this.getApiV10ClientsResponse(params).pipe(
-      __map(_r => _r.body as ClientDTO)
+      __map(_r => _r.body as ClientDTOResultMessage)
     );
   }
 }

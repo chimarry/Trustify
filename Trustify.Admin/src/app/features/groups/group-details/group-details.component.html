@@ -17,6 +17,7 @@
                 </mat-form-field>
             </div>
             <mat-divider></mat-divider>
+            @if(group && group.realmRoles && group.realmRoles.length!==0){
             Realm roles
             <div class="trf-row trf-start">
                 <mat-chip-set class="trf-roles-list">
@@ -26,17 +27,30 @@
                     </mat-chip>}
                 </mat-chip-set>
             </div>
-            <mat-divider></mat-divider>
+            <mat-divider></mat-divider>}
             Client roles
-            @if(group && group.clientRoles && group.clientRoles['trustify_admin']){
-            <div class="trf-row trf-start">
+            <div class="trf-row trf-start" style="min-height: 10vh;">
+                @if(group && group.clientRoles){
                 <mat-chip-set class="trf-roles-list">
-                    @for(role of group.clientRoles['trustify_admin']; track role){
+                    <!-- @for(role of group.clientRoles['trustify_admin']; track role){
                     <mat-chip class="trf-role-selected">
                         {{role}}
-                    </mat-chip>}
+                    </mat-chip>} -->
+                    @for(keypar of group.clientRoles|keyvalue; track keypar.key)
+                    {
+                    <div>
+                        @for(item of keypar.value; let i=$index; track i)
+                        {
+                        <mat-chip class="trf-role-selected">
+                            {{keypar.key}}:{{item}}
+                        </mat-chip>
+                        }
+                    </div>
+                    }
                 </mat-chip-set>
-            </div>}
+                }
+            </div>
+       
         </div>
     </div>
     <div mat-dialog-actions class="trf-dialog_actions">

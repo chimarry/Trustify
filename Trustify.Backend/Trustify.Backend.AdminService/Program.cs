@@ -7,12 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.Json.Serialization;
 using Trustify.Backend.AdminService.AutoMapper;
 using Trustify.Backend.AdminService.Exceptions;
 using Trustify.Backend.AdminService.IoC;
 using Trustify.Backend.AdminService.Keycloak.Models;
 using Trustify.Backend.AdminService.Keycloak.Service;
 using Trustify.Backend.AdminService.Middlewares;
+using Trustify.Backend.AdminService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +24,11 @@ string apiTitle = builder.Configuration.GetSection("ApiSettings")["ApiTitle"] ??
 
 builder.ConfigureLogger();
 
-builder.Services.AddControllers(x => { x.UseGeneralRoutePrefix($"api/v{apiVersion}"); });
+builder.Services.AddControllers(x => { x.UseGeneralRoutePrefix($"api/v{apiVersion}"); }).AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -34,6 +40,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.ConfigureAuthorization(builder.Configuration);
 builder.Services.ConfigureAuthentication(builder.Configuration);
+builder.Services.Configure<FrontendConfig>(builder.Configuration.GetSection("Frontend"));
 builder.Services.Configure<KeycloakOptions>(builder.Configuration.GetSection("KeycloakOptions"));
 
 builder.Services.AddScoped<IRoleService, KeycloakRoleService>();
@@ -61,7 +68,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     // This lambda determines whether user consent for non-essential cookies is needed for a given request.
     options.CheckConsentNeeded = context => false;
-    options.MinimumSameSitePolicy = SameSiteMode.None;
+    //options.MinimumSameSitePolicy = SameSiteMode.None;
     options.HttpOnly = HttpOnlyPolicy.None;
     options.Secure = CookieSecurePolicy.Always;
     //options.Secure = _environment.IsDevelopment() ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
@@ -78,10 +85,7 @@ builder.Services.AddCors(
                               .AllowAnyMethod();
                           });
     });
-ServicePointManager.ServerCertificateValidationCallback = (message, cert, chain, errors) =>
-{
-    return true;
-};
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

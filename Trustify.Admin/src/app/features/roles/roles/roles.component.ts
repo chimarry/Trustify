@@ -6,7 +6,6 @@ import { UserPreferenceService } from '../../../core/services/user-preference.se
 import { Role } from '../../../core/models/role';
 import { ConfirmDeleteComponent } from '../../../shared/confirm-delete/confirm-delete/confirm-delete.component';
 import { AddRoleComponent } from '../add-role/add-role.component';
-import { EditRoleComponent } from '../edit-role/edit-role.component';
 import { ClientsService, RolesService } from '../../../api/services';
 import { ClientDTO, RoleDTO, RoleWrapper } from '../../../api/models';
 import { NgFor } from '@angular/common';
@@ -40,7 +39,7 @@ export class RolesComponent extends TrfTableComponent {
       .subscribe({
         next: response => {
           if (response) {
-            this.clients = (response as ResultMessage).result as ClientDTO[];
+            this.clients = ((response as unknown) as ResultMessage).result as ClientDTO[];
           }
         }
       })
@@ -56,7 +55,7 @@ export class RolesComponent extends TrfTableComponent {
     } as RolesService.GetApiV10RolesParams)
       .subscribe({
         next: response => {
-          this.dataSource.data = (response as ResultMessage).result as RoleDTO[];
+          this.dataSource.data = ((response as unknown) as ResultMessage).result as RoleDTO[];
         }
       })
   }
@@ -109,17 +108,6 @@ export class RolesComponent extends TrfTableComponent {
               }
             })
         }
-      });
-  }
-
-  public editRole(role: Role) {
-    this.dialog.open(EditRoleComponent, {
-      panelClass: "trf-dialog-size-large",
-      data: role
-    })
-      .afterClosed()
-      .subscribe(response => {
-
       });
   }
 }

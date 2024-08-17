@@ -8,7 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { GroupWrapper } from '../models/group-wrapper';
-import { GroupDTO } from '../models/group-dto';
+import { GroupDTOResultMessage } from '../models/group-dtoresult-message';
 import { GroupRolesWrapper } from '../models/group-roles-wrapper';
 @Injectable({
   providedIn: 'root',
@@ -185,7 +185,7 @@ class GroupsService extends __BaseService {
    *
    * @return OK
    */
-  getApiV10GroupsGroupResponse(params: GroupsService.GetApiV10GroupsGroupParams): __Observable<__StrictHttpResponse<GroupDTO>> {
+  getApiV10GroupsGroupResponse(params: GroupsService.GetApiV10GroupsGroupParams): __Observable<__StrictHttpResponse<GroupDTOResultMessage>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -205,7 +205,7 @@ class GroupsService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<GroupDTO>;
+        return _r as __StrictHttpResponse<GroupDTOResultMessage>;
       })
     );
   }
@@ -221,9 +221,9 @@ class GroupsService extends __BaseService {
    *
    * @return OK
    */
-  getApiV10GroupsGroup(params: GroupsService.GetApiV10GroupsGroupParams): __Observable<GroupDTO> {
+  getApiV10GroupsGroup(params: GroupsService.GetApiV10GroupsGroupParams): __Observable<GroupDTOResultMessage> {
     return this.getApiV10GroupsGroupResponse(params).pipe(
-      __map(_r => _r.body as GroupDTO)
+      __map(_r => _r.body as GroupDTOResultMessage)
     );
   }
 

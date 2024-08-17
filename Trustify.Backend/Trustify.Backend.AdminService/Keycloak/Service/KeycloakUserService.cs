@@ -161,20 +161,16 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
 
         public async Task ExecuteActionsEmail(string userId, IEnumerable<string> requiredActions, string accessToken)
         {
-            IFlurlResponse response = null;
             try
             {
-                // If client_id and redirectUrl are set, use them to redirect user to a specific page after he has updated his profile/password
-                response = await httpService.GetAdminBaseUrl(accessToken)
+                IFlurlResponse response  = await httpService.GetAdminBaseUrl(accessToken)
                       .AppendPathSegment($"/users/{userId}/execute-actions-email")
-                      // .SetQueryParam("redirect_uri", "https://localhost:44347/api/v1.0/test/super-admin", NullValueHandling.Remove)
                       .SetQueryParam("client_id", "trustify_admin", NullValueHandling.Remove)
                       .SetQueryParam("lifespan", 1000)
                       .PutJsonAsync(requiredActions);
             }
             catch (Exception)
             {
-                string? content = await response?.ResponseMessage?.Content?.ReadAsStringAsync();
                 throw;
             }
         }

@@ -47,6 +47,8 @@ namespace Trustify.Backend.AdminService.AutoMapper
                OperationStatus.InvalidData => CreateObjectResult(result, InvalidDataError, (int)HttpStatusCode.UnprocessableEntity),
                OperationStatus.UnknownError => CreateObjectResult(result, UnknownError, (int)HttpStatusCode.InternalServerError),
                OperationStatus.NotSupported => CreateObjectResult(result, NotSupported, (int)HttpStatusCode.UnprocessableEntity),
+               OperationStatus.ForbiddenAccess=>CreateObjectResult(result, result.Message,(int)HttpStatusCode.Forbidden),
+               OperationStatus.Unauthorized=>CreateObjectResult(result, result.Message,(int)HttpStatusCode.Unauthorized),
                _ => new BadRequestResult(),
 
            };
@@ -62,7 +64,7 @@ namespace Trustify.Backend.AdminService.AutoMapper
                => new OkObjectResult(result);
 
 
-        private static ObjectResult CreateObjectResult<T>(ResultMessage<T> result, string optionalMessage, int statusCode)
+        public static ObjectResult CreateObjectResult<T>(ResultMessage<T> result, string optionalMessage, int statusCode)
             => new(result.CloneWithDetails(result.Message ?? optionalMessage))
             {
                 StatusCode = statusCode
