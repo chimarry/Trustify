@@ -1,0 +1,2 @@
+node_modules/.bin/ng-swagger-gen -i swagger.features.json -o ./src/app/api/features
+node_modules/.bin/api-spec-converter --from=openapi_3 --to=swagger_2 --syntax=json --order=alpha openapi.features.json > swagger.features.json

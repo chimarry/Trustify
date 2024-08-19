@@ -2,6 +2,10 @@ import { Component, Input } from '@angular/core';
 import { AppMaterialModule } from '../../../../modules/app-material/app-material.module';
 import { ImageCardComponent } from '../image-card/image-card.component';
 import { ImageContent } from '../../models/image-content';
+import { ImageContentDTO } from '../../../../api/features/models';
+import { ImageContentService } from '../../../../api/features/services';
+import { DisplayMessageService } from '../../../core/services/display-message.service';
+import { ResultMessage } from '../../../core/models/result-message';
 
 @Component({
   selector: 'trf-image-content',
@@ -18,17 +22,12 @@ export class ImageContentComponent {
 
   private page: number = 1;
 
-  public imageList: ImageContent[] = [
-    { name: "FirstImage", uploadedOn: new Date(2024,12,12)  },
-    { name: "FirstImage4",uploadedOn: new Date(2024,12,12)},
-    { name: "FirstImage11", uploadedOn: new Date(2024,12,12) },
-    { name: "FirstImage1", uploadedOn: new Date(2024,12,12) },
-    { name: "FirstImage3",uploadedOn: new Date(2024,12,12)},
-    { name: "FirstImage5", uploadedOn: new Date(2024,12,12) },
-    { name: "FirstImage8",uploadedOn: new Date(2024,12,12) },
-    { name: "SecondImage", uploadedOn: new Date(2024,12,12)}]
+  public imageList: ImageContentDTO[] = [];
 
-  public displayImageList: ImageContent[] = [];
+  public displayImageList: ImageContentDTO[] = [];
+
+  constructor(private imageContentService: ImageContentService,
+    private displayMessageService: DisplayMessageService) { }
 
   ngOnInit(): void {
     this.updateImageList();
@@ -49,10 +48,16 @@ export class ImageContentComponent {
   }
 
   updateImageList() {
-    if (this.imageList) {
-      this.displayImageList = this.imageList.slice(this.getStart(), this.getEnd());
-    }
-    this.updatePageNavigation();
+    this.imageContentService.getImageContent({take:200}).subscribe({
+      next: response => {
+        this.imageList = (response as ResultMessage).result as ImageContentDTO[];
+        if (this.imageList) {
+          this.displayImageList = this.imageList.slice(this.getStart(), this.getEnd());
+        }
+        this.updatePageNavigation();
+      }
+    })
+
   }
 
   updatePageNavigation() {

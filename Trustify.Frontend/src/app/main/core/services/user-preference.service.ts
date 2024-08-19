@@ -26,4 +26,12 @@ export class UserPreferenceService {
   public setNumberOfItems(number: number) {
     localStorage.setItem("number", number.toLocaleString());
   }
+
+  public saveRoles(roles: string[]) {
+    localStorage.setItem("roles", JSON.stringify(roles));
+  }
+
+  public getRoles(): string[] {
+    return JSON.parse(localStorage.getItem("roles") ?? "{}") as string[];
+  }
 }

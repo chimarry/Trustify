@@ -1,5 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using Trustify.Backend.FeaturesCore.AutoMapper;
+using Trustify.Backend.FeaturesCore.DTO;
+using Trustify.Backend.FeaturesCore.Services;
+using Trustify.Backend.FeaturesService.Mapper;
+using Trustify.Backend.FeaturesService.Models;
 
 namespace Trustify.Backend.FeaturesService.Controllers
 {
@@ -7,15 +13,47 @@ namespace Trustify.Backend.FeaturesService.Controllers
     [ApiController]
     public class ImageContentController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetImage()
+        private readonly IImageContentService imageContentService;
+        private readonly IMapper mapper;
+
+        public ImageContentController(IImageContentService imageContentService, IMapper mapper)
         {
-            return Ok();
+            this.imageContentService = imageContentService;
+            this.mapper = mapper;
         }
-        // Adding new image
-        // Getting one image/download
-        // Getting all images related to something
-        // Resizing image or something like that
-        // Changing order of images
+
+        [HttpPost]
+        public async Task<IActionResult> AddImage([FromForm] ImageContentWrapper image)
+        {
+            BasicFileInfo? file = image.Image?.AsBasicFileInfo();
+            ImageContentDTO dto = mapper.Map<ImageContentDTO>(image);
+
+            return HttpResultMessage.FilteredResult(await imageContentService.AddImage(dto, file));
+        }
+
+        [HttpGet("{imageContentId}")]
+        public async Task<IActionResult> GetImage([FromRoute] int imageContentId)
+        {
+            return HttpResultMessage.FilteredResult(await imageContentService.GetImage(imageContentId));
+        }
+
+        [HttpDelete("{imageContentId}")]
+        public async Task<IActionResult> DeleteImage([FromRoute] int imageContentId)
+        {
+            return HttpResultMessage.FilteredResult(await imageContentService.Delete(imageContentId));
+        }
+
+        [SwaggerResponse(StatusCodes.Status200OK, "The result is returned.", typeof(ImageContentDTO))]
+        [HttpGet]
+        public IActionResult GetAll([FromQuery] int skip = 0, [FromQuery] int take = 0)
+        {
+            return HttpResultMessage.FilteredResult(imageContentService.GetAll(skip, take));
+        }
+
+        [HttpGet("{imageContentId}/download")]
+        public async Task<IActionResult> DownloadImage([FromRoute] int imageContentId)
+        {
+            return HttpResultMessage.FilteredResult(await imageContentService.DownloadImage(imageContentId), ContentType.File);
+        }
     }
 }

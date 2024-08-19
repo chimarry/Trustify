@@ -5,7 +5,7 @@
         <mat-card-subtitle>{{imageContent?.uploadedOn| date:'MMM d, y, H:mm'}}
             {{imageContent?.size}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="./../../../../../assets/images/image.png" class="trf-image-card-image">
+    <img mat-card-image [src]="image" class="trf-image-card-image">
     <mat-card-actions class="trf-image-card-actions">
         <button mat-icon-button><mat-icon>delete</mat-icon></button>
         <button mat-icon-button><mat-icon>edit</mat-icon></button>

@@ -1,0 +1,448 @@
+{
+  "definitions": {
+    "ImageContentDTO": {
+      "additionalProperties": false,
+      "properties": {
+        "imageContentId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "path": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "size": {
+          "format": "double",
+          "type": "number"
+        },
+        "uploadedOn": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SectionDTO": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "imageContents": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "sectionId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "textualContents": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "SectionWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "imageContents": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "textualContents": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "TextualContentDTO": {
+      "additionalProperties": false,
+      "properties": {
+        "createdOn": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lenght": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "textualContentId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "TextualContentWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "title": {
+          "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    }
+  },
+  "info": {
+    "title": "Trustify.Backend.FeaturesService",
+    "version": "1.0"
+  },
+  "paths": {
+    "/image-content": {
+      "get": {
+        "parameters": [
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "skip",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "take",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ImageContentDTO"
+            }
+          }
+        },
+        "tags": [
+          "ImageContent"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "format": "binary",
+            "in": "formData",
+            "name": "Image",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "ImageContent"
+        ]
+      }
+    },
+    "/image-content/{imageContentId}": {
+      "delete": {
+        "parameters": [
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "imageContentId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "ImageContent"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "imageContentId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "ImageContent"
+        ]
+      }
+    },
+    "/image-content/{imageContentId}/download": {
+      "get": {
+        "parameters": [
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "imageContentId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "ImageContent"
+        ]
+      }
+    },
+    "/sections": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Sections"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SectionWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Sections"
+        ]
+      }
+    },
+    "/sections/{sectionId}": {
+      "delete": {
+        "parameters": [
+          {
+            "format": "int64",
+            "in": "path",
+            "name": "sectionId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Sections"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "sectionId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SectionDTO"
+            }
+          }
+        },
+        "tags": [
+          "Sections"
+        ]
+      }
+    },
+    "/textual-content": {
+      "get": {
+        "parameters": [
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "skip",
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "format": "int32",
+            "in": "query",
+            "name": "take",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "TextualContent"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/TextualContentWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "TextualContent"
+        ]
+      }
+    },
+    "/textual-content/{textualContentId}": {
+      "delete": {
+        "parameters": [
+          {
+            "format": "int64",
+            "in": "path",
+            "name": "textualContentId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "TextualContent"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "format": "int32",
+            "in": "path",
+            "name": "textualContentId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TextualContentDTO"
+            }
+          }
+        },
+        "tags": [
+          "TextualContent"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "x-components": {}
+}

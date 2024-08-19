@@ -13,11 +13,12 @@
             <mat-card class="trf-role-description">
                 <mat-card-title>Premium user</mat-card-title>
                 <mat-card-content>
-                    <p>This user has the options to list all features. Permissions are: </p>
+                    <p>This user has the options to list all features. Roles are: </p>
                     <ul>
-                        <li>Write</li>
-                        <li>Read</li>
-                        <li>Delete</li>
+                        @for(role of userRoles.roles; track role){
+                        <li>
+                            {{role}}
+                        </li>}
                     </ul>
                 </mat-card-content>
             </mat-card>

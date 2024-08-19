@@ -5,11 +5,13 @@ import { TextualContentComponent } from './main/features/textual-content/textual
 import { LargeContentComponent } from './main/features/large-content/large-content/large-content.component';
 import { SectionsComponent } from './main/features/sections/sections/sections.component';
 import { ImageGeneratorComponent } from './main/features/europeana/image-generator/image-generator.component';
+import { authGuard } from './main/core/auth/auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
+        canActivate: [authGuard],
         children:
             [
                 {

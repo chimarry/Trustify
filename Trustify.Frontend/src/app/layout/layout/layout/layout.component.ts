@@ -5,6 +5,7 @@ import { HeaderComponent } from '../../header/header/header.component';
 import { FooterComponent } from '../../footer/footer/footer.component';
 import { AppMaterialModule } from '../../../modules/app-material/app-material.module';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { UserPreferenceService } from '../../../main/core/services/user-preference.service';
 
 @Component({
   selector: 'trf-layout',
@@ -22,9 +23,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 })
 export class LayoutComponent {
 
-  constructor() { }
+  public userRoles: { roles: string[] } = { roles: ['administrator', 'super_administrator'] }
+  constructor(private userPreferenceService: UserPreferenceService) { }
 
   ngOnInit(): void {
-
+    
   }
 }

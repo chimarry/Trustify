@@ -29,7 +29,8 @@ export class RolesComponent extends TrfTableComponent {
 
   constructor(private dialog: MatDialog, private clientService: ClientsService,
     private displayMessageService: DisplayMessageService,
-    private roleService: RolesService, userPreferenceService: UserPreferenceService) {
+    private roleService: RolesService,
+     userPreferenceService: UserPreferenceService) {
     super(userPreferenceService);
   }
 
