@@ -1,7 +1,8 @@
 {
   "Routes": [
+    /// Image finder
     {
-      "DownstreamPathTemplate": "/swagger",
+      "DownstreamPathTemplate": "/image-finder?{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +10,7 @@
           "Port": 7016
         }
       ],
-      "UpstreamPathTemplate": "/image-finder",
+      "UpstreamPathTemplate": "/api/image-finder?{everything}",
       "UpstreamHttpMethod": [ "Get" ]
     },
     /// Features

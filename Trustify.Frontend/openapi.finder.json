@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Trustify.Backend.ImageGeneratorService",
+        "version": "1.0"
+    },
+    "paths": {
+        "/image-finder": {
+            "get": {
+                "tags": [
+                    "ImageFinder"
+                ],
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {}
+}

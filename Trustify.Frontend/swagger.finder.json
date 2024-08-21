@@ -1,0 +1,29 @@
+{
+  "info": {
+    "title": "Trustify.Backend.ImageGeneratorService",
+    "version": "1.0"
+  },
+  "paths": {
+    "/image-finder": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "search",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "tags": [
+          "ImageFinder"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "x-components": {}
+}

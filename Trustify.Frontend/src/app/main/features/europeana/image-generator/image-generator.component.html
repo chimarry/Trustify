@@ -16,13 +16,10 @@
             specified word. <br>
             If the image is not found, default image is shown.
         </p>
-        <p>
-            {{textSnippet}}
-        </p>
     </div>
     <mat-card>
         <mat-card-content>
-            <img style="width: 400px !important;height: 400px !important;" [src]="image" width="400px">
+            <img *ngIf="image" style="width: 400px !important;height: 400px !important;" [src]="image" width="400px">
         </mat-card-content>
         <mat-card-actions>
             <button mat-icon-button><mat-icon>add</mat-icon></button>
