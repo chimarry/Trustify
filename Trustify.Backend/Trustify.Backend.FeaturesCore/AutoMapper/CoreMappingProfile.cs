@@ -13,6 +13,12 @@ namespace Trustify.Backend.FeaturesCore.AutoMapper
             MapImageContent();
             MapTextualContent();
             MapSections();
+            MapRoles();
+        }
+
+        private void MapRoles()
+        {
+            CreateMap<Role, RoleDTO>().ReverseMap();
         }
 
         private void MapSections()
@@ -22,9 +28,11 @@ namespace Trustify.Backend.FeaturesCore.AutoMapper
             CreateMap<SectionDTO, Section>().ForMember(dest => dest.SectionId, opt => opt.AllowNull())
                                             .ForMember(dest => dest.ImageContents, opt => opt.Ignore())
                                             .ForMember(dest => dest.TextualContents, opt => opt.Ignore())
-                                            .ForMember(dest => dest.IsConfidential, opt => opt.Ignore());
+                                            .ForMember(dest => dest.Roles, opt => opt.Ignore());
+
             CreateMap<Section, BasicSectionDTO>();
             CreateMap<Section, SectionDTO>().IncludeBase<Section, BasicSectionDTO>()
+                                            .ForMember(dest=>dest.Roles, opt=>opt.MapFrom(src=>src.Roles.Select(x=>x.RoleId)))
                                             .ForMember(dest => dest.ImageContents, opt => opt.MapFrom(src => src.ImageContents.Select(x => x.ImageContentId)))
                                             .ForMember(dest => dest.TextualContents, opt => opt.MapFrom(src => src.TextualContents.Select(x => x.TextualContentId)));
         }

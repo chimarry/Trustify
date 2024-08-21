@@ -9,9 +9,9 @@ namespace Trustify.Backend.FeaturesCore.Database.Entities
 
         public virtual DbSet<TextualContent> TextualContents { get; set; }
 
-        public virtual DbSet<LargeContent> LargeContents { get; set; }
-
         public virtual DbSet<Section> Sections { get; set; }
+
+        public virtual DbSet<Role> Roles { get; set; }
 
         public TrustifyDbContext(DbContextOptions options) : base(options)
         {
@@ -32,7 +32,7 @@ namespace Trustify.Backend.FeaturesCore.Database.Entities
             modelBuilder.ApplyConfiguration(new SectionConfiguration());
             modelBuilder.ApplyConfiguration(new ImageContentConfiguration());
             modelBuilder.ApplyConfiguration(new TextualContentConfiguration());
-            modelBuilder.ApplyConfiguration(new LargeContentConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
     }
 }

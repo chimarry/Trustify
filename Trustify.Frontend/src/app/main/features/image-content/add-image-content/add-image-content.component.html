@@ -1,1 +1,32 @@
-<p>add-image-content works!</p>
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Add image content
+    </h1>
+    <div mat-dialog-contentclass="trf-content" style="min-height: 30vh;">
+        <div class="trf-column trf-start">
+            <div class="trf-row" class="trf-change-name">
+                <mat-form-field>
+                    <mat-label for="change-name">Name
+                    </mat-label>
+                    <input matInput id="change-name" type="text" [(ngModel)]="name"
+                        [ngModelOptions]=" {standalone: true}" minlength="2" autocomplete="off">
+                </mat-form-field>
+            </div>
+            <div class="trf-row" class="trf-choose-image">
+                <div>Choose image</div>
+                <label for="file-upload" class="custom-file-upload">
+                    <i class="fa fa-cloud-upload"></i> Browse
+                </label>
+                <input id="file-upload" type="file" (change)="selectFile($event)" />
+            </div>
+            <div class="trf-border-image">
+                @if(url){
+                <img [src]="url" class="trf-image">}
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button  (click)="confirm()" class="trf-confirm-button ">Add</button>
+        <button color="secondary" mat-raised-button (click)="close()" class="trf-cancel-button ">Cancel</button>
+    </div>
+</div>

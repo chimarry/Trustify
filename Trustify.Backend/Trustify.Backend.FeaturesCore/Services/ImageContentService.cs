@@ -15,7 +15,7 @@ namespace Trustify.Backend.FeaturesCore.Services
         private readonly IExceptionHandler handler = exceptionHandler;
         private readonly IFileStorageService fileStorageService = fileStorageService;
 
-        public async Task<ResultMessage<bool>> AddImage(ImageContentDTO dto, BasicFileInfo? file)
+        public async Task<ResultMessage<ImageContentDTO>> AddImage(ImageContentDTO dto, BasicFileInfo? file)
         {
             try
             {
@@ -31,12 +31,13 @@ namespace Trustify.Backend.FeaturesCore.Services
                 await context.AddAsync(image);
                 await context.SaveChangesAsync();
 
-                return new ResultMessage<bool>(true);
+                var result = mapper.Map<ImageContentDTO>(image);
+                return new ResultMessage<ImageContentDTO>(result);
             }
             catch (Exception ex)
             {
                 (OperationStatus status, string message) = handler.HandleException(ex);
-                return new ResultMessage<bool>(status, message);
+                return new ResultMessage<ImageContentDTO>(status, message);
             }
         }
 

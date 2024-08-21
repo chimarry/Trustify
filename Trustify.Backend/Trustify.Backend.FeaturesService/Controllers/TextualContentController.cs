@@ -22,7 +22,7 @@ namespace Trustify.Backend.FeaturesService.Controllers
         {
             var content = mapper.Map<TextualContentDTO>(wrapper);
             content.Lenght = content.Text.Length;
-            ResultMessage<bool> dto = await contentService.AddTextualContent(content);
+            ResultMessage<TextualContentDTO> dto = await contentService.AddTextualContent(content);
             return HttpResultMessage.FilteredResult(dto);
         }
 

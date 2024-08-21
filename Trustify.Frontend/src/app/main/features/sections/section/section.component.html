@@ -1,1 +1,23 @@
-<p>section works!</p>
+@if(section){
+<h1>{{section.title}}</h1>
+<h4>{{section.description}}</h4>
+
+@if(moreImages){
+    @for(text of texts;let i =$index; track text){
+        <p>{{text.text}} </p>
+        <img class="img-left" [src]="images[i]" style="max-width: 30vw;max-height: 30vw;">
+    }
+    @for(image of imagesData.slice(textCount,imageCount+1); track image){
+      <img class="img-left" [src]="image" style="max-width: 30vw;max-height: 30vw;">
+    }
+}
+@if(!moreImages){
+    @for(image of imagesData; let i=$index; track image){
+        <img class="img-left" [src]="image" style="max-width: 30vw;max-height: 30vw;">
+        <p>{{texts[i].text}} </p>
+    }
+    @for(text of texts.slice(imageCount,textCount+1); track text){
+      <p>{{text.text}} </p>
+    }
+}
+}

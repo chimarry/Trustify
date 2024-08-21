@@ -26,6 +26,8 @@ namespace Trustify.Backend.FeaturesCore.Services
                     sectionEntity.ImageContents = await context.ImageContents.Where(x => section.ImageContents.Any(y => y == x.ImageContentId)).ToListAsync();
                 if (section.TextualContents?.Length != 0)
                     sectionEntity.TextualContents = await context.TextualContents.Where(x => section.TextualContents.Any(y => y == x.TextualContentId)).ToListAsync();
+                if (section.Roles?.Length != 0)
+                    sectionEntity.Roles = await context.Roles.Where(x => section.Roles.Any(y => y == x.RoleId)).ToListAsync();
 
                 await context.Sections.AddAsync(sectionEntity);
                 await context.SaveChangesAsync();
@@ -65,6 +67,7 @@ namespace Trustify.Backend.FeaturesCore.Services
                 Section? section = await context.Sections.AsNoTracking()
                     .Include(x => x.TextualContents)
                     .Include(x => x.ImageContents)
+                    .Include(x => x.Roles)
                     .SingleOrDefaultAsync(x => x.SectionId == sectionId);
                 if (section == null)
                     return new ResultMessage<SectionDTO>(OperationStatus.NotFound);

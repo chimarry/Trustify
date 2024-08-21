@@ -10,7 +10,7 @@ namespace Trustify.Backend.FeaturesCore.Services
 {
     public interface ITextualContentService
     {
-        Task<ResultMessage<bool>> AddTextualContent(TextualContentDTO content);
+        Task<ResultMessage<TextualContentDTO>> AddTextualContent(TextualContentDTO content);
 
         Task<ResultMessage<bool>> DeleteTextualContent(long textualContentId);
 

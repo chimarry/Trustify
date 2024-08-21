@@ -37,6 +37,21 @@ namespace Trustify.Backend.Features.Providers.PostgreSQL.Migrations
                     b.ToTable("ImageContentSection");
                 });
 
+            modelBuilder.Entity("RoleSection", b =>
+                {
+                    b.Property<string>("RolesId")
+                        .HasColumnType("text");
+
+                    b.Property<long>("SectionsSectionId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("RolesId", "SectionsSectionId");
+
+                    b.HasIndex("SectionsSectionId");
+
+                    b.ToTable("RoleSection");
+                });
+
             modelBuilder.Entity("SectionTextualContent", b =>
                 {
                     b.Property<long>("SectionsSectionId")
@@ -80,32 +95,22 @@ namespace Trustify.Backend.Features.Providers.PostgreSQL.Migrations
                     b.ToTable("ImageContents");
                 });
 
-            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.LargeContent", b =>
+            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
                 {
-                    b.Property<long>("LargeContentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("LargeContentId"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
 
-                    b.Property<double>("Size")
-                        .HasColumnType("double precision");
+                    b.HasKey("Id");
 
-                    b.Property<DateTime>("UploadedOn")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("LargeContentId");
-
-                    b.ToTable("LargeContents");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Section", b =>
@@ -119,9 +124,6 @@ namespace Trustify.Backend.Features.Providers.PostgreSQL.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(1023)
                         .HasColumnType("character varying(1023)");
-
-                    b.Property<bool>("IsConfidential")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -140,6 +142,9 @@ namespace Trustify.Backend.Features.Providers.PostgreSQL.Migrations
                         .HasColumnType("bigint");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("TextualContentId"));
+
+                    b.Property<string>("Author")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone");
@@ -167,6 +172,21 @@ namespace Trustify.Backend.Features.Providers.PostgreSQL.Migrations
                     b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.ImageContent", null)
                         .WithMany()
                         .HasForeignKey("ImageContentsImageContentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Section", null)
+                        .WithMany()
+                        .HasForeignKey("SectionsSectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RoleSection", b =>
+                {
+                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

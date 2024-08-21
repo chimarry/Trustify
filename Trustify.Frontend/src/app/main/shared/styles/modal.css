@@ -49,7 +49,12 @@
 }
 
 .trf-role-not-selected {
-    background-color: var(--trf-neg-primary) !important;
+    background-color: var(--trf-primary-background) !important;
+    color: var(--trf-neg-primary-font) !important;
+}
+
+.trf-neutral{
+    background-color: var(--trf-background-tooltip) !important;
     color: var(--trf-neg-primary-font) !important;
 }
 

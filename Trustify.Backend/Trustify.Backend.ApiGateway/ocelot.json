@@ -33,7 +33,7 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/textual-content?{everything}",
+      "DownstreamPathTemplate": "/textual-content?skip=0&take=200",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -41,7 +41,7 @@
           "Port": 7128
         }
       ],
-      "UpstreamPathTemplate": "/api/features/textual-content?{everything}",
+      "UpstreamPathTemplate": "/api/features/textual-content",
       "UpstreamHttpMethod": [ "Get" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
@@ -143,7 +143,7 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/image-content?{everything}",
+      "DownstreamPathTemplate": "/image-content?skip=0&take=200",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -151,7 +151,7 @@
           "Port": 7128
         }
       ],
-      "UpstreamPathTemplate": "/api/features/image-content?{everything}",
+      "UpstreamPathTemplate": "/api/features/image-content",
       "UpstreamHttpMethod": [ "Get" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"

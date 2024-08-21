@@ -18,7 +18,7 @@ namespace Trustify.Backend.FeaturesCore.Services
         private readonly IExceptionHandler handler = handler;
         private readonly IMapper mapper = mapper;
 
-        public async Task<ResultMessage<bool>> AddTextualContent(TextualContentDTO content)
+        public async Task<ResultMessage<TextualContentDTO>> AddTextualContent(TextualContentDTO content)
         {
             try
             {
@@ -26,12 +26,14 @@ namespace Trustify.Backend.FeaturesCore.Services
                 await context.AddAsync(entity);
                 await context.SaveChangesAsync();
 
-                return new ResultMessage<bool>(true);
+                var result = mapper.Map<TextualContentDTO>(entity);
+
+                return new ResultMessage<TextualContentDTO>(result);
             }
             catch (Exception ex)
             {
                 (OperationStatus status, string message) = handler.HandleException(ex);
-                return new ResultMessage<bool>(status, message);
+                return new ResultMessage<TextualContentDTO>(status, message);
             }
         }
 

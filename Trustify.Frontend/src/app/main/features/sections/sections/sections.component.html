@@ -1,14 +1,14 @@
 <div style=" justify-content: center;padding: 20px;">
     <div style="display: flex; flex-direction: row;justify-content:end;margin-bottom: 20px;">
-        <button mat-button color="primary">New section</button>
+        <button mat-button color="primary" (click)="addSection()">New section</button>
     </div>
-    <mat-grid-list [cols]="3" rowHeight="20vh" gutterSize="10px">
+    <mat-grid-list [cols]="3" rowHeight="25vh" gutterSize="10px">
         @for (tile of displaysectionList; track tile) {
         <mat-grid-tile>
             <mat-card style="padding:30px;width: 90%;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                 <mat-card-title>{{tile.title}}</mat-card-title>
-                <mat-card-subtitle>{{tile.author}}</mat-card-subtitle>
-                <mat-card-subtitle>{{tile.uploadedOn| date:'MMM d, y, H:mm'}}</mat-card-subtitle>
+                <mat-card-subtitle class="content-text">{{tile.description}}</mat-card-subtitle>
+                <button mat-button (click)="selectSection(tile)">Select</button>
             </mat-card>
         </mat-grid-tile>
         }
@@ -22,91 +22,7 @@
             <mat-icon>chevron_right</mat-icon>
         </button>
     </div>
-    <h1>Cool information about dogs</h1>
-    <h4>Created by Jack Russel</h4>
-    <p> How many times were you frustrated while looking
-        out for a good collection of programming/algorithm
-        /interview questions? What did you expect and what
-        did you get? This portal has been created to
-        provide well written, well thought and well
-        explained solutions for selected questions.
-        An IIT Roorkee alumnus and founder of GeeksforGeeks.
-        He loves to solve programming problems in most
-        efficient ways. Apart from GeeksforGeeks, he has
-        worked with DE Shaw and Co. as a software developer
-        and JIIT Noida as an assistant professor. It is a
-        good platform to learn programming. It is an
-        educational website. Prepare for the Recruitment
-        drive of product based companies like Microsoft,
-        Amazon, Adobe etc with a free online placement
-        preparation course.
-        How many times were you frustrated while looking
-        out for a good collection of programming/algorithm
-        /interview questions? What did you expect and what
-        did you get? This portal has been created to
-        provide well written, well thought and well
-        explained solutions for selected questions.
-        An IIT Roorkee alumnus and founder of GeeksforGeeks.
-        He loves to solve programming problems in most
-        efficient ways. Apart from GeeksforGeeks, he has
-        worked with DE Shaw and Co. as a software developer
-        and JIIT Noida as an assistant professor. It is a
-        good platform to learn programming. It is an
-        educational website. Prepare for the Recruitment
-        drive of product based companies like Microsoft,
-        Amazon, Adobe etc with a free online placement
-        preparation course.</p>
-    <img class="img-left" src="../../../../../assets/images/dog.jpg" style="max-width: 30vw;max-height: 30vw;">
-    <p>
-
-        How many times were you frustrated while looking
-        out for a good collection of programming/algorithm
-        /interview questions? What did you expect and what
-        did you get? This portal has been created to
-        provide well written, well thought and well
-        explained solutions for selected questions.
-        An IIT Roorkee alumnus and founder of GeeksforGeeks.
-        He loves to solve programming problems in most
-        efficient ways. Apart from GeeksforGeeks, he has
-        worked with DE Shaw and Co. as a software developer
-        and JIIT Noida as an assistant professor. It is a
-        good platform to learn programming. It is an
-        educational website. Prepare for the Recruitment
-        drive of product based companies like Microsoft,
-        Amazon, Adobe etc with a free online placement
-        preparation course.
-    </p>
-    <p> How many times were you frustrated while looking
-        out for a good collection of programming/algorithm
-        /interview questions? What did you expect and what
-        did you get? This portal has been created to
-        provide well written, well thought and well
-        explained solutions for selected questions.
-        An IIT Roorkee alumnus and founder of GeeksforGeeks.
-        He loves to solve programming problems in most
-        efficient ways. Apart from GeeksforGeeks, he has
-        worked with DE Shaw and Co. as a software developer
-        and JIIT Noida as an assistant professor. It is a
-        good platform to learn programming. It is an
-        educational website. Prepare for the Recruitment
-        drive of product based companies like Microsoft,
-        Amazon, Adobe etc with a free online placement
-        preparation course.</p>
-    <img class="img-right" src="../../../../../assets/images/dog.jpg" style="max-width: 30vw;max-height: 30vw;">
-    <p> How many times were you frustrated while looking
-        out for a good collection of programming/algorithm
-        /interview questions? What did you expect and what
-        did you get? This portal has been created to
-        provide well written, well thought and well
-        explained solutions for selected questions.
-        An IIT Roorkee alumnus and founder of GeeksforGeeks.
-        He loves to solve programming problems in most
-        efficient ways. Apart from GeeksforGeeks, he has
-        worked with DE Shaw and Co. as a software developer
-        and JIIT Noida as an assistant professor. It is a
-        good platform to learn programming. It is an
-        educational website. Prepare for the Recruitment
-        drive of product based companies like Microsoft,
-        Amazon, Adobe etc with a free online placement
-        preparation course.</p>
+    @if(selectedSection){
+    <trf-section [section]="selectedSection"></trf-section>
+    }
 </div>

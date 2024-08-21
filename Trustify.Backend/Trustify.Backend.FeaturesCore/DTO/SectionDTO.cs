@@ -5,5 +5,7 @@
         public long[] ImageContents { get; set; } = [];
 
         public long[] TextualContents { get; set; } = [];
+
+        public long[] Roles { get; set; } = [];
     }
 }

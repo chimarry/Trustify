@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
 import { AppMaterialModule } from '../../../../modules/app-material/app-material.module';
 import { DatePipe } from '@angular/common';
+import { SectionDTO, SectionWrapper } from '../../../../api/features/models';
+import { SectionsService } from '../../../../api/features/services';
+import { DisplayMessageService } from '../../../core/services/display-message.service';
+import { ResultMessage } from '../../../core/models/result-message';
+import { SectionComponent } from '../section/section.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AddSectionComponent } from '../add-section/add-section.component';
 
 @Component({
   selector: 'trf-sections',
   standalone: true,
-  imports: [AppMaterialModule,DatePipe],
+  imports: [AppMaterialModule, DatePipe, SectionComponent],
   templateUrl: './sections.component.html',
   styleUrl: './sections.component.css'
 })
@@ -16,40 +23,47 @@ export class SectionsComponent {
   public canSeeNext: boolean = true;
 
   private page: number = 1;
+  public sectionList: SectionDTO[] = [];
+  public displaysectionList: SectionDTO[] = [];
+  public selectedSection?: SectionDTO;
 
-  public sectionList: { title: string, author: string, uploadedOn: Date }[] = [
-    { title: "Razvoj bebe po mjesecima", author: "Marija Vasic", uploadedOn: new Date(2024, 12, 12) },
-    { title: "Kako zabrinuti roditelje?", author: "Nikolaj Vasic", uploadedOn: new Date(2024, 12, 12) },
-    { title: "Naljutiti zenu", author: "Marko Vasic", uploadedOn: new Date(2024, 12, 12) },
-    { title: "Povratak na posao 2", author: "Vanja Novakovic", uploadedOn: new Date(2024, 12, 12) },
-    { title: "Mrgud danas", author: "Njegos Dukic", uploadedOn: new Date(2024, 12, 12) }
-  ]
-
-  public displaysectionList: { title: string, author: string, uploadedOn: Date }[] = [];
+  constructor(private sectionService: SectionsService, private dialog: MatDialog,
+    private displayMessageService: DisplayMessageService) {
+  }
 
   ngOnInit(): void {
-    this.updatesectionList();
+    this.updateSectionList();
   }
 
   public pageDown() {
     if (this.page > 1) {
       this.page--;
-      this.updatesectionList();
+      this.updateSectionList();
     }
   }
 
   public pageUp() {
     if (this.page < this.getPageCount()) {
       this.page++;
-      this.updatesectionList();
+      this.updateSectionList();
     }
   }
 
-  updatesectionList() {
-    if (this.sectionList) {
-      this.displaysectionList = this.sectionList.slice(this.getStart(), this.getEnd());
-    }
-    this.updatePageNavigation();
+  updateSectionList() {
+    this.sectionService.getSections()
+      .subscribe({
+        next: response => {
+          var result = response as unknown as ResultMessage;
+          if (result.isSuccess) {
+            this.sectionList = result.result as SectionDTO[];
+            this.displaysectionList = this.sectionList.slice(this.getStart(), this.getEnd());
+            if (this.selectedSection == null && this.sectionList.length > 0)
+              this.selectedSection = this.sectionList[0]
+            this.updatePageNavigation();
+          }
+        }
+      })
+
   }
 
   updatePageNavigation() {
@@ -71,5 +85,26 @@ export class SectionsComponent {
     if (this.sectionList != null && this.sectionList.length != 0)
       return Math.ceil(this.sectionList.length / this.maxSectionsDisplayCount);
     return 0;
+  }
+
+  public selectSection(section: SectionDTO) {
+    this.selectedSection = section;
+  }
+
+  public addSection() {
+    this.dialog.open(AddSectionComponent, {
+      panelClass: "trf-dialog-size-largest",
+    })
+      .afterClosed()
+      .subscribe(result => {
+        this.sectionService.postSections(result as SectionWrapper)
+          .subscribe({
+            next: response => {
+              let message = (response as unknown as ResultMessage);
+              this.displayMessageService.displayStatus(message.status);
+              this.updateSectionList();
+            }
+          })
+      });
   }
 }

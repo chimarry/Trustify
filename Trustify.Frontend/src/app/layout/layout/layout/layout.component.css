@@ -9,6 +9,17 @@
     background-color: var(--trf-primary-background);
 }
 
+.trf-user-title {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    justify-content: start;
+    vertical-align: middle;
+}
+
 .trf-layout-content {
     display: flex;
     flex-direction: row;

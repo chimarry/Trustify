@@ -14,6 +14,8 @@ namespace Trustify.Backend.FeaturesCore.DTO
 
         public string Text { get; set; } = null!;
 
+        public string? Author { get; set; } = null;
+
         public int Lenght { get; set; }
 
         public DateTime CreatedOn { get; set; }

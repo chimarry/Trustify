@@ -10,7 +10,7 @@ namespace Trustify.Backend.FeaturesCore.Services
 {
     public interface IImageContentService
     {
-        Task<ResultMessage<bool>> AddImage(ImageContentDTO dto, BasicFileInfo? file);
+        Task<ResultMessage<ImageContentDTO>> AddImage(ImageContentDTO dto, BasicFileInfo? file);
 
         Task<ResultMessage<BasicFileInfo>> DownloadImage(int imageId);
 

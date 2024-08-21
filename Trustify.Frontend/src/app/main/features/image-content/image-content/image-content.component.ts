@@ -6,6 +6,8 @@ import { ImageContentDTO } from '../../../../api/features/models';
 import { ImageContentService } from '../../../../api/features/services';
 import { DisplayMessageService } from '../../../core/services/display-message.service';
 import { ResultMessage } from '../../../core/models/result-message';
+import { MatDialog } from '@angular/material/dialog';
+import { AddImageContentComponent } from '../add-image-content/add-image-content.component';
 
 @Component({
   selector: 'trf-image-content',
@@ -26,7 +28,7 @@ export class ImageContentComponent {
 
   public displayImageList: ImageContentDTO[] = [];
 
-  constructor(private imageContentService: ImageContentService,
+  constructor(private imageContentService: ImageContentService, private dialog: MatDialog,
     private displayMessageService: DisplayMessageService) { }
 
   ngOnInit(): void {
@@ -47,8 +49,28 @@ export class ImageContentComponent {
     }
   }
 
+  add(): void {
+    this.dialog.open(AddImageContentComponent, {
+      panelClass: "trf-dialog-size-large"
+    })
+      .afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.imageContentService.postImageContent({
+            Name: result.name,
+            Image: result.image
+          }).subscribe({
+            next: response=>{
+              this.updateImageList();
+              this.displayMessageService.displayStatus((response as unknown as ResultMessage).status)
+            }
+          })
+        }
+      });
+  }
+
   updateImageList() {
-    this.imageContentService.getImageContent({take:200}).subscribe({
+    this.imageContentService.getImageContent({ take: 200 }).subscribe({
       next: response => {
         this.imageList = (response as ResultMessage).result as ImageContentDTO[];
         if (this.imageList) {
@@ -57,7 +79,6 @@ export class ImageContentComponent {
         this.updatePageNavigation();
       }
     })
-
   }
 
   updatePageNavigation() {

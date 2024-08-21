@@ -1,7 +1,10 @@
+<div class="trf-row trf-end">
+    <button mat-icon-button (click)="add()"><mat-icon>add</mat-icon></button>
+</div>
 <mat-grid-list [cols]="2" rowHeight="70vh" gutterSize="10px">
     @for (tile of displayImageList; track tile) {
     <mat-grid-tile>
-        <trf-image-card [imageContent]="tile"></trf-image-card>
+        <trf-image-card (deleted)="updateImageList()" [imageContent]="tile"></trf-image-card>
     </mat-grid-tile>
     }
 </mat-grid-list>

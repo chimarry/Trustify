@@ -2,25 +2,28 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Trustify.Backend.FeaturesCore.Database.Entities;
 
 #nullable disable
 
-namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
+namespace Trustify.Backend.Features.Providers.PostgreSQL.Migrations
 {
     [DbContext(typeof(TrustifyDbContext))]
-    partial class TrustifyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240821191448_AddRole")]
+    partial class AddRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("ImageContentSection", b =>
                 {
@@ -35,21 +38,6 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                     b.HasIndex("SectionsSectionId");
 
                     b.ToTable("ImageContentSection");
-                });
-
-            modelBuilder.Entity("RoleSection", b =>
-                {
-                    b.Property<string>("RolesId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<long>("SectionsSectionId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("RolesId", "SectionsSectionId");
-
-                    b.HasIndex("SectionsSectionId");
-
-                    b.ToTable("RoleSection");
                 });
 
             modelBuilder.Entity("SectionTextualContent", b =>
@@ -73,42 +61,75 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ImageContentId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ImageContentId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<double>("Size")
-                        .HasColumnType("float");
+                        .HasColumnType("double precision");
 
                     b.Property<DateTime>("UploadedOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("ImageContentId");
 
                     b.ToTable("ImageContents");
                 });
 
-            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
+            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.LargeContent", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("LargeContentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("LargeContentId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("Size")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("UploadedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("LargeContentId");
+
+                    b.ToTable("LargeContents");
+                });
+
+            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.Property<long>("RoleId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("SectionId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SectionId");
 
                     b.ToTable("Roles");
                 });
@@ -119,16 +140,16 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("SectionId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("SectionId"));
 
                     b.Property<string>("Description")
                         .HasMaxLength(1023)
-                        .HasColumnType("nvarchar(1023)");
+                        .HasColumnType("character varying(1023)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
 
                     b.HasKey("SectionId");
 
@@ -141,26 +162,26 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("TextualContentId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("TextualContentId"));
 
                     b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Lenght")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasMaxLength(2047)
-                        .HasColumnType("nvarchar(2047)");
+                        .HasColumnType("character varying(2047)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
 
                     b.HasKey("TextualContentId");
 
@@ -172,21 +193,6 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                     b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.ImageContent", null)
                         .WithMany()
                         .HasForeignKey("ImageContentsImageContentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Section", null)
-                        .WithMany()
-                        .HasForeignKey("SectionsSectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RoleSection", b =>
-                {
-                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RolesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -210,6 +216,18 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         .HasForeignKey("TextualContentsTextualContentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
+                {
+                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Section", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("SectionId");
+                });
+
+            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Section", b =>
+                {
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

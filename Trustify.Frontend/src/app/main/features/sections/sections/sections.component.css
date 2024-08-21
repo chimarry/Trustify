@@ -20,3 +20,9 @@ p {
     margin: 5px;
     text-align: justify;
 }
+
+.content-text {
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}

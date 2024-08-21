@@ -21,6 +21,7 @@ import {
 import {KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
 import {HTTP_INTERCEPTORS, withInterceptorsFromDi} from "@angular/common/http";
 import {APP_INITIALIZER, Provider} from '@angular/core';
+import { ErrorHandlingInterceptorService } from './main/core/interceptors/error-handling-interceptor.interceptor';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -69,6 +70,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withInterceptorsFromDi()), // Provides HttpClient with interceptors
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlingInterceptorService, multi: true },
     KeycloakInitializerProvider, // Initializes Keycloak
     KeycloakBearerInterceptorProvider, // Provides Keycloak Bearer Interceptor
     KeycloakService, // Service for Keycloak 

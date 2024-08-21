@@ -1,1 +1,101 @@
-<p>add-section works!</p>
+<div class="trf-column trf-modal">
+    <h1 mat-dialog-title class="trf-title">
+        Add section
+    </h1>
+    <div mat-dialog-content class="trf-content">
+        <div class="trf-column trf-start">
+            <div class="trf-column">
+                <mat-form-field style="width: 50%;">
+                    <mat-label for="title">Title
+                    </mat-label>
+                    <input matInput id="title" type="text" [(ngModel)]="title" [ngModelOptions]=" {standalone: true}"
+                        minlength="2" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field style="width: 50%;">
+                    <mat-label for="title">Description
+                    </mat-label>
+                    <textarea matInput id="description" type="text" [(ngModel)]="description"
+                        [ngModelOptions]=" {standalone: true}" minlength="2" autocomplete="off"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="trf-row trf-start" style="margin-bottom: 10px;">
+                <button mat-button color="primary" style="margin-right: 20px;" (click)="addNewImage()">Add
+                    image</button>
+                <button mat-button color="primary" (click)="addNewText()">Add text</button>
+            </div>
+            <mat-divider style="margin:2px;"></mat-divider>
+            Text
+            <div class="trf-row trf-start" style="margin:5px;margin-top:0;">
+                <mat-chip-set class="trf-roles-list">
+                    @for(text of selectedText; track text){
+                    <mat-chip class="trf-role-selected">
+                        {{text.title}}
+                        <button matChipRemove (click)="deselectText(text)">
+                            <mat-icon>check_box</mat-icon>
+                        </button>
+                    </mat-chip>}
+                    @for(text of randomText; track text){
+                    <mat-chip class="trf-neutral">
+                        {{text.title}}
+                        <button matChipRemove (click)="selectText(text)">
+                            <mat-icon>
+                                check_box_outline_blank
+                            </mat-icon>
+                        </button>
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+            <mat-divider style="margin:2px;"></mat-divider>
+            Roles
+            <div class="trf-row trf-start" style="margin:5px;margin-top:0;">
+                <mat-chip-set class="trf-roles-list">
+                    @for(role of selectedRoles; track role){
+                    <mat-chip class="trf-role-selected">
+                        {{role.name}}
+                        <button matChipRemove (click)="deselectRole(role)">
+                            <mat-icon>check_box</mat-icon>
+                        </button>
+                    </mat-chip>}
+                    @for(role of notSelectedRoles; track role){
+                    <mat-chip class="trf-neutral">
+                        {{role.name}}
+                        <button matChipRemove (click)="selectRole(role)">
+                            <mat-icon>
+                                check_box_outline_blank
+                            </mat-icon>
+                        </button>
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
+
+            <mat-divider style="margin:2px;"></mat-divider>
+            Images
+            <div class="trf-row trf-start" style="margin:5px;margin-top:0;">
+                @for(image of selectedImages; track image){
+                <div class="trf-column">
+                    <mat-card class="trf-image-card-selected" appearance="outlined" style="width:100px; margin:5px;">
+                        <mat-card-header style="justify-content: center;">
+                            <img (click)="deselectImage(image)" mat-card-avatar class="trf-image-header"
+                                [src]="getImage(image.imageContentId)">
+                        </mat-card-header>
+                    </mat-card>
+                </div>}
+                @for(image of randomImages; track image){
+                <div class="trf-column" style="margin: 10px;">
+                    <mat-card class="trf-image-card-not-selected" appearance="outlined"
+                        style="width:100px; margin:5px; background-color: var(--trf-background-primary);">
+                        <mat-card-header style="justify-content: center;">
+                            <img mat-card-avatar (click)="selectImage(image)" class="trf-image-header"
+                                [src]="getImage(image.imageContentId)">
+                        </mat-card-header>
+                    </mat-card>
+                </div>}
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions class="trf-dialog_actions">
+        <button color="primary" mat-raised-button type="submit" (click)="confirm()"
+            class="trf-confirm-button ">Yes</button>
+        <button color="secondary" mat-raised-button (click)="close()" class="trf-cancel-button ">No</button>
+    </div>
+</div>

@@ -8,10 +8,10 @@
 
         public string? Description { get; set; }
 
-        public bool IsConfidential { get; set; } = true;
-
         public virtual required ICollection<ImageContent> ImageContents { get; set; }
 
         public virtual required ICollection<TextualContent> TextualContents { get; set; }
+
+        public virtual required ICollection<Role> Roles { get; set; }
     }
 }

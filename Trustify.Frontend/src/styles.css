@@ -83,6 +83,11 @@ body {
     min-height: 50vh;
 }
 
+.trf-dialog-size-largest {
+    width: 70vw;
+    min-height: 50vh;
+}
+
 .trf-tooltip {
     /* your own custom styles here */
     /* e.g. */

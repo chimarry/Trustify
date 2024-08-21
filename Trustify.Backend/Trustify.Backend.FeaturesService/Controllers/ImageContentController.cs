@@ -53,7 +53,16 @@ namespace Trustify.Backend.FeaturesService.Controllers
         [HttpGet("{imageContentId}/download")]
         public async Task<IActionResult> DownloadImage([FromRoute] int imageContentId)
         {
-            return HttpResultMessage.FilteredResult(await imageContentService.DownloadImage(imageContentId), ContentType.File);
+            var result = await imageContentService.DownloadImage(imageContentId);
+            var response = new ResultMessage<DownloadImageWrapper>(result.Status, result.Message);
+            var realData = new DownloadImageWrapper();
+            if (result.Result != null)
+            {
+                realData.FileData = Convert.ToBase64String(result.Result.FileData);
+                realData.FileName = result.Result.FileName;
+            };
+            response.Result = realData;
+            return HttpResultMessage.FilteredResult(response);
         }
     }
 }
