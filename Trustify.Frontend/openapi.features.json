@@ -259,6 +259,49 @@
                 }
             }
         },
+        "/sections/filter": {
+            "patch": {
+                "tags": [
+                    "Sections"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRolesWrapper"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRolesWrapper"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRolesWrapper"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/sections/roles": {
+            "get": {
+                "tags": [
+                    "Sections"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/textual-content": {
             "post": {
                 "tags": [
@@ -440,6 +483,14 @@
                             "format": "int64"
                         },
                         "nullable": true
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "nullable": true
                     }
                 },
                 "additionalProperties": false
@@ -470,6 +521,14 @@
                             "format": "int64"
                         },
                         "nullable": true
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "nullable": true
                     }
                 },
                 "additionalProperties": false
@@ -486,6 +545,10 @@
                         "nullable": true
                     },
                     "text": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "author": {
                         "type": "string",
                         "nullable": true
                     },
@@ -509,6 +572,19 @@
                     },
                     "text": {
                         "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UserRolesWrapper": {
+                "type": "object",
+                "properties": {
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
                         "nullable": true
                     }
                 },

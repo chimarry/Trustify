@@ -89,6 +89,24 @@
       }
     },
     {
+      "DownstreamPathTemplate": "/sections/filter",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7128
+        }
+      ],
+      "UpstreamPathTemplate": "/api/features/sections/filter",
+      "UpstreamHttpMethod": [ "Patch" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "realm_roles": "trustify.realm.administrator"
+      }
+    },
+    {
       "DownstreamPathTemplate": "/sections",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -104,6 +122,24 @@
       },
       "RouteClaimsRequirement": {
         "realm_roles": "trustify.realm.super_administrator"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/sections/roles",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7128
+        }
+      ],
+      "UpstreamPathTemplate": "/api/features/sections/roles",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "realm_roles": "trustify.realm.administrator"
       }
     },
     {

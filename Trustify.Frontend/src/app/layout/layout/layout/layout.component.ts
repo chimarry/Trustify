@@ -43,7 +43,8 @@ export class LayoutComponent {
         lastName?: string,
         email?: string,
       };
-      this.userData.roles = this.keycloakService.getUserRoles();
+      this.userData.roles = this.keycloakService.getUserRoles(true);
+      this.userPreferenceService.saveUsername(this.userData.username ?? "");
     })
   }
 }

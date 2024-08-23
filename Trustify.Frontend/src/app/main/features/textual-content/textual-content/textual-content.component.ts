@@ -24,7 +24,7 @@ import { TextualContentDetailsComponent } from '../textual-content-details/textu
 export class TextualContentComponent extends TrfTableComponent {
   public textualContents: TextualContentDTO[] = [];
 
-  public override displayedColumns: string[] = ["title", "text", "length", "createdOn", "actions"]
+  public override displayedColumns: string[] = ["title", "text", "length", "createdOn", "author", "actions"]
 
   constructor(public date: DatePipe, private dialog: MatDialog,
     private displayMessageService: DisplayMessageService,
@@ -45,7 +45,6 @@ export class TextualContentComponent extends TrfTableComponent {
     }).subscribe({
       next: response => {
         if (response) {
-          console.log(response)
           var result = response as ResultMessage;
           if (result.isSuccess)
             this.dataSource.data = result.result as TextualContentDTO[];
@@ -65,7 +64,10 @@ export class TextualContentComponent extends TrfTableComponent {
       .afterClosed()
       .subscribe(result => {
         if (result) {
-          this.textualContentService.postTextualContent(result as TextualContentWrapper).subscribe(
+          let username = this.userPreferenceService.getUsername();
+          let data = result as TextualContentWrapper;
+          data.author = username;
+          this.textualContentService.postTextualContent(data).subscribe(
             {
               next: response => {
                 if (response && response as ResultMessage) {

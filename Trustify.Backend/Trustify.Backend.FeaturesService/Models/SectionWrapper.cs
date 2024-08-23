@@ -11,5 +11,7 @@ namespace Trustify.Backend.FeaturesService.Models
         public long[] ImageContents { get; set; } = [];
 
         public long[] TextualContents { get; set; } = [];
+
+        public long[] Roles { get; set; } = [];
     }
 }

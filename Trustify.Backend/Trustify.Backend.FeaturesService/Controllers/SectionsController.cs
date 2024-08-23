@@ -47,5 +47,17 @@ namespace Trustify.Backend.FeaturesService.Controllers
         {
             return HttpResultMessage.FilteredResult(sectionService.GetSections());
         }
+
+        [HttpPatch("filter")]
+        public IActionResult GetSections([FromBody] UserRolesWrapper roles)
+        {
+            return HttpResultMessage.FilteredResult(sectionService.FilterSections(roles.Roles));
+        }
+
+        [HttpGet("roles")]
+        public IActionResult GetRolesForSection()
+        {
+            return HttpResultMessage.FilteredResult(sectionService.GetRoles());
+        }
     }
 }

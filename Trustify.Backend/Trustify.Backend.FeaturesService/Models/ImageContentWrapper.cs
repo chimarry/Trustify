@@ -2,7 +2,7 @@
 {
     public class ImageContentWrapper
     {
-        public string Name { get; set; } = null!;
+        public string? Name { get; set; } = string.Empty;
 
         public IFormFile? Image { get; set; }
     }

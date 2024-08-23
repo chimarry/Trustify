@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ImageContentDTO, SectionDTO, SectionWrapper, TextualContentDTO, TextualContentWrapper } from '../../../../api/features/models';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ImageContentService, TextualContentService } from '../../../../api/features/services';
+import { ImageContentService, SectionsService, TextualContentService } from '../../../../api/features/services';
 import { ResultMessage } from '../../../core/models/result-message';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AddImageContentComponent } from '../../image-content/add-image-content/add-image-content.component';
@@ -11,6 +11,7 @@ import { AppMaterialModule } from '../../../../modules/app-material/app-material
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 class Role {
+  id?: string;
   roleId?: number;
   name?: string;
 }
@@ -31,14 +32,7 @@ export class AddSectionComponent {
 
   public imageData: Map<number, any> = new Map<number, any>();
 
-  public notSelectedRoles: Role[] = [{
-    roleId: 1,
-    name: "image_editor"
-  },
-  {
-    roleId: 2,
-    name: "text_editor"
-  }];
+  public notSelectedRoles: Role[] = [];
 
   public selectedImages: ImageContentDTO[] = [];
   public selectedText: TextualContentDTO[] = [];
@@ -46,6 +40,7 @@ export class AddSectionComponent {
 
   constructor(private dialogRef: MatDialogRef<AddSectionComponent>,
     private dialog: MatDialog,
+    private sectionService: SectionsService,
     private imageService: ImageContentService,
     private sanitizer: DomSanitizer,
     private displayMessageService: DisplayMessageService,
@@ -60,6 +55,7 @@ export class AddSectionComponent {
     this.randomText = [];
     this.getRandomImages();
     this.getRandomText();
+    this.getRoles();
   }
 
   close() {
@@ -198,6 +194,14 @@ export class AddSectionComponent {
           this.randomText = (response as unknown as ResultMessage).result as TextualContentDTO[];
         }
       })
+  }
+
+  getRoles() {
+    this.sectionService.getSectionsRoles().subscribe({
+      next: response => {
+        this.notSelectedRoles = (response as unknown as ResultMessage).result as Role[];
+      }
+    })
   }
 
   private downloadImage(imageContentId?: number) {

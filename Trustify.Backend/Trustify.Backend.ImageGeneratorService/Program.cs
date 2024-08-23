@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Diagnostics;
-using System.Security.Claims;
 using Trustify.Backend.ImageGeneratorService.Middlewares;
+using Trustify.Backend.ImageGeneratorService.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +17,8 @@ builder.Host.UseSerilog((context, services, loggerConfiguration) =>
         .ReadFrom.Configuration(context.Configuration);
 });
 Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
+
+builder.Services.Configure<EuropeanaConfig>(builder.Configuration.GetSection("EuropeanaConfig"));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

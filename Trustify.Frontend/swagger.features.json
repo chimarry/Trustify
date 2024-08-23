@@ -41,6 +41,14 @@
           "type": "array",
           "x-nullable": true
         },
+        "roles": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
         "sectionId": {
           "format": "int64",
           "type": "integer"
@@ -75,6 +83,14 @@
           "type": "array",
           "x-nullable": true
         },
+        "roles": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array",
+          "x-nullable": true
+        },
         "textualContents": {
           "items": {
             "format": "int64",
@@ -93,6 +109,10 @@
     "TextualContentDTO": {
       "additionalProperties": false,
       "properties": {
+        "author": {
+          "type": "string",
+          "x-nullable": true
+        },
         "createdOn": {
           "format": "date-time",
           "type": "string"
@@ -125,6 +145,19 @@
         },
         "title": {
           "type": "string",
+          "x-nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "UserRolesWrapper": {
+      "additionalProperties": false,
+      "properties": {
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
           "x-nullable": true
         }
       },
@@ -285,6 +318,44 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Sections"
+        ]
+      }
+    },
+    "/sections/filter": {
+      "patch": {
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserRolesWrapper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Sections"
+        ]
+      }
+    },
+    "/sections/roles": {
+      "get": {
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"

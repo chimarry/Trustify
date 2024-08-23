@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AppMaterialModule } from '../../../../modules/app-material/app-material.module';
-import { ImageContent } from '../../models/image-content';
 import { DatePipe } from '@angular/common';
 import { ImageContentDTO } from '../../../../api/features/models';
 import { ImageContentService } from '../../../../api/features/services';

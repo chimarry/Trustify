@@ -81,6 +81,39 @@ namespace Trustify.Backend.FeaturesCore.Services
             }
         }
 
+        public ResultMessage<IEnumerable<RoleDTO>> GetRoles()
+        {
+            try
+            {
+                var list = context.Roles.OrderBy(x => x.Name).Select(x => mapper.Map<RoleDTO>(x));
+                return new ResultMessage<IEnumerable<RoleDTO>>(list);
+            }
+            catch (Exception ex)
+            {
+                (OperationStatus status, string message) = handler.HandleException(ex);
+                return new ResultMessage<IEnumerable<RoleDTO>>(status, message);
+            }
+        }
+
+        public ResultMessage<IEnumerable<BasicSectionDTO>> FilterSections(string[] roles)
+        {
+            try
+            {
+                var list = context.Sections.AsNoTracking()
+                                  .Include(x => x.Roles);
+                var result = list.Where(x => x.Roles.Select(x => x.Name)
+                                                    .Intersect(roles)
+                                                    .Count() != 0)
+                                  .Select(x => mapper.Map<BasicSectionDTO>(x));
+                return new ResultMessage<IEnumerable<BasicSectionDTO>>(result);
+            }
+            catch (Exception ex)
+            {
+                (OperationStatus status, string message) = handler.HandleException(ex);
+                return new ResultMessage<IEnumerable<BasicSectionDTO>>(status, message);
+            }
+        }
+
         public ResultMessage<IEnumerable<BasicSectionDTO>> GetSections()
         {
             try

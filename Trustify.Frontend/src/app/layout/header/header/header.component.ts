@@ -16,7 +16,6 @@ export class HeaderComponent {
   }
 
   public openAdminApp(): void {
-    console.log("Open")
     window.location.href = "http://localhost:4100";
   }
 

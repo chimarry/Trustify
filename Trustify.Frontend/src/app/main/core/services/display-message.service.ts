@@ -41,8 +41,6 @@ export class DisplayMessageService {
         case OperationStatus.ForbiddenAccess: message = Messages.FORBIDDEN_ACCESS; break;
         default: message = Messages.ERROR;
       }
-      console.log(status)
-      console.log(message)
       this.displayError(message);
     }
   }

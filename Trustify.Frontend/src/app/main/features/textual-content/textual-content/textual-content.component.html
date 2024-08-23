@@ -12,6 +12,12 @@
             <div class="content-text">{{element.text}}</div>
         </td>
     </ng-container>
+    <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Author </th>
+        <td mat-cell *matCellDef="let element">
+            <div class="content-text">{{element.author}}</div>
+        </td>
+    </ng-container>
     <ng-container matColumnDef="length">
         <th mat-header-cell *matHeaderCellDef class="trf-5-col">Length </th>
         <td mat-cell *matCellDef="let element"> {{element.length}} </td>
@@ -26,11 +32,7 @@
         <td mat-cell *matCellDef="let element">
             <div class="trf-table-actions">
                 <button mat-icon-button matTooltipPosition="above" matTooltipClass="tooltip" matTooltip="Details" (click)="showDetails(element)">
-                    <mat-icon>details</mat-icon>
-                </button>
-                <button mat-icon-button matTooltipPosition="above" matTooltipClass="tooltip" matTooltip="Edit text"
-                    (click)="edit(element)">
-                    <mat-icon>edit</mat-icon>
+                    <mat-icon>info</mat-icon>
                 </button>
                 <button mat-icon-button matTooltipPosition="above" matTooltipClass="tooltip" matTooltip="Delete text"
                     (click)="delete(element.textualContentId)">

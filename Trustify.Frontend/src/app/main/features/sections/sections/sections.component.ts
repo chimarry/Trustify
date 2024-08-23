@@ -8,6 +8,8 @@ import { ResultMessage } from '../../../core/models/result-message';
 import { SectionComponent } from '../section/section.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddSectionComponent } from '../add-section/add-section.component';
+import { KeycloakService } from 'keycloak-angular';
+import { ConfirmDeleteComponent } from '../../../shared/confirm-delete/confirm-delete.component';
 
 @Component({
   selector: 'trf-sections',
@@ -26,13 +28,17 @@ export class SectionsComponent {
   public sectionList: SectionDTO[] = [];
   public displaysectionList: SectionDTO[] = [];
   public selectedSection?: SectionDTO;
+  public roles: string[] = [];
 
-  constructor(private sectionService: SectionsService, private dialog: MatDialog,
+  constructor(private sectionService: SectionsService, private dialog: MatDialog, private keycloakService: KeycloakService,
     private displayMessageService: DisplayMessageService) {
   }
 
   ngOnInit(): void {
-    this.updateSectionList();
+    this.keycloakService.loadUserProfile().then(profile => {
+      this.roles = this.keycloakService.getUserRoles(true);
+      this.getSectionList();
+    })
   }
 
   public pageDown() {
@@ -49,21 +55,26 @@ export class SectionsComponent {
     }
   }
 
-  updateSectionList() {
-    this.sectionService.getSections()
+  public getSectionList() {
+    this.sectionList = [];
+    this.displaysectionList = []
+    this.sectionService.patchSectionsFilter({ roles: this.roles })
       .subscribe({
         next: response => {
           var result = response as unknown as ResultMessage;
           if (result.isSuccess) {
             this.sectionList = result.result as SectionDTO[];
-            this.displaysectionList = this.sectionList.slice(this.getStart(), this.getEnd());
-            if (this.selectedSection == null && this.sectionList.length > 0)
-              this.selectedSection = this.sectionList[0]
-            this.updatePageNavigation();
+            this.updateSectionList();
           }
         }
       })
+  }
 
+  updateSectionList() {
+    this.displaysectionList = this.sectionList.slice(this.getStart(), this.getEnd());
+    if (this.selectedSection == null && this.sectionList.length > 0)
+      this.selectedSection = this.sectionList[0]
+    this.updatePageNavigation();
   }
 
   updatePageNavigation() {
@@ -89,6 +100,23 @@ export class SectionsComponent {
 
   public selectSection(section: SectionDTO) {
     this.selectedSection = section;
+  }
+
+  public deleteSection(id?: number) {
+    if (id)
+      this.dialog.open(ConfirmDeleteComponent, {
+        panelClass: "trf-dialog-size",
+      }).afterClosed()
+        .subscribe(value => {
+          if (value)
+            this.sectionService.deleteSectionsSectionId(id).subscribe({
+              next: response => {
+                let message = (response as unknown as ResultMessage);
+                this.displayMessageService.displayStatus(message.status);
+                this.getSectionList();
+              }
+            })
+        })
   }
 
   public addSection() {

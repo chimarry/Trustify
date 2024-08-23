@@ -17,13 +17,12 @@
             If the image is not found, default image is shown.
         </p>
     </div>
-    <mat-card>
-        <mat-card-content>
+    <mat-card >
+        <mat-card-content style="width: 400px; height: 400px;">
             <img *ngIf="image" style="width: 400px !important;height: 400px !important;" [src]="image" width="400px">
         </mat-card-content>
         <mat-card-actions>
-            <button mat-icon-button><mat-icon>add</mat-icon></button>
-            <button mat-icon-button><mat-icon>download</mat-icon></button>
+            <button mat-icon-button (click)="addImage()"><mat-icon>add</mat-icon></button>
         </mat-card-actions>
     </mat-card>
 </div>

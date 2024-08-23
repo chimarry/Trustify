@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AppMaterialModule } from '../../../../modules/app-material/app-material.module';
 import { ImageCardComponent } from '../image-card/image-card.component';
-import { ImageContent } from '../../models/image-content';
 import { ImageContentDTO } from '../../../../api/features/models';
 import { ImageContentService } from '../../../../api/features/services';
 import { DisplayMessageService } from '../../../core/services/display-message.service';

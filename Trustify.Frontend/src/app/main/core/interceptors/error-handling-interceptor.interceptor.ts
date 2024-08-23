@@ -41,7 +41,6 @@ export class ErrorHandlingInterceptorService implements HttpInterceptor {
         this.displayMessageService.displayStatus(error.error.status);
       }
       else if (error.status && error.status != 401) {
-        console.log(error)
         this.displayMessageService.displayHttpStatusCode(error.status);
       } else if (error.status && error.status == 401) {
         this.displayMessageService.displayHttpStatusCode(error.status);

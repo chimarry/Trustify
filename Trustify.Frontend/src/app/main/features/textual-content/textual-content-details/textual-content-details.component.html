@@ -8,26 +8,33 @@
                 <mat-form-field>
                     <mat-label for="title">Title
                     </mat-label>
-                    <input matInput id="title" type="text" [value]="textualContent.title" 
-                        autocomplete="off"  disabled>
+                    <input matInput id="title" type="text" [value]="textualContent.title" autocomplete="off" disabled>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label for="text">Text
                     </mat-label>
-                    <textarea class="trf-textarea" matInput id="text" type="text" [value]="textualContent.text" 
+                    <textarea class="trf-textarea" matInput id="text" type="text" [value]="textualContent.text"
                         autocomplete="off" disabled></textarea>
                 </mat-form-field>
-                <mat-form-field>
-                    <mat-label for="createdOn">Created on
-                    </mat-label>
-                    <input matInput id="createdOn" type="text" [value]="textualContent.createdOn" 
-                        autocomplete="off" disabled>
-                </mat-form-field>
+                <div class="trf-row">
+                    <mat-form-field style="margin-right: 10px;">
+                        <mat-label for="createdOn">Created on
+                        </mat-label>
+                        <input matInput id="createdOn" type="text" [value]="textualContent.createdOn" autocomplete="off"
+                            disabled>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label for="text">Author
+                        </mat-label>
+                        <input matInput id="author" type="datetime" [value]="textualContent.author" autocomplete="off"
+                            disabled>
+                    </mat-form-field>
+                </div>
                 <mat-form-field>
                     <mat-label for="lenght">Lenght
                     </mat-label>
-                    <input matInput id="lenght" type="number" [value]="textualContent.lenght" 
-                        autocomplete="off" disabled>
+                    <input matInput id="lenght" type="number" [value]="textualContent.lenght" autocomplete="off"
+                        disabled>
                 </mat-form-field>
             </div>
         </div>

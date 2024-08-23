@@ -16,6 +16,10 @@ namespace Trustify.Backend.FeaturesCore.Services
 
         ResultMessage<IEnumerable<BasicSectionDTO>> GetSections();
 
+        ResultMessage<IEnumerable<BasicSectionDTO>> FilterSections(string[] roles);
+
         Task<ResultMessage<SectionDTO>> GetDetails(long sectionId);
+
+        ResultMessage<IEnumerable<RoleDTO>> GetRoles();
     }
 }

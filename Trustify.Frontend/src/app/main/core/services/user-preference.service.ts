@@ -34,4 +34,12 @@ export class UserPreferenceService {
   public getRoles(): string[] {
     return JSON.parse(localStorage.getItem("roles") ?? "{}") as string[];
   }
+
+  public saveUsername(username: string) {
+    localStorage.setItem("username", username);
+  }
+
+  public getUsername(): string {
+    return localStorage.getItem("username")??"";
+  }
 }

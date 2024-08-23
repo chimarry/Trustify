@@ -23,8 +23,6 @@ namespace Trustify.Backend.FeaturesCore.AutoMapper
 
         private void MapSections()
         {
-            // CreateMap<long, ImageContent>().ForMember(dest => dest.ImageContentId, opt => opt.MapFrom(src => src));
-            // CreateMap<long, TextualContentDTO>().ForMember(dest => dest.TextualContentId, opt => opt.MapFrom(src => src));
             CreateMap<SectionDTO, Section>().ForMember(dest => dest.SectionId, opt => opt.AllowNull())
                                             .ForMember(dest => dest.ImageContents, opt => opt.Ignore())
                                             .ForMember(dest => dest.TextualContents, opt => opt.Ignore())

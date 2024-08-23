@@ -5,10 +5,13 @@
     <mat-grid-list [cols]="3" rowHeight="25vh" gutterSize="10px">
         @for (tile of displaysectionList; track tile) {
         <mat-grid-tile>
-            <mat-card style="padding:30px;width: 90%;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-                <mat-card-title>{{tile.title}}</mat-card-title>
+            <mat-card style="padding:30px;padding-bottom:5px;width: 90%;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                <mat-card-title>{{tile.title}} </mat-card-title>
                 <mat-card-subtitle class="content-text">{{tile.description}}</mat-card-subtitle>
-                <button mat-button (click)="selectSection(tile)">Select</button>
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="selectSection(tile)">Select</button>
+                    <button mat-button color="secondary" (click)="deleteSection(tile.sectionId)">Delete</button>
+                </mat-card-actions>
             </mat-card>
         </mat-grid-tile>
         }

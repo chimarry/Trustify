@@ -16,8 +16,12 @@ export class AddImageContentComponent {
   public file?: any;
   public name: string = "";
 
-  constructor(private dialogRef: MatDialogRef<AddImageContentComponent>) {
-
+  constructor(private dialogRef: MatDialogRef<AddImageContentComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    if (data){
+      this.file = data;
+      this.url = this.file;
+    }
   }
 
   ngOnInit() {
@@ -42,7 +46,7 @@ export class AddImageContentComponent {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (_event) => {
         this.url = reader.result;
-        fetch(this.url).then(response => response.blob()).then(blob => this.file = blob);
+        fetch(this.url).then(response => response.blob()).then(blob => {this.file = blob; });
       }
     }
   }

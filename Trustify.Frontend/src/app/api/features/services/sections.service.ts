@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { SectionWrapper } from '../models/section-wrapper';
+import { UserRolesWrapper } from '../models/user-roles-wrapper';
 import { SectionDTO } from '../models/section-dto';
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,8 @@ import { SectionDTO } from '../models/section-dto';
 class SectionsService extends __BaseService {
   static readonly getSectionsPath = '/sections';
   static readonly postSectionsPath = '/sections';
+  static readonly patchSectionsFilterPath = '/sections/filter';
+  static readonly getSectionsRolesPath = '/sections/roles';
   static readonly deleteSectionsSectionIdPath = '/sections/{sectionId}';
   static readonly getSectionsSectionIdPath = '/sections/{sectionId}';
 
@@ -80,6 +83,65 @@ class SectionsService extends __BaseService {
    */
   postSections(body?: SectionWrapper): __Observable<null> {
     return this.postSectionsResponse(body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * @param body undefined
+   */
+  patchSectionsFilterResponse(body?: UserRolesWrapper): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'PATCH',
+      this.rootUrl + `/sections/filter`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param body undefined
+   */
+  patchSectionsFilter(body?: UserRolesWrapper): __Observable<null> {
+    return this.patchSectionsFilterResponse(body).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+  getSectionsRolesResponse(): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/sections/roles`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }  getSectionsRoles(): __Observable<null> {
+    return this.getSectionsRolesResponse().pipe(
       __map(_r => _r.body as null)
     );
   }
