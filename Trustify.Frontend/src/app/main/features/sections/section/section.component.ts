@@ -21,7 +21,7 @@ export class SectionComponent {
 
   public imageCount: number = 0;
   public textCount: number = 0;
-  public moreImages: boolean = false;
+  public moreImages: boolean = true;
 
   constructor(private imageService: ImageContentService,
     private sectionService: SectionsService,
@@ -29,11 +29,16 @@ export class SectionComponent {
     private textService: TextualContentService) {
   }
 
-  ngOnInit() {
+  ngOnChanges(){
     this.imagesData = [];
     this.images = [];
     this.texts = [];
     this.loadContent();
+  }
+
+  ngOnInit() {
+  
+   
   }
 
   public loadContent() {
@@ -45,6 +50,7 @@ export class SectionComponent {
             this.imageCount = this.section.imageContents?.length ?? 0;
             this.textCount = this.section.textualContents?.length ?? 0;
             this.moreImages = this.imageCount > this.textCount;
+            console.log(this.moreImages)
             this.loadTextualContent();
             this.loadImageContent();
           }

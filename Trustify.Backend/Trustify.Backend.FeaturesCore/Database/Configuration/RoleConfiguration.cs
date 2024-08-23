@@ -12,6 +12,7 @@ namespace Trustify.Backend.FeaturesCore.Database.Configuration
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
+            builder.HasKey(x => x.RoleId);
             builder.Property(x => x.Name).HasMaxLength(255);
             builder.Property(x => x.Name).IsRequired();
         }

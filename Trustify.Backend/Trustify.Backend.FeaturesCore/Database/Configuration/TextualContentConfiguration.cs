@@ -20,7 +20,7 @@ namespace Trustify.Backend.FeaturesCore.Database.Configuration
             builder.Property(x => x.Title).IsRequired();
             builder.Property(x => x.Title).HasMaxLength(255);
             builder.Property(x => x.Text).IsRequired();
-            builder.Property(x => x.Text).HasMaxLength(2047);
+            builder.Property(x => x.Text).HasMaxLength(10000);
             builder.Property(x=>x.CreatedOn).IsRequired();
         }
     }

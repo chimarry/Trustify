@@ -14,11 +14,16 @@ import { DatePipe, formatDate } from '@angular/common';
 })
 export class TextualContentDetailsComponent {
   public textualContent: TextualContentDTO;
+  public formattedDate?: string | null;
 
 
   constructor(private dialogRef: MatDialogRef<TextualContentDetailsComponent>,
+    private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) public data: TextualContentDTO) {
     this.textualContent = data;
+    if (this.textualContent.createdOn) {
+      this.formattedDate = this.datePipe.transform(this.textualContent.createdOn, "dd/MM/yyyy HH:mm");
+    }
   }
 
   ngOnInit() {

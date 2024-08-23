@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   }
   public goToMainApp() {
-    window.location.href = "https://192.168.100.6:4200";
+    window.location.href = "https://localhost:4100";
   }
 
   public logOut() {

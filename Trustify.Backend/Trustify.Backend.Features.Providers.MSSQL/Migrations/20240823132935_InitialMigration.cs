@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Trustify.Backend.FeaturesCore.Database.Util;
 
 #nullable disable
 
@@ -11,6 +12,7 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.ConfigureDatabase();
             migrationBuilder.CreateTable(
                 name: "ImageContents",
                 columns: table => new
@@ -28,19 +30,17 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LargeContents",
+                name: "Roles",
                 columns: table => new
                 {
-                    LargeContentId = table.Column<long>(type: "bigint", nullable: false)
+                    RoleId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    UploadedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Size = table.Column<double>(type: "float", nullable: false)
+                    KeycloakId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LargeContents", x => x.LargeContentId);
+                    table.PrimaryKey("PK_Roles", x => x.RoleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,8 +50,7 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                     SectionId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1023)", maxLength: 1023, nullable: true),
-                    IsConfidential = table.Column<bool>(type: "bit", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(1023)", maxLength: 1023, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -66,6 +65,7 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Text = table.Column<string>(type: "nvarchar(2047)", maxLength: 2047, nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lenght = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -99,6 +99,30 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoleSection",
+                columns: table => new
+                {
+                    RolesRoleId = table.Column<long>(type: "bigint", nullable: false),
+                    SectionsSectionId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleSection", x => new { x.RolesRoleId, x.SectionsSectionId });
+                    table.ForeignKey(
+                        name: "FK_RoleSection_Roles_RolesRoleId",
+                        column: x => x.RolesRoleId,
+                        principalTable: "Roles",
+                        principalColumn: "RoleId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoleSection_Sections_SectionsSectionId",
+                        column: x => x.SectionsSectionId,
+                        principalTable: "Sections",
+                        principalColumn: "SectionId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SectionTextualContent",
                 columns: table => new
                 {
@@ -121,32 +145,44 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         principalColumn: "TextualContentId",
                         onDelete: ReferentialAction.Cascade);
                 });
-
+            
             migrationBuilder.CreateIndex(
                 name: "IX_ImageContentSection_SectionsSectionId",
                 table: "ImageContentSection",
                 column: "SectionsSectionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RoleSection_SectionsSectionId",
+                table: "RoleSection",
+                column: "SectionsSectionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SectionTextualContent_TextualContentsTextualContentId",
                 table: "SectionTextualContent",
                 column: "TextualContentsTextualContentId");
+
+            migrationBuilder.GrantPermissions();
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RevokePermissions();
+
             migrationBuilder.DropTable(
                 name: "ImageContentSection");
 
             migrationBuilder.DropTable(
-                name: "LargeContents");
+                name: "RoleSection");
 
             migrationBuilder.DropTable(
                 name: "SectionTextualContent");
 
             migrationBuilder.DropTable(
                 name: "ImageContents");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Sections");

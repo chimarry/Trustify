@@ -18,7 +18,8 @@ namespace Trustify.Backend.FeaturesCore.AutoMapper
 
         private void MapRoles()
         {
-            CreateMap<Role, RoleDTO>().ReverseMap();
+            CreateMap<Role, RoleDTO>();
+            CreateMap<RoleDTO, Role>().ForMember(dest => dest.KeycloakId, opt => opt.Ignore());
         }
 
         private void MapSections()

@@ -39,13 +39,13 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 
             modelBuilder.Entity("RoleSection", b =>
                 {
-                    b.Property<string>("RolesId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("RolesRoleId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("SectionsSectionId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("RolesId", "SectionsSectionId");
+                    b.HasKey("RolesRoleId", "SectionsSectionId");
 
                     b.HasIndex("SectionsSectionId");
 
@@ -97,18 +97,21 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 
             modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("RoleId"));
+
+                    b.Property<string>("KeycloakId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Roles");
                 });
@@ -154,8 +157,8 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(2047)
-                        .HasColumnType("nvarchar(2047)");
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -186,7 +189,7 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                 {
                     b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Role", null)
                         .WithMany()
-                        .HasForeignKey("RolesId")
+                        .HasForeignKey("RolesRoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -12,8 +12,8 @@ using Trustify.Backend.FeaturesCore.Database.Entities;
 namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 {
     [DbContext(typeof(TrustifyDbContext))]
-    [Migration("20240821192057_RemoveLargeContent")]
-    partial class RemoveLargeContent
+    [Migration("20240823132935_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,13 +42,13 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 
             modelBuilder.Entity("RoleSection", b =>
                 {
-                    b.Property<string>("RolesId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("RolesRoleId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("SectionsSectionId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("RolesId", "SectionsSectionId");
+                    b.HasKey("RolesRoleId", "SectionsSectionId");
 
                     b.HasIndex("SectionsSectionId");
 
@@ -100,18 +100,21 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 
             modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("RoleId"));
+
+                    b.Property<string>("KeycloakId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Roles");
                 });
@@ -189,7 +192,7 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                 {
                     b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Role", null)
                         .WithMany()
-                        .HasForeignKey("RolesId")
+                        .HasForeignKey("RolesRoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -12,8 +12,8 @@ using Trustify.Backend.FeaturesCore.Database.Entities;
 namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 {
     [DbContext(typeof(TrustifyDbContext))]
-    [Migration("20240821191120_AddRole")]
-    partial class AddRole
+    [Migration("20240823153954_ModifyTextLength")]
+    partial class ModifyTextLength
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,21 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                     b.HasIndex("SectionsSectionId");
 
                     b.ToTable("ImageContentSection");
+                });
+
+            modelBuilder.Entity("RoleSection", b =>
+                {
+                    b.Property<long>("RolesRoleId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SectionsSectionId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("RolesRoleId", "SectionsSectionId");
+
+                    b.HasIndex("SectionsSectionId");
+
+                    b.ToTable("RoleSection");
                 });
 
             modelBuilder.Entity("SectionTextualContent", b =>
@@ -83,53 +98,23 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                     b.ToTable("ImageContents");
                 });
 
-            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.LargeContent", b =>
+            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
                 {
-                    b.Property<long>("LargeContentId")
+                    b.Property<long>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("LargeContentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("RoleId"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Path")
-                        .IsRequired()
+                    b.Property<string>("KeycloakId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Size")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("UploadedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("LargeContentId");
-
-                    b.ToTable("LargeContents");
-                });
-
-            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("SectionId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SectionId");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Roles");
                 });
@@ -175,8 +160,8 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(2047)
-                        .HasColumnType("nvarchar(2047)");
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -203,6 +188,21 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RoleSection", b =>
+                {
+                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Section", null)
+                        .WithMany()
+                        .HasForeignKey("SectionsSectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SectionTextualContent", b =>
                 {
                     b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Section", null)
@@ -216,18 +216,6 @@ namespace Trustify.Backend.Features.Providers.MSSQL.Migrations
                         .HasForeignKey("TextualContentsTextualContentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Role", b =>
-                {
-                    b.HasOne("Trustify.Backend.FeaturesCore.Database.Entities.Section", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("SectionId");
-                });
-
-            modelBuilder.Entity("Trustify.Backend.FeaturesCore.Database.Entities.Section", b =>
-                {
-                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

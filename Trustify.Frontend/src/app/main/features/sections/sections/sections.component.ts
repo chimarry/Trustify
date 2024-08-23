@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppMaterialModule } from '../../../../modules/app-material/app-material.module';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { SectionDTO, SectionWrapper } from '../../../../api/features/models';
 import { SectionsService } from '../../../../api/features/services';
 import { DisplayMessageService } from '../../../core/services/display-message.service';
@@ -14,7 +14,7 @@ import { ConfirmDeleteComponent } from '../../../shared/confirm-delete/confirm-d
 @Component({
   selector: 'trf-sections',
   standalone: true,
-  imports: [AppMaterialModule, DatePipe, SectionComponent],
+  imports: [AppMaterialModule, DatePipe, SectionComponent, NgIf],
   templateUrl: './sections.component.html',
   styleUrl: './sections.component.css'
 })
@@ -99,6 +99,7 @@ export class SectionsComponent {
   }
 
   public selectSection(section: SectionDTO) {
+    console.log(section)
     this.selectedSection = section;
   }
 
@@ -130,7 +131,7 @@ export class SectionsComponent {
             next: response => {
               let message = (response as unknown as ResultMessage);
               this.displayMessageService.displayStatus(message.status);
-              this.updateSectionList();
+              this.getSectionList();
             }
           })
       });

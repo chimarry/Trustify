@@ -1,29 +1,29 @@
 <div class="trf-row trf-end">
     <button mat-icon-button (click)="add()"><mat-icon>add</mat-icon></button>
 </div>
-<table mat-table [dataSource]="dataSource" class="table mat-elevation-z8" matSort #empTbSort="matSort">
+<table mat-table [dataSource]="dataSource" class="table mat-elevation-z8" matSort #tbSort="matSort">
     <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Title</th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-10-col">Title</th>
         <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
     <ng-container matColumnDef="text">
-        <th mat-header-cell *matHeaderCellDef class="trf-30-col">Text </th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-30-col">Text </th>
         <td mat-cell *matCellDef="let element">
             <div class="content-text">{{element.text}}</div>
         </td>
     </ng-container>
     <ng-container matColumnDef="author">
-        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Author </th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-10-col" >Author </th>
         <td mat-cell *matCellDef="let element">
             <div class="content-text">{{element.author}}</div>
         </td>
     </ng-container>
-    <ng-container matColumnDef="length">
-        <th mat-header-cell *matHeaderCellDef class="trf-5-col">Length </th>
-        <td mat-cell *matCellDef="let element"> {{element.length}} </td>
+    <ng-container matColumnDef="lenght">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-5-col">Length </th>
+        <td mat-cell *matCellDef="let element"> {{element.lenght}} </td>
     </ng-container>
     <ng-container matColumnDef="createdOn">
-        <th mat-header-cell *matHeaderCellDef class="trf-10-col">Created on </th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-10-col">Created on </th>
         <td mat-cell *matCellDef="let element"> {{element.createdOn| date:'MMM d, y, H:mm'}} </td>
     </ng-container>
     <ng-container matColumnDef="actions">

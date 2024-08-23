@@ -30,7 +30,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+       "trustify_groups": "administrators"
       }
     },
     {
@@ -176,7 +176,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "realm_roles": "trustify.realm.administrator" 
       }
     },
     {

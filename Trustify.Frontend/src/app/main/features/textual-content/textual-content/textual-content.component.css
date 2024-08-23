@@ -41,6 +41,7 @@ table {
 .trf-30-col {
     width: 30vw;
     max-width: 30vw;
+    text-align: center;
 }
 
 .trf-20-col {
@@ -79,3 +80,8 @@ table {
 .trf-table-paginator ::ng-deep .mat-form-field {
     width: 50px !important;
 }
+
+::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+ }

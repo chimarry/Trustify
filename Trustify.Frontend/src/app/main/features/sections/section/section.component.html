@@ -5,7 +5,7 @@
 @if(moreImages){
     @for(text of texts;let i =$index; track text){
         <p>{{text.text}} </p>
-        <img class="img-left" [src]="images[i]" style="max-width: 30vw;max-height: 30vw;">
+        <img class="img-left" [src]="imagesData[i]" style="max-width: 30vw;max-height: 30vw;">
     }
     @for(image of imagesData.slice(textCount,imageCount+1); track image){
       <img class="img-left" [src]="image" style="max-width: 30vw;max-height: 30vw;">

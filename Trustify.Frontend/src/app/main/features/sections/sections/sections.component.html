@@ -26,6 +26,6 @@
         </button>
     </div>
     @if(selectedSection){
-    <trf-section [section]="selectedSection"></trf-section>
+    <trf-section *ngIf="selectedSection" [section]="selectedSection"></trf-section>
     }
 </div>

@@ -24,7 +24,7 @@ import { TextualContentDetailsComponent } from '../textual-content-details/textu
 export class TextualContentComponent extends TrfTableComponent {
   public textualContents: TextualContentDTO[] = [];
 
-  public override displayedColumns: string[] = ["title", "text", "length", "createdOn", "author", "actions"]
+  public override displayedColumns: string[] = ["title", "text", "lenght", "createdOn", "author", "actions"]
 
   constructor(public date: DatePipe, private dialog: MatDialog,
     private displayMessageService: DisplayMessageService,

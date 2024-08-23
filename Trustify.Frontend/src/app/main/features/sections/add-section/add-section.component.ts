@@ -11,7 +11,6 @@ import { AppMaterialModule } from '../../../../modules/app-material/app-material
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 class Role {
-  id?: string;
   roleId?: number;
   name?: string;
 }

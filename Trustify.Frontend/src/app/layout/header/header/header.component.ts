@@ -16,11 +16,11 @@ export class HeaderComponent {
   }
 
   public openAdminApp(): void {
-    window.location.href = "http://localhost:4100";
+    window.location.href = "https://192.168.100.6:4200";
   }
 
   public logOut() {
     this.keycloakService.logout();
-    window.location.href ="https://localhost:4200";
+    window.location.href ="https://localhost:4100";
   }
 }

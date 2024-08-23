@@ -10,8 +10,6 @@ namespace Trustify.Backend.FeaturesCore.DTO
     {
         public long RoleId { get; set; }
 
-        public string? Id { get; set; }
-
         public string Name { get; set; } = null!;
     }
 }

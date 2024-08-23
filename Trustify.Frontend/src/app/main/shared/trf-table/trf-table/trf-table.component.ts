@@ -13,7 +13,7 @@ import { UserPreferenceService } from '../../../core/services/user-preference.se
   styleUrl: './trf-table.component.css'
 })
 export class TrfTableComponent implements OnInit, AfterViewInit {
-  @ViewChild('tbSort') productTbSort = new MatSort();
+  @ViewChild('tbSort') tbSort = new MatSort();
   @ViewChild('paginatorPageSize') paginatorPageSize?: MatPaginator;
 
   public filterPredicate: ((data: any, filter: string) => boolean) | null = null;
