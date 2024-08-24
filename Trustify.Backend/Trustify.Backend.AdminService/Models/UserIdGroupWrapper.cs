@@ -1,4 +1,4 @@
-﻿namespace Trustify.Backend.AdminService.Controllers
+﻿namespace Trustify.Backend.AdminService.Models
 {
     public class UserIdGroupWrapper
     {

@@ -12,7 +12,6 @@ namespace Trustify.Backend.AdminService.Controllers
 {
     [Route("clients")]
     [ApiController]
-    [EnableCors("CorsPolicy")]
     [Authorize(Policy = TrustifyPolicy.Authenticated)]
     [Authorize(Policy = TrustifyPolicy.Restricted)]
     public class ClientsController(IClientService clientService) : TrustifyAdminControllerBase

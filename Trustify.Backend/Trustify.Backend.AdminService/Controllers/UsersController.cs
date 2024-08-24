@@ -17,6 +17,7 @@ namespace Trustify.Backend.AdminService.Controllers
     [Route("users")]
     [ApiController]
     [Authorize(Policy = TrustifyPolicy.Authenticated)]
+    [Authorize(Policy = TrustifyPolicy.All)]
     public class UsersController(IMapper mapper, IUserService userService) : TrustifyAdminControllerBase
     {
         private readonly IMapper mapper = mapper;
@@ -40,6 +41,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="wrapper">User and group identifiers</param>
         /// <returns></returns>
         [HttpPut("group/add")]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> AddUserInGroup([FromBody] UserIdGroupWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
@@ -52,6 +54,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="wrapper">User and group identifiers</param>
         /// <returns></returns>
         [HttpPut("group/remove")]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> RemoveUserInGroup([FromBody] UserIdGroupWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
@@ -70,6 +73,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="wrapper">User identifier.</param>
         /// <returns></returns>
         [HttpPut("delete")]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> DeleteUser([FromBody] UserIdWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();

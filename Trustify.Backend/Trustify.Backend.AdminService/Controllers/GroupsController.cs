@@ -14,9 +14,8 @@ namespace Trustify.Backend.AdminService.Controllers
 {
     [Route("groups")]
     [ApiController]
-    [EnableCors("CorsPolicy")]
     [Authorize(Policy = TrustifyPolicy.Authenticated)]
-    [Authorize(Policy = TrustifyPolicy.Restricted)]
+    [Authorize(Policy = TrustifyPolicy.All)]
     public class GroupsController(IMapper mapper, IGroupService groupService) : TrustifyAdminControllerBase
     {
         private readonly IMapper mapper = mapper;
@@ -28,6 +27,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="wrapper">Group data</param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> AddGroup([FromBody] GroupWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
@@ -42,6 +42,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="wrapper">Data about roles: name and identifier</param>
         /// <returns></returns>
         [HttpPut("roles")]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> AddClientRolesToGroup([FromBody] GroupRolesWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
@@ -57,6 +58,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="wrapper">Data such as group identifider and roles</param>
         /// <returns></returns>
         [HttpPut("roles/delete")]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> DeleteClientRolesFromGroups([FromBody] GroupRolesWrapper wrapper)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
@@ -72,6 +74,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="groupId">The unique group identifier</param>
         /// <returns></returns>
         [HttpPut("delete")]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> DeleteGroup([FromQuery] string groupId)
         {
             string accessToken = await GetTokenFromRequestOrThrow();

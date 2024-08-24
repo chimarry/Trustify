@@ -11,7 +11,6 @@ namespace Trustify.Backend.AdminService.IoC
                 .AddPolicy(TrustifyPolicy.Authenticated, p => p.RequireAuthenticatedUser())
                 .AddPolicy(TrustifyPolicy.All, p => p.RequireClaim(RealmRole.TokenClaimName, RealmRole.Administrator))
                 .AddPolicy(TrustifyPolicy.Restricted, p => p.RequireClaim(RealmRole.TokenClaimName, RealmRole.SuperAdministrator));
-                //.AddPolicy(TrustifyPolicy.Restricted, p => p.RequireAuthenticatedUser());
         }
 
     }

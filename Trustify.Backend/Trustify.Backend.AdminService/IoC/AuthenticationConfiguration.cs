@@ -113,7 +113,7 @@ namespace Trustify.Backend.AdminService.IoC
                 options.SaveTokens = true;
                 options.Scope.Clear();
                 options.Scope.Add("openid");
-                //options.SkipUnrecognizedRequests = true;
+                options.SkipUnrecognizedRequests = true;
                 options.RequireHttpsMetadata = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {

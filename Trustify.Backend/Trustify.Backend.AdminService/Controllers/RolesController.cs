@@ -14,7 +14,8 @@ namespace Trustify.Backend.AdminService.Controllers
     [Route("roles")]
     [ApiController]
     [Authorize(Policy = TrustifyPolicy.Authenticated)]
-    [Authorize(Policy = TrustifyPolicy.Restricted)]
+    [Authorize(Policy = TrustifyPolicy.All)]
+
     public class RolesController(IRoleService roleService, IMapper mapper) : TrustifyAdminControllerBase
     {
         private readonly IRoleService roleService = roleService;
@@ -27,6 +28,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <param name="clientId">Clients' identifier</param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> AddRole([FromBody] RoleWrapper wrapper, [FromQuery] string clientId)
         {
             string accessToken = await GetTokenFromRequestOrThrow();
@@ -57,6 +59,7 @@ namespace Trustify.Backend.AdminService.Controllers
         /// <returns></returns>
         /// <exception cref="UnauthorizedException"></exception>
         [HttpPut("delete")]
+        [Authorize(Policy = TrustifyPolicy.Restricted)]
         public async Task<IActionResult> DeleteRole([FromQuery] string roleName, [FromQuery] string clientId)
         {
             string accessToken = await GetTokenFromRequestOrThrow();

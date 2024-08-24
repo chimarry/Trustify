@@ -166,14 +166,14 @@
             <param name="user">User's data</param>
             <returns></returns>
         </member>
-        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.AddUserInGroup(Trustify.Backend.AdminService.Controllers.UserIdGroupWrapper)">
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.AddUserInGroup(Trustify.Backend.AdminService.Models.UserIdGroupWrapper)">
             <summary>
             Adds new user in the group.
             </summary>
             <param name="wrapper">User and group identifiers</param>
             <returns></returns>
         </member>
-        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.RemoveUserInGroup(Trustify.Backend.AdminService.Controllers.UserIdGroupWrapper)">
+        <member name="M:Trustify.Backend.AdminService.Controllers.UsersController.RemoveUserInGroup(Trustify.Backend.AdminService.Models.UserIdGroupWrapper)">
             <summary>
             Removes user from the group.
             </summary>
