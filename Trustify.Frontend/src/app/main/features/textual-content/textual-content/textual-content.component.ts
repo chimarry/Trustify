@@ -12,13 +12,14 @@ import { ConfirmDeleteComponent } from '../../../shared/confirm-delete/confirm-d
 import { AddTextualContentComponent } from '../add-textual-content/add-textual-content.component';
 import { EditTextualContentComponent } from '../edit-textual-content/edit-textual-content.component';
 import { TextualContentDetailsComponent } from '../textual-content-details/textual-content-details.component';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'trf-textual-content',
   standalone: true,
   imports: [AppMaterialModule, DatePipe],
   templateUrl: './textual-content.component.html',
-  styleUrls: ['./textual-content.component.css','../../../shared/styles/table.css'],
+  styleUrls: ['./textual-content.component.css', '../../../shared/styles/table.css'],
   providers: [DatePipe]
 })
 export class TextualContentComponent extends TrfTableComponent {
@@ -36,6 +37,10 @@ export class TextualContentComponent extends TrfTableComponent {
   override ngOnInit(): void {
     super.ngOnInit();
     this.getTexts();
+  }
+
+  public isInRole(role: string) {
+    return this.userPreferenceService.isInRole(role);
   }
 
   public getTexts() {
@@ -93,7 +98,7 @@ export class TextualContentComponent extends TrfTableComponent {
       });
   }
 
-  public showDetails(row:TextualContentDTO){
+  public showDetails(row: TextualContentDTO) {
     this.dialog.open(TextualContentDetailsComponent, {
       panelClass: "trf-dialog-size-large",
       data: row

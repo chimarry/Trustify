@@ -1,6 +1,8 @@
 <div style=" justify-content: center;padding: 20px;">
     <div style="display: flex; flex-direction: row;justify-content:end;margin-bottom: 20px;">
+        @if(isInRole("sections_editor")){
         <button mat-button color="primary" (click)="addSection()">New section</button>
+        }
     </div>
     <mat-grid-list [cols]="3" rowHeight="25vh" gutterSize="10px">
         @for (tile of displaysectionList; track tile) {
@@ -10,7 +12,9 @@
                 <mat-card-subtitle class="content-text">{{tile.description}}</mat-card-subtitle>
                 <mat-card-actions>
                     <button mat-button color="primary" (click)="selectSection(tile)">Select</button>
+                    @if(isInRole("sections_editor")){
                     <button mat-button color="secondary" (click)="deleteSection(tile.sectionId)">Delete</button>
+                    }
                 </mat-card-actions>
             </mat-card>
         </mat-grid-tile>

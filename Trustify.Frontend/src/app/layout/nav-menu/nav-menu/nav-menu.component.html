@@ -1,20 +1,24 @@
 <div class="trf-nav-menu">
     <ul>
+        @if(isInRole('text_viewer')){
         <li routerLink="textual-content">
             <mat-icon>article</mat-icon>
             <span>Textual content</span>
-        </li>
+        </li>}
+        @if(isInRole('image_viewer')){
         <li routerLink='image-content'>
             <mat-icon>image</mat-icon>
             <span>Images</span>
-        </li>
+        </li>}
+        @if(isInRole('sections_viewer')){
         <li routerLink="sections">
             <mat-icon>newspaper</mat-icon>
             <span>Sections</span>
-        </li>
+        </li>}
+        @if(isInRole('premium_user')){
         <li routerLink="image-generator">
             <mat-icon>draw_collage</mat-icon>
             <span>Image finder</span>
-        </li>
+        </li>}
     </ul>
 </div>

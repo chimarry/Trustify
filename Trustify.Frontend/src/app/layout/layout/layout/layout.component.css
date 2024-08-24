@@ -37,7 +37,7 @@
     color: var(--trf-primary-font);
     background-color: var(--trf-card-background);
     margin: 1.5vh;
-    height: 82vh;
+    min-height: 82vh;
     word-wrap: break-word;
     font-size: 14px;
 }

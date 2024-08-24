@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddSectionComponent } from '../add-section/add-section.component';
 import { KeycloakService } from 'keycloak-angular';
 import { ConfirmDeleteComponent } from '../../../shared/confirm-delete/confirm-delete.component';
+import { UserPreferenceService } from '../../../core/services/user-preference.service';
 
 @Component({
   selector: 'trf-sections',
@@ -30,16 +31,19 @@ export class SectionsComponent {
   public selectedSection?: SectionDTO;
   public roles: string[] = [];
 
-  constructor(private sectionService: SectionsService, private dialog: MatDialog, private keycloakService: KeycloakService,
+  constructor(private sectionService: SectionsService, private dialog: MatDialog, private userPreferenceService: UserPreferenceService,
     private displayMessageService: DisplayMessageService) {
   }
 
   ngOnInit(): void {
-    this.keycloakService.loadUserProfile().then(profile => {
-      this.roles = this.keycloakService.getUserRoles(true);
+      this.roles = this.userPreferenceService.getRoles();
       this.getSectionList();
-    })
   }
+
+  public isInRole(role: string) {
+    return this.userPreferenceService.isInRole(role);
+  }
+
 
   public pageDown() {
     if (this.page > 1) {

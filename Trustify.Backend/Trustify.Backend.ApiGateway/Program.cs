@@ -1,9 +1,21 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.ObjectPool;
+using Newtonsoft.Json;
+using Ocelot.Authorization;
+using Ocelot.Configuration;
 using Ocelot.DependencyInjection;
+using Ocelot.Errors;
 using Ocelot.Middleware;
+using Ocelot.Requester;
 using Serilog;
+using System.Security.Claims;
 using System.Text.Json.Serialization;
+using Trustify.Backend.ApiGateway;
 using Trustify.Backend.ApiGateway.ApiConfig;
+using Trustify.Backend.ApiGateway.Middlewares;
+using Trustify.Backend.ApiGateway.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,7 +82,10 @@ builder.Services.AddHttpClient(string.Empty, _ => { })
                             ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
                         };
                     });
+builder.Services.TryAddSingleton<IExceptionToErrorMapper, HttpExceptionToErrorMapper>();
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -88,6 +103,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-await app.UseOcelot();
+
+var configuration = new OcelotPipelineConfiguration
+{
+    AuthorizationMiddleware = OcelotAuthorizationMiddleware.Authorize()
+};
+
+await app.UseOcelot(configuration);
 
 await app.RunAsync();
+

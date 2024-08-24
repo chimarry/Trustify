@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout/layout/layout.component';
 import { ImageContentComponent } from './main/features/image-content/image-content/image-content.component';
 import { TextualContentComponent } from './main/features/textual-content/textual-content/textual-content.component';
-import { LargeContentComponent } from './main/features/large-content/large-content/large-content.component';
 import { SectionsComponent } from './main/features/sections/sections/sections.component';
 import { ImageGeneratorComponent } from './main/features/europeana/image-generator/image-generator.component';
 import { authGuard } from './main/core/auth/auth.guard';
@@ -31,10 +30,6 @@ export const routes: Routes = [
                 {
                     path: 'textual-content',
                     component: TextualContentComponent
-                },
-                {
-                    path: 'large-content',
-                    component: LargeContentComponent
                 },
                 {
                     path: 'sections',

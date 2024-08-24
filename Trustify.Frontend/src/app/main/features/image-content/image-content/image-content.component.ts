@@ -7,6 +7,8 @@ import { DisplayMessageService } from '../../../core/services/display-message.se
 import { ResultMessage } from '../../../core/models/result-message';
 import { MatDialog } from '@angular/material/dialog';
 import { AddImageContentComponent } from '../add-image-content/add-image-content.component';
+import { KeycloakService } from 'keycloak-angular';
+import { UserPreferenceService } from '../../../core/services/user-preference.service';
 
 @Component({
   selector: 'trf-image-content',
@@ -27,7 +29,9 @@ export class ImageContentComponent {
 
   public displayImageList: ImageContentDTO[] = [];
 
-  constructor(private imageContentService: ImageContentService, private dialog: MatDialog,
+  constructor(private imageContentService: ImageContentService,
+    private userPreferenceService: UserPreferenceService,
+    private dialog: MatDialog,
     private displayMessageService: DisplayMessageService) { }
 
   ngOnInit(): void {
@@ -48,6 +52,10 @@ export class ImageContentComponent {
     }
   }
 
+  public isInRole(role: string) {
+    return this.userPreferenceService.isInRole(role);
+  }
+
   add(): void {
     this.dialog.open(AddImageContentComponent, {
       panelClass: "trf-dialog-size-large"
@@ -59,7 +67,7 @@ export class ImageContentComponent {
             Name: result.name,
             Image: result.image
           }).subscribe({
-            next: response=>{
+            next: response => {
               this.updateImageList();
               this.displayMessageService.displayStatus((response as unknown as ResultMessage).status)
             }

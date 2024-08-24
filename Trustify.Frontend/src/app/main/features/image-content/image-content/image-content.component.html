@@ -1,5 +1,7 @@
 <div class="trf-row trf-end">
+    @if(isInRole("image_editor")){
     <button mat-icon-button (click)="add()"><mat-icon>add</mat-icon></button>
+    }
 </div>
 <mat-grid-list [cols]="2" rowHeight="70vh" gutterSize="10px">
     @for (tile of displayImageList; track tile) {

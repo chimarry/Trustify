@@ -1,5 +1,7 @@
 <div class="trf-row trf-end">
+    @if(isInRole("text_editor")){
     <button mat-icon-button (click)="add()"><mat-icon>add</mat-icon></button>
+    }
 </div>
 <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8" matSort #tbSort="matSort">
     <ng-container matColumnDef="title">
@@ -13,7 +15,7 @@
         </td>
     </ng-container>
     <ng-container matColumnDef="author">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-10-col" >Author </th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-10-col">Author </th>
         <td mat-cell *matCellDef="let element">
             <div class="content-text">{{element.author}}</div>
         </td>
@@ -26,18 +28,22 @@
         <th mat-header-cell mat-sort-header *matHeaderCellDef class="trf-10-col">Created on </th>
         <td mat-cell *matCellDef="let element"> {{element.createdOn| date:'MMM d, y, H:mm'}} </td>
     </ng-container>
+
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="mb-products-table-header-large">
             Actions</th>
         <td mat-cell *matCellDef="let element">
             <div class="trf-table-actions">
-                <button mat-icon-button matTooltipPosition="above" matTooltipClass="tooltip" matTooltip="Details" (click)="showDetails(element)">
+                <button mat-icon-button matTooltipPosition="above" matTooltipClass="tooltip" matTooltip="Details"
+                    (click)="showDetails(element)">
                     <mat-icon>info</mat-icon>
                 </button>
+                @if(isInRole("text_editor")){
                 <button mat-icon-button matTooltipPosition="above" matTooltipClass="tooltip" matTooltip="Delete text"
                     (click)="delete(element.textualContentId)">
                     <mat-icon>delete</mat-icon>
                 </button>
+                }
             </div>
         </td>
     </ng-container>

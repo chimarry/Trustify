@@ -35,6 +35,14 @@ export class UserPreferenceService {
     return JSON.parse(localStorage.getItem("roles") ?? "{}") as string[];
   }
 
+  public isInRole(role:string){
+    return this.getRoles().findIndex(x=>x===role)!=-1;
+  }
+
+  public notInRole(role:string){
+    return !this.isInRole(role);
+  }
+
   public saveUsername(username: string) {
     localStorage.setItem("username", username);
   }

@@ -11,7 +11,13 @@
         }
       ],
       "UpstreamPathTemplate": "/api/image-finder?{everything}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "roles": "[premium_user,content_administrator]"
+      }
     },
     /// Features
     // Textual content
@@ -30,7 +36,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-       "trustify_groups": "administrators"
+        "roles": "[text_editor]"
       }
     },
     {
@@ -48,7 +54,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.super_administrator"
+        "roles": "[text_viewer]"
       }
     },
     {
@@ -66,7 +72,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "roles": "[text_viewer]"
       }
     },
     //sections
@@ -85,7 +91,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "roles": "[sections_editor]"
       }
     },
     {
@@ -103,7 +109,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "roles": "[sections_viewer]"
       }
     },
     {
@@ -121,7 +127,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.super_administrator"
+        "roles": "[sections_viewer]"
       }
     },
     {
@@ -139,7 +145,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "roles": "[sections_viewer]"
       }
     },
     {
@@ -157,7 +163,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "roles": "[sections_viewer]"
       }
     },
     // image-content
@@ -176,7 +182,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator" 
+        "roles": "[image_editor]"
       }
     },
     {
@@ -194,7 +200,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.super_administrator"
+        "roles": "[image_viewer,image_editor]"
       }
     },
     {
@@ -212,7 +218,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "roles": "[image_viewer]"
       }
     },
     {
@@ -230,7 +236,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "realm_roles": "trustify.realm.administrator"
+        "roles": "[image_viewer]"
       }
     }
   ],
