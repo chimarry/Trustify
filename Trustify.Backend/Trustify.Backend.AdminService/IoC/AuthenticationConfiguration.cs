@@ -29,11 +29,9 @@ namespace Trustify.Backend.AdminService.IoC
             {
                 options.Cookie.Name = "TRF_COOKIE";
                 options.Cookie.HttpOnly = true;
-                //options.Cookie.SameSite = SameSiteMode.None;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.LoginPath = "/api/v1.0/auth/login";
                 options.AccessDeniedPath = "/api/v1.0/auth/access-denied";
-
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(2);
                 options.Events = new CookieAuthenticationEvents
                 {

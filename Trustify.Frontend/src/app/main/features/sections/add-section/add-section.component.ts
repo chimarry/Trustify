@@ -10,6 +10,7 @@ import { AddTextualContentComponent } from '../../textual-content/add-textual-co
 import { AppMaterialModule } from '../../../../modules/app-material/app-material.module';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { UserPreferenceService } from '../../../core/services/user-preference.service';
 class Role {
   roleId?: number;
   name?: string;
@@ -38,6 +39,7 @@ export class AddSectionComponent {
   public selectedRoles: Role[] = [];
 
   constructor(private dialogRef: MatDialogRef<AddSectionComponent>,
+    private userPreferenceService: UserPreferenceService,
     private dialog: MatDialog,
     private sectionService: SectionsService,
     private imageService: ImageContentService,
@@ -199,6 +201,10 @@ export class AddSectionComponent {
     this.sectionService.getSectionsRoles().subscribe({
       next: response => {
         this.notSelectedRoles = (response as unknown as ResultMessage).result as Role[];
+        ((response as unknown as ResultMessage).result as Role[]).forEach(x=>{
+          if(this.userPreferenceService.isInRole(x.name??""))
+            this.selectRole(x);
+        })
       }
     })
   }

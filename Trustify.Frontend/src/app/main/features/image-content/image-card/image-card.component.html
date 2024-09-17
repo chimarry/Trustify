@@ -2,8 +2,8 @@
     <mat-card-header>
         <img mat-card-avatar class="trf-image-header" src="./../../../../../assets/images/image.png">
         <mat-card-title>{{imageContent?.name}}</mat-card-title>
-        <mat-card-subtitle>{{imageContent?.uploadedOn| date:'MMM d, y, H:mm'}}
-            {{imageContent?.size}}</mat-card-subtitle>
+        <mat-card-subtitle>{{imageContent?.uploadedOn| date:'MMM d, y, HH:mm'}}
+          Size:  {{size}}kB</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [src]="image" class="trf-image-card-image">
     <mat-card-actions class="trf-image-card-actions">

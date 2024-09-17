@@ -23,7 +23,8 @@ namespace Trustify.Backend.FeaturesService.IoC
         /// <param name="configuration">Configuration object that contains information about database connection string.</param>
         public static void ConfigureDb(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString(ApiSettingsKeys.DatabaseConnectionStringKey) ?? throw new ArgumentNullException();
+            string connectionString = configuration.GetConnectionString(ApiSettingsKeys.DatabaseConnectionStringKey) 
+                ?? throw new ArgumentNullException(nameof(configuration));
             string databaseProvider = configuration.GetSection(ApiSettingsKeys.ConnectionStringsKey).GetValue<string>(ApiSettingsKeys.DatabaseProviderKey) ?? throw new ArgumentNullException();
 
             serviceCollection.AddDbContext<TrustifyDbContext>(optionsAction: options =>

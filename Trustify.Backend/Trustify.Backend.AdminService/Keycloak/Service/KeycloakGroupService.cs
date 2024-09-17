@@ -19,18 +19,17 @@ namespace Trustify.Backend.AdminService.Keycloak.Service
         /// <summary>
         /// Adds group of users to the realm. 
         /// </summary>
-        /// <param name="group">Group data</param>
-        /// <param name="token">Access token of logged in user</param>
+        /// <param name="group">Groups' data</param>
+        /// <param name="token">Access token of the logged in user</param>
         /// <returns></returns>
         public async Task<ResultMessage<bool>> AddGroup(GroupDTO group, string token)
         {
-            IFlurlResponse? response = null;
             try
             {
-                response = await httpService.GetAdminBaseUrl(token)
-                                            .AppendPathSegment("/groups")
-                                            .WithOAuthBearerToken(token)
-                                            .PostJsonAsync(group);
+                IFlurlResponse? response = await httpService.GetAdminBaseUrl(token)
+                                                            .AppendPathSegment("/groups")
+                                                            .WithOAuthBearerToken(token)
+                                                            .PostJsonAsync(group);
 
                 return new ResultMessage<bool>(true);
 

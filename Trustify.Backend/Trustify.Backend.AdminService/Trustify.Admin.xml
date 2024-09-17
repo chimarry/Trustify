@@ -300,8 +300,8 @@
             <summary>
             Adds group of users to the realm. 
             </summary>
-            <param name="group">Group data</param>
-            <param name="token">Access token of logged in user</param>
+            <param name="group">Groups' data</param>
+            <param name="token">Access token of the logged in user</param>
             <returns></returns>
         </member>
         <member name="M:Trustify.Backend.AdminService.Keycloak.Service.KeycloakGroupService.DeleteGroup(System.String,System.String)">

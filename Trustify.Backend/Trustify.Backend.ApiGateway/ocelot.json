@@ -1,6 +1,5 @@
 {
   "Routes": [
-    /// Image finder
     {
       "DownstreamPathTemplate": "/image-finder?{everything}",
       "DownstreamScheme": "https",
@@ -19,7 +18,6 @@
         "roles": "[premium_user,content_administrator]"
       }
     },
-    /// Features
     // Textual content
     {
       "DownstreamPathTemplate": "/textual-content",

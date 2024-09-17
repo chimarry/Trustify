@@ -21,17 +21,19 @@ export class ImageCardComponent {
   @Input() imageContent?: ImageContentDTO;
   @Output() deleted: EventEmitter<boolean> = new EventEmitter<boolean>();
   public image: any;
+  public size: number = 0.0;
 
   constructor(private service: ImageContentService,
     private sanitizer: DomSanitizer,
     private dialog: MatDialog,
     private displayMessageService: DisplayMessageService
   ) {
-
   }
 
   ngOnInit(): void {
     this.getImage();
+    if(this.imageContent?.size)
+    this.size = this.imageContent?.size / 1000.0;
   }
 
   getImage() {
